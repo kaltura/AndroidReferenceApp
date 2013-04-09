@@ -1,0 +1,13 @@
+
+*.class
+
+*.jar
+
+*.apk
+
+DemoApplication/bin/*
+
+KalturaClient/bin/*
+
+KalturaClientTester/bin/*
+

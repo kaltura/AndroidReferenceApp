@@ -30,25 +30,25 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaPartnerOrderBy implements KalturaEnumAsString {
-    ID_ASC ("+id"),
-    ID_DESC ("-id"),
-    NAME_ASC ("+name"),
-    NAME_DESC ("-name"),
-    WEBSITE_ASC ("+website"),
-    WEBSITE_DESC ("-website"),
-    CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    ADMIN_NAME_ASC ("+adminName"),
-    ADMIN_NAME_DESC ("-adminName"),
     ADMIN_EMAIL_ASC ("+adminEmail"),
-    ADMIN_EMAIL_DESC ("-adminEmail"),
+    ADMIN_NAME_ASC ("+adminName"),
+    CREATED_AT_ASC ("+createdAt"),
+    ID_ASC ("+id"),
+    NAME_ASC ("+name"),
     STATUS_ASC ("+status"),
-    STATUS_DESC ("-status");
+    WEBSITE_ASC ("+website"),
+    ADMIN_EMAIL_DESC ("-adminEmail"),
+    ADMIN_NAME_DESC ("-adminName"),
+    CREATED_AT_DESC ("-createdAt"),
+    ID_DESC ("-id"),
+    NAME_DESC ("-name"),
+    STATUS_DESC ("-status"),
+    WEBSITE_DESC ("-website");
 
     public String hashCode;
 
@@ -61,44 +61,9 @@ public enum KalturaPartnerOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaPartnerOrderBy get(String hashCode) {
-        if (hashCode.equals("+id"))
+        if (hashCode.equals("+adminEmail"))
         {
-           return ID_ASC;
-        }
-        else 
-        if (hashCode.equals("-id"))
-        {
-           return ID_DESC;
-        }
-        else 
-        if (hashCode.equals("+name"))
-        {
-           return NAME_ASC;
-        }
-        else 
-        if (hashCode.equals("-name"))
-        {
-           return NAME_DESC;
-        }
-        else 
-        if (hashCode.equals("+website"))
-        {
-           return WEBSITE_ASC;
-        }
-        else 
-        if (hashCode.equals("-website"))
-        {
-           return WEBSITE_DESC;
-        }
-        else 
-        if (hashCode.equals("+createdAt"))
-        {
-           return CREATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-createdAt"))
-        {
-           return CREATED_AT_DESC;
+           return ADMIN_EMAIL_ASC;
         }
         else 
         if (hashCode.equals("+adminName"))
@@ -106,19 +71,19 @@ public enum KalturaPartnerOrderBy implements KalturaEnumAsString {
            return ADMIN_NAME_ASC;
         }
         else 
-        if (hashCode.equals("-adminName"))
+        if (hashCode.equals("+createdAt"))
         {
-           return ADMIN_NAME_DESC;
+           return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("+adminEmail"))
+        if (hashCode.equals("+id"))
         {
-           return ADMIN_EMAIL_ASC;
+           return ID_ASC;
         }
         else 
-        if (hashCode.equals("-adminEmail"))
+        if (hashCode.equals("+name"))
         {
-           return ADMIN_EMAIL_DESC;
+           return NAME_ASC;
         }
         else 
         if (hashCode.equals("+status"))
@@ -126,13 +91,48 @@ public enum KalturaPartnerOrderBy implements KalturaEnumAsString {
            return STATUS_ASC;
         }
         else 
+        if (hashCode.equals("+website"))
+        {
+           return WEBSITE_ASC;
+        }
+        else 
+        if (hashCode.equals("-adminEmail"))
+        {
+           return ADMIN_EMAIL_DESC;
+        }
+        else 
+        if (hashCode.equals("-adminName"))
+        {
+           return ADMIN_NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-id"))
+        {
+           return ID_DESC;
+        }
+        else 
+        if (hashCode.equals("-name"))
+        {
+           return NAME_DESC;
+        }
+        else 
         if (hashCode.equals("-status"))
         {
            return STATUS_DESC;
         }
         else 
+        if (hashCode.equals("-website"))
         {
-           return ID_ASC;
+           return WEBSITE_DESC;
+        }
+        else 
+        {
+           return ADMIN_EMAIL_ASC;
         }
     }
 }

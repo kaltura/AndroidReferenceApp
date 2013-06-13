@@ -30,11 +30,19 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDropFolderFileErrorCode implements KalturaEnumAsString {
+    ERROR_ADDING_BULK_UPLOAD ("dropFolderXmlBulkUpload.ERROR_ADDING_BULK_UPLOAD"),
+    ERROR_ADD_CONTENT_RESOURCE ("dropFolderXmlBulkUpload.ERROR_ADD_CONTENT_RESOURCE"),
+    ERROR_IN_BULK_UPLOAD ("dropFolderXmlBulkUpload.ERROR_IN_BULK_UPLOAD"),
+    ERROR_WRITING_TEMP_FILE ("dropFolderXmlBulkUpload.ERROR_WRITING_TEMP_FILE"),
+    LOCAL_FILE_WRONG_CHECKSUM ("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_CHECKSUM"),
+    LOCAL_FILE_WRONG_SIZE ("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_SIZE"),
+    MALFORMED_XML_FILE ("dropFolderXmlBulkUpload.MALFORMED_XML_FILE"),
+    XML_FILE_SIZE_EXCEED_LIMIT ("dropFolderXmlBulkUpload.XML_FILE_SIZE_EXCEED_LIMIT"),
     ERROR_UPDATE_ENTRY ("1"),
     ERROR_ADD_ENTRY ("2"),
     FLAVOR_NOT_FOUND ("3"),
@@ -42,10 +50,11 @@ public enum KalturaDropFolderFileErrorCode implements KalturaEnumAsString {
     SLUG_REGEX_NO_MATCH ("5"),
     ERROR_READING_FILE ("6"),
     ERROR_DOWNLOADING_FILE ("7"),
-    LOCAL_FILE_WRONG_SIZE ("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_SIZE"),
-    LOCAL_FILE_WRONG_CHECKSUM ("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_CHECKSUM"),
-    ERROR_WRITING_TEMP_FILE ("dropFolderXmlBulkUpload.ERROR_WRITING_TEMP_FILE"),
-    ERROR_ADDING_BULK_UPLOAD ("dropFolderXmlBulkUpload.ERROR_ADDING_BULK_UPLOAD");
+    ERROR_UPDATE_FILE ("8"),
+    ERROR_ADDING_CONTENT_PROCESSOR ("10"),
+    ERROR_IN_CONTENT_PROCESSOR ("11"),
+    ERROR_DELETING_FILE ("12"),
+    FILE_NO_MATCH ("13");
 
     public String hashCode;
 
@@ -58,6 +67,46 @@ public enum KalturaDropFolderFileErrorCode implements KalturaEnumAsString {
     }
 
     public static KalturaDropFolderFileErrorCode get(String hashCode) {
+        if (hashCode.equals("dropFolderXmlBulkUpload.ERROR_ADDING_BULK_UPLOAD"))
+        {
+           return ERROR_ADDING_BULK_UPLOAD;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.ERROR_ADD_CONTENT_RESOURCE"))
+        {
+           return ERROR_ADD_CONTENT_RESOURCE;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.ERROR_IN_BULK_UPLOAD"))
+        {
+           return ERROR_IN_BULK_UPLOAD;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.ERROR_WRITING_TEMP_FILE"))
+        {
+           return ERROR_WRITING_TEMP_FILE;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_CHECKSUM"))
+        {
+           return LOCAL_FILE_WRONG_CHECKSUM;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_SIZE"))
+        {
+           return LOCAL_FILE_WRONG_SIZE;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.MALFORMED_XML_FILE"))
+        {
+           return MALFORMED_XML_FILE;
+        }
+        else 
+        if (hashCode.equals("dropFolderXmlBulkUpload.XML_FILE_SIZE_EXCEED_LIMIT"))
+        {
+           return XML_FILE_SIZE_EXCEED_LIMIT;
+        }
+        else 
         if (hashCode.equals("1"))
         {
            return ERROR_UPDATE_ENTRY;
@@ -93,28 +142,33 @@ public enum KalturaDropFolderFileErrorCode implements KalturaEnumAsString {
            return ERROR_DOWNLOADING_FILE;
         }
         else 
-        if (hashCode.equals("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_SIZE"))
+        if (hashCode.equals("8"))
         {
-           return LOCAL_FILE_WRONG_SIZE;
+           return ERROR_UPDATE_FILE;
         }
         else 
-        if (hashCode.equals("dropFolderXmlBulkUpload.LOCAL_FILE_WRONG_CHECKSUM"))
+        if (hashCode.equals("10"))
         {
-           return LOCAL_FILE_WRONG_CHECKSUM;
+           return ERROR_ADDING_CONTENT_PROCESSOR;
         }
         else 
-        if (hashCode.equals("dropFolderXmlBulkUpload.ERROR_WRITING_TEMP_FILE"))
+        if (hashCode.equals("11"))
         {
-           return ERROR_WRITING_TEMP_FILE;
+           return ERROR_IN_CONTENT_PROCESSOR;
         }
         else 
-        if (hashCode.equals("dropFolderXmlBulkUpload.ERROR_ADDING_BULK_UPLOAD"))
+        if (hashCode.equals("12"))
+        {
+           return ERROR_DELETING_FILE;
+        }
+        else 
+        if (hashCode.equals("13"))
+        {
+           return FILE_NO_MATCH;
+        }
+        else 
         {
            return ERROR_ADDING_BULK_UPLOAD;
-        }
-        else 
-        {
-           return ERROR_UPDATE_ENTRY;
         }
     }
 }

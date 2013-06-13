@@ -41,7 +41,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -56,11 +56,19 @@ public class KalturaDropFolderFile extends KalturaObjectBase {
     public KalturaDropFolderFileStatus status;
     public String parsedSlug;
     public String parsedFlavor;
+    public int leadDropFolderFileId = Integer.MIN_VALUE;
+    public int deletedDropFolderFileId = Integer.MIN_VALUE;
+    public String entryId;
     public KalturaDropFolderFileErrorCode errorCode;
     public String errorDescription;
     public String lastModificationTime;
     public int createdAt = Integer.MIN_VALUE;
     public int updatedAt = Integer.MIN_VALUE;
+    public int uploadStartDetectedAt = Integer.MIN_VALUE;
+    public int uploadEndDetectedAt = Integer.MIN_VALUE;
+    public int importStartedAt = Integer.MIN_VALUE;
+    public int importEndedAt = Integer.MIN_VALUE;
+    public int batchJobId = Integer.MIN_VALUE;
 
     public KalturaDropFolderFile() {
     }
@@ -98,6 +106,15 @@ public class KalturaDropFolderFile extends KalturaObjectBase {
             } else if (nodeName.equals("parsedFlavor")) {
                 this.parsedFlavor = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("leadDropFolderFileId")) {
+                this.leadDropFolderFileId = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("deletedDropFolderFileId")) {
+                this.deletedDropFolderFileId = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("entryId")) {
+                this.entryId = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("errorCode")) {
                 this.errorCode = KalturaDropFolderFileErrorCode.get(ParseUtils.parseString(txt));
                 continue;
@@ -113,6 +130,21 @@ public class KalturaDropFolderFile extends KalturaObjectBase {
             } else if (nodeName.equals("updatedAt")) {
                 this.updatedAt = ParseUtils.parseInt(txt);
                 continue;
+            } else if (nodeName.equals("uploadStartDetectedAt")) {
+                this.uploadStartDetectedAt = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("uploadEndDetectedAt")) {
+                this.uploadEndDetectedAt = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("importStartedAt")) {
+                this.importStartedAt = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("importEndedAt")) {
+                this.importEndedAt = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("batchJobId")) {
+                this.batchJobId = ParseUtils.parseInt(txt);
+                continue;
             } 
         }
     }
@@ -125,9 +157,16 @@ public class KalturaDropFolderFile extends KalturaObjectBase {
         kparams.add("fileSize", this.fileSize);
         kparams.add("parsedSlug", this.parsedSlug);
         kparams.add("parsedFlavor", this.parsedFlavor);
+        kparams.add("leadDropFolderFileId", this.leadDropFolderFileId);
+        kparams.add("deletedDropFolderFileId", this.deletedDropFolderFileId);
+        kparams.add("entryId", this.entryId);
         kparams.add("errorCode", this.errorCode);
         kparams.add("errorDescription", this.errorDescription);
         kparams.add("lastModificationTime", this.lastModificationTime);
+        kparams.add("uploadStartDetectedAt", this.uploadStartDetectedAt);
+        kparams.add("uploadEndDetectedAt", this.uploadEndDetectedAt);
+        kparams.add("importStartedAt", this.importStartedAt);
+        kparams.add("importEndedAt", this.importEndedAt);
         return kparams;
     }
 

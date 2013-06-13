@@ -38,7 +38,7 @@ import com.kaltura.client.KalturaApiException;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -80,7 +80,7 @@ public class KalturaBulkService extends KalturaServiceBase {
         return ParseUtils.parseObject(KalturaBulkUploadListResponse.class, resultXmlElement);
     }
 
-	/**  serve action returan the original file.     */
+	/**  serve action returns the original file.     */
     public String serve(int id) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("id", id);
@@ -88,7 +88,7 @@ public class KalturaBulkService extends KalturaServiceBase {
         return this.kalturaClient.serve();
     }
 
-	/**  serveLog action returan the original file.     */
+	/**  serveLog action returns the log file for the bulk-upload job.     */
     public String serveLog(int id) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("id", id);

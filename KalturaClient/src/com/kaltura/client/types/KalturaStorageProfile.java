@@ -44,7 +44,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -82,6 +82,9 @@ public class KalturaStorageProfile extends KalturaObjectBase {
     public KalturaStorageProfileDeliveryStatus deliveryStatus;
     public String rtmpPrefix;
     public KalturaStorageProfileReadyBehavior readyBehavior;
+	/**  Flag sugnifying that the storage exported content should be deleted when soure
+	  entry is deleted     */
+    public int allowAutoDelete = Integer.MIN_VALUE;
 
     public KalturaStorageProfile() {
     }
@@ -182,6 +185,9 @@ public class KalturaStorageProfile extends KalturaObjectBase {
             } else if (nodeName.equals("readyBehavior")) {
                 this.readyBehavior = KalturaStorageProfileReadyBehavior.get(ParseUtils.parseInt(txt));
                 continue;
+            } else if (nodeName.equals("allowAutoDelete")) {
+                this.allowAutoDelete = ParseUtils.parseInt(txt);
+                continue;
             } 
         }
     }
@@ -215,6 +221,7 @@ public class KalturaStorageProfile extends KalturaObjectBase {
         kparams.add("deliveryStatus", this.deliveryStatus);
         kparams.add("rtmpPrefix", this.rtmpPrefix);
         kparams.add("readyBehavior", this.readyBehavior);
+        kparams.add("allowAutoDelete", this.allowAutoDelete);
         return kparams;
     }
 

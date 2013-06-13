@@ -30,17 +30,17 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaSchemaType implements KalturaEnumAsString {
-    SYNDICATION ("syndication"),
-    BULK_UPLOAD_XML ("bulkUploadXml.bulkUploadXML"),
     BULK_UPLOAD_RESULT_XML ("bulkUploadXml.bulkUploadResultXML"),
-    DROP_FOLDER_XML ("dropFolderXmlBulkUpload.dropFolderXml"),
+    BULK_UPLOAD_XML ("bulkUploadXml.bulkUploadXML"),
+    INGEST_API ("cuePoint.ingestAPI"),
     SERVE_API ("cuePoint.serveAPI"),
-    INGEST_API ("cuePoint.ingestAPI");
+    DROP_FOLDER_XML ("dropFolderXmlBulkUpload.dropFolderXml"),
+    SYNDICATION ("syndication");
 
     public String hashCode;
 
@@ -53,9 +53,9 @@ public enum KalturaSchemaType implements KalturaEnumAsString {
     }
 
     public static KalturaSchemaType get(String hashCode) {
-        if (hashCode.equals("syndication"))
+        if (hashCode.equals("bulkUploadXml.bulkUploadResultXML"))
         {
-           return SYNDICATION;
+           return BULK_UPLOAD_RESULT_XML;
         }
         else 
         if (hashCode.equals("bulkUploadXml.bulkUploadXML"))
@@ -63,14 +63,9 @@ public enum KalturaSchemaType implements KalturaEnumAsString {
            return BULK_UPLOAD_XML;
         }
         else 
-        if (hashCode.equals("bulkUploadXml.bulkUploadResultXML"))
+        if (hashCode.equals("cuePoint.ingestAPI"))
         {
-           return BULK_UPLOAD_RESULT_XML;
-        }
-        else 
-        if (hashCode.equals("dropFolderXmlBulkUpload.dropFolderXml"))
-        {
-           return DROP_FOLDER_XML;
+           return INGEST_API;
         }
         else 
         if (hashCode.equals("cuePoint.serveAPI"))
@@ -78,13 +73,18 @@ public enum KalturaSchemaType implements KalturaEnumAsString {
            return SERVE_API;
         }
         else 
-        if (hashCode.equals("cuePoint.ingestAPI"))
+        if (hashCode.equals("dropFolderXmlBulkUpload.dropFolderXml"))
         {
-           return INGEST_API;
+           return DROP_FOLDER_XML;
+        }
+        else 
+        if (hashCode.equals("syndication"))
+        {
+           return SYNDICATION;
         }
         else 
         {
-           return SYNDICATION;
+           return BULK_UPLOAD_RESULT_XML;
         }
     }
 }

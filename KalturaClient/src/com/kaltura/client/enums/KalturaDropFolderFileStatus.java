@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -46,7 +46,10 @@ public enum KalturaDropFolderFileStatus implements KalturaEnumAsInt {
     ERROR_HANDLING (9),
     ERROR_DELETING (10),
     DOWNLOADING (11),
-    ERROR_DOWNLOADING (12);
+    ERROR_DOWNLOADING (12),
+    PROCESSING (13),
+    PARSED (14),
+    DETECTED (15);
 
     public int hashCode;
 
@@ -72,6 +75,9 @@ public enum KalturaDropFolderFileStatus implements KalturaEnumAsInt {
             case 10: return ERROR_DELETING;
             case 11: return DOWNLOADING;
             case 12: return ERROR_DOWNLOADING;
+            case 13: return PROCESSING;
+            case 14: return PARSED;
+            case 15: return DETECTED;
             default: return UPLOADING;
         }
     }

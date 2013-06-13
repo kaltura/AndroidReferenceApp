@@ -30,21 +30,21 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaEntryDistributionOrderBy implements KalturaEnumAsString {
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
     SUBMITTED_AT_ASC ("+submittedAt"),
-    SUBMITTED_AT_DESC ("-submittedAt"),
     SUNRISE_ASC ("+sunrise"),
-    SUNRISE_DESC ("-sunrise"),
     SUNSET_ASC ("+sunset"),
-    SUNSET_DESC ("-sunset");
+    UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    SUBMITTED_AT_DESC ("-submittedAt"),
+    SUNRISE_DESC ("-sunrise"),
+    SUNSET_DESC ("-sunset"),
+    UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
 
@@ -62,29 +62,9 @@ public enum KalturaEntryDistributionOrderBy implements KalturaEnumAsString {
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
-        {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
-        }
-        else 
         if (hashCode.equals("+submittedAt"))
         {
            return SUBMITTED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-submittedAt"))
-        {
-           return SUBMITTED_AT_DESC;
         }
         else 
         if (hashCode.equals("+sunrise"))
@@ -92,19 +72,39 @@ public enum KalturaEntryDistributionOrderBy implements KalturaEnumAsString {
            return SUNRISE_ASC;
         }
         else 
-        if (hashCode.equals("-sunrise"))
-        {
-           return SUNRISE_DESC;
-        }
-        else 
         if (hashCode.equals("+sunset"))
         {
            return SUNSET_ASC;
         }
         else 
+        if (hashCode.equals("+updatedAt"))
+        {
+           return UPDATED_AT_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-submittedAt"))
+        {
+           return SUBMITTED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-sunrise"))
+        {
+           return SUNRISE_DESC;
+        }
+        else 
         if (hashCode.equals("-sunset"))
         {
            return SUNSET_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
         }
         else 
         {

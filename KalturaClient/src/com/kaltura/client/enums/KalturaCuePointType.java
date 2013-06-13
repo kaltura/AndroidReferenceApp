@@ -30,13 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaCuePointType implements KalturaEnumAsString {
-    ANNOTATION ("annotation.Annotation"),
     AD ("adCuePoint.Ad"),
+    ANNOTATION ("annotation.Annotation"),
     CODE ("codeCuePoint.Code");
 
     public String hashCode;
@@ -50,14 +50,14 @@ public enum KalturaCuePointType implements KalturaEnumAsString {
     }
 
     public static KalturaCuePointType get(String hashCode) {
-        if (hashCode.equals("annotation.Annotation"))
-        {
-           return ANNOTATION;
-        }
-        else 
         if (hashCode.equals("adCuePoint.Ad"))
         {
            return AD;
+        }
+        else 
+        if (hashCode.equals("annotation.Annotation"))
+        {
+           return ANNOTATION;
         }
         else 
         if (hashCode.equals("codeCuePoint.Code"))
@@ -66,7 +66,7 @@ public enum KalturaCuePointType implements KalturaEnumAsString {
         }
         else 
         {
-           return ANNOTATION;
+           return AD;
         }
     }
 }

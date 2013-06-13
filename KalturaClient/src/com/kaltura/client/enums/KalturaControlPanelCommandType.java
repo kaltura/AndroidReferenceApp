@@ -30,14 +30,11 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaControlPanelCommandType implements KalturaEnumAsInt {
-    STOP (1),
-    START (2),
-    CONFIG (3),
     KILL (4);
 
     public int hashCode;
@@ -52,11 +49,8 @@ public enum KalturaControlPanelCommandType implements KalturaEnumAsInt {
 
     public static KalturaControlPanelCommandType get(int hashCode) {
         switch(hashCode) {
-            case 1: return STOP;
-            case 2: return START;
-            case 3: return CONFIG;
             case 4: return KILL;
-            default: return STOP;
+            default: return KILL;
         }
     }
 }

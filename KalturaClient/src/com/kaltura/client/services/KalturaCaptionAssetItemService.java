@@ -29,16 +29,16 @@ package com.kaltura.client.services;
 
 import com.kaltura.client.KalturaClient;
 import com.kaltura.client.KalturaServiceBase;
+import com.kaltura.client.types.*;
 import org.w3c.dom.Element;
+import com.kaltura.client.utils.ParseUtils;
 import com.kaltura.client.KalturaParams;
 import com.kaltura.client.KalturaApiException;
-import com.kaltura.client.types.*;
-import com.kaltura.client.utils.ParseUtils;
 
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -47,16 +47,6 @@ import com.kaltura.client.utils.ParseUtils;
 public class KalturaCaptionAssetItemService extends KalturaServiceBase {
     public KalturaCaptionAssetItemService(KalturaClient client) {
         this.kalturaClient = client;
-    }
-
-	/**  Parse content of caption asset and index it        */
-    public void parse(String captionAssetId) throws KalturaApiException {
-        KalturaParams kparams = new KalturaParams();
-        kparams.add("captionAssetId", captionAssetId);
-        this.kalturaClient.queueServiceCall("captionsearch_captionassetitem", "parse", kparams);
-        if (this.kalturaClient.isMultiRequest())
-            return ;
-        this.kalturaClient.doQueue();
     }
 
     public KalturaCaptionAssetItemListResponse search() throws KalturaApiException {

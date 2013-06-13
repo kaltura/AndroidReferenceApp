@@ -30,30 +30,30 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaYahooSyndicationFeedCategories implements KalturaEnumAsString {
     ACTION ("Action"),
-    ART_AND_ANIMATION ("Art &amp; Animation"),
-    ENTERTAINMENT_AND_TV ("Entertainment &amp; TV"),
-    FOOD ("Food"),
-    GAMES ("Games"),
-    HOW_TO ("How-To"),
-    MUSIC ("Music"),
-    PEOPLE_AND_VLOGS ("People &amp; Vlogs"),
-    SCIENCE_AND_ENVIRONMENT ("Science &amp; Environment"),
-    TRANSPORTATION ("Transportation"),
     ANIMALS ("Animals"),
+    ART_AND_ANIMATION ("Art &amp; Animation"),
     COMMERCIALS ("Commercials"),
+    ENTERTAINMENT_AND_TV ("Entertainment &amp; TV"),
     FAMILY ("Family"),
+    FOOD ("Food"),
     FUNNY_VIDEOS ("Funny Videos"),
+    GAMES ("Games"),
     HEALTH_AND_BEAUTY ("Health &amp; Beauty"),
+    HOW_TO ("How-To"),
     MOVIES_AND_SHORTS ("Movies &amp; Shorts"),
+    MUSIC ("Music"),
     NEWS_AND_POLITICS ("News &amp; Politics"),
+    PEOPLE_AND_VLOGS ("People &amp; Vlogs"),
     PRODUCTS_AND_TECH ("Products &amp; Tech."),
+    SCIENCE_AND_ENVIRONMENT ("Science &amp; Environment"),
     SPORTS ("Sports"),
+    TRANSPORTATION ("Transportation"),
     TRAVEL ("Travel");
 
     public String hashCode;
@@ -72,54 +72,14 @@ public enum KalturaYahooSyndicationFeedCategories implements KalturaEnumAsString
            return ACTION;
         }
         else 
-        if (hashCode.equals("Art &amp; Animation"))
-        {
-           return ART_AND_ANIMATION;
-        }
-        else 
-        if (hashCode.equals("Entertainment &amp; TV"))
-        {
-           return ENTERTAINMENT_AND_TV;
-        }
-        else 
-        if (hashCode.equals("Food"))
-        {
-           return FOOD;
-        }
-        else 
-        if (hashCode.equals("Games"))
-        {
-           return GAMES;
-        }
-        else 
-        if (hashCode.equals("How-To"))
-        {
-           return HOW_TO;
-        }
-        else 
-        if (hashCode.equals("Music"))
-        {
-           return MUSIC;
-        }
-        else 
-        if (hashCode.equals("People &amp; Vlogs"))
-        {
-           return PEOPLE_AND_VLOGS;
-        }
-        else 
-        if (hashCode.equals("Science &amp; Environment"))
-        {
-           return SCIENCE_AND_ENVIRONMENT;
-        }
-        else 
-        if (hashCode.equals("Transportation"))
-        {
-           return TRANSPORTATION;
-        }
-        else 
         if (hashCode.equals("Animals"))
         {
            return ANIMALS;
+        }
+        else 
+        if (hashCode.equals("Art &amp; Animation"))
+        {
+           return ART_AND_ANIMATION;
         }
         else 
         if (hashCode.equals("Commercials"))
@@ -127,9 +87,19 @@ public enum KalturaYahooSyndicationFeedCategories implements KalturaEnumAsString
            return COMMERCIALS;
         }
         else 
+        if (hashCode.equals("Entertainment &amp; TV"))
+        {
+           return ENTERTAINMENT_AND_TV;
+        }
+        else 
         if (hashCode.equals("Family"))
         {
            return FAMILY;
+        }
+        else 
+        if (hashCode.equals("Food"))
+        {
+           return FOOD;
         }
         else 
         if (hashCode.equals("Funny Videos"))
@@ -137,9 +107,19 @@ public enum KalturaYahooSyndicationFeedCategories implements KalturaEnumAsString
            return FUNNY_VIDEOS;
         }
         else 
+        if (hashCode.equals("Games"))
+        {
+           return GAMES;
+        }
+        else 
         if (hashCode.equals("Health &amp; Beauty"))
         {
            return HEALTH_AND_BEAUTY;
+        }
+        else 
+        if (hashCode.equals("How-To"))
+        {
+           return HOW_TO;
         }
         else 
         if (hashCode.equals("Movies &amp; Shorts"))
@@ -147,9 +127,19 @@ public enum KalturaYahooSyndicationFeedCategories implements KalturaEnumAsString
            return MOVIES_AND_SHORTS;
         }
         else 
+        if (hashCode.equals("Music"))
+        {
+           return MUSIC;
+        }
+        else 
         if (hashCode.equals("News &amp; Politics"))
         {
            return NEWS_AND_POLITICS;
+        }
+        else 
+        if (hashCode.equals("People &amp; Vlogs"))
+        {
+           return PEOPLE_AND_VLOGS;
         }
         else 
         if (hashCode.equals("Products &amp; Tech."))
@@ -157,9 +147,19 @@ public enum KalturaYahooSyndicationFeedCategories implements KalturaEnumAsString
            return PRODUCTS_AND_TECH;
         }
         else 
+        if (hashCode.equals("Science &amp; Environment"))
+        {
+           return SCIENCE_AND_ENVIRONMENT;
+        }
+        else 
         if (hashCode.equals("Sports"))
         {
            return SPORTS;
+        }
+        else 
+        if (hashCode.equals("Transportation"))
+        {
+           return TRANSPORTATION;
         }
         else 
         if (hashCode.equals("Travel"))

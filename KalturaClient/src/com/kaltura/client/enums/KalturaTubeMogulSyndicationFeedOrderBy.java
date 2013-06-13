@@ -30,20 +30,20 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaTubeMogulSyndicationFeedOrderBy implements KalturaEnumAsString {
-    PLAYLIST_ID_ASC ("+playlistId"),
-    PLAYLIST_ID_DESC ("-playlistId"),
-    NAME_ASC ("+name"),
-    NAME_DESC ("-name"),
-    TYPE_ASC ("+type"),
-    TYPE_DESC ("-type"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
+    NAME_ASC ("+name"),
+    PLAYLIST_ID_ASC ("+playlistId"),
+    TYPE_ASC ("+type"),
     UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    NAME_DESC ("-name"),
+    PLAYLIST_ID_DESC ("-playlistId"),
+    TYPE_DESC ("-type"),
     UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
@@ -57,14 +57,9 @@ public enum KalturaTubeMogulSyndicationFeedOrderBy implements KalturaEnumAsStrin
     }
 
     public static KalturaTubeMogulSyndicationFeedOrderBy get(String hashCode) {
-        if (hashCode.equals("+playlistId"))
+        if (hashCode.equals("+createdAt"))
         {
-           return PLAYLIST_ID_ASC;
-        }
-        else 
-        if (hashCode.equals("-playlistId"))
-        {
-           return PLAYLIST_ID_DESC;
+           return CREATED_AT_ASC;
         }
         else 
         if (hashCode.equals("+name"))
@@ -72,9 +67,9 @@ public enum KalturaTubeMogulSyndicationFeedOrderBy implements KalturaEnumAsStrin
            return NAME_ASC;
         }
         else 
-        if (hashCode.equals("-name"))
+        if (hashCode.equals("+playlistId"))
         {
-           return NAME_DESC;
+           return PLAYLIST_ID_ASC;
         }
         else 
         if (hashCode.equals("+type"))
@@ -82,14 +77,9 @@ public enum KalturaTubeMogulSyndicationFeedOrderBy implements KalturaEnumAsStrin
            return TYPE_ASC;
         }
         else 
-        if (hashCode.equals("-type"))
+        if (hashCode.equals("+updatedAt"))
         {
-           return TYPE_DESC;
-        }
-        else 
-        if (hashCode.equals("+createdAt"))
-        {
-           return CREATED_AT_ASC;
+           return UPDATED_AT_ASC;
         }
         else 
         if (hashCode.equals("-createdAt"))
@@ -97,9 +87,19 @@ public enum KalturaTubeMogulSyndicationFeedOrderBy implements KalturaEnumAsStrin
            return CREATED_AT_DESC;
         }
         else 
-        if (hashCode.equals("+updatedAt"))
+        if (hashCode.equals("-name"))
         {
-           return UPDATED_AT_ASC;
+           return NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-playlistId"))
+        {
+           return PLAYLIST_ID_DESC;
+        }
+        else 
+        if (hashCode.equals("-type"))
+        {
+           return TYPE_DESC;
         }
         else 
         if (hashCode.equals("-updatedAt"))
@@ -108,7 +108,7 @@ public enum KalturaTubeMogulSyndicationFeedOrderBy implements KalturaEnumAsStrin
         }
         else 
         {
-           return PLAYLIST_ID_ASC;
+           return CREATED_AT_ASC;
         }
     }
 }

@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -59,6 +59,8 @@ public class KalturaAccessControlScope extends KalturaObjectBase {
     public int time = Integer.MIN_VALUE;
 	/**  Indicates what contexts should be tested. No contexts means any context.     */
     public ArrayList<KalturaAccessControlContextTypeHolder> contexts;
+	/**  Array of hashes to pass to the access control profile scope     */
+    public ArrayList<KalturaKeyValue> hashes;
 
     public KalturaAccessControlScope() {
     }
@@ -87,6 +89,9 @@ public class KalturaAccessControlScope extends KalturaObjectBase {
             } else if (nodeName.equals("contexts")) {
                 this.contexts = ParseUtils.parseArray(KalturaAccessControlContextTypeHolder.class, aNode);
                 continue;
+            } else if (nodeName.equals("hashes")) {
+                this.hashes = ParseUtils.parseArray(KalturaKeyValue.class, aNode);
+                continue;
             } 
         }
     }
@@ -100,6 +105,7 @@ public class KalturaAccessControlScope extends KalturaObjectBase {
         kparams.add("userAgent", this.userAgent);
         kparams.add("time", this.time);
         kparams.add("contexts", this.contexts);
+        kparams.add("hashes", this.hashes);
         return kparams;
     }
 

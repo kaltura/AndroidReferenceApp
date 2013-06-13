@@ -30,21 +30,21 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaFlavorAssetStatus implements KalturaEnumAsInt {
+    ERROR (-1),
+    QUEUED (0),
     CONVERTING (1),
+    READY (2),
+    DELETED (3),
     NOT_APPLICABLE (4),
     TEMP (5),
     WAIT_FOR_CONVERT (6),
-    VALIDATING (8),
-    ERROR (-1),
-    QUEUED (0),
-    READY (2),
-    DELETED (3),
     IMPORTING (7),
+    VALIDATING (8),
     EXPORTING (9);
 
     public int hashCode;
@@ -59,18 +59,18 @@ public enum KalturaFlavorAssetStatus implements KalturaEnumAsInt {
 
     public static KalturaFlavorAssetStatus get(int hashCode) {
         switch(hashCode) {
+            case -1: return ERROR;
+            case 0: return QUEUED;
             case 1: return CONVERTING;
+            case 2: return READY;
+            case 3: return DELETED;
             case 4: return NOT_APPLICABLE;
             case 5: return TEMP;
             case 6: return WAIT_FOR_CONVERT;
-            case 8: return VALIDATING;
-            case -1: return ERROR;
-            case 0: return QUEUED;
-            case 2: return READY;
-            case 3: return DELETED;
             case 7: return IMPORTING;
+            case 8: return VALIDATING;
             case 9: return EXPORTING;
-            default: return CONVERTING;
+            default: return ERROR;
         }
     }
 }

@@ -30,15 +30,15 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDurationType implements KalturaEnumAsString {
-    NOT_AVAILABLE ("notavailable"),
-    SHORT ("short"),
+    LONG ("long"),
     MEDIUM ("medium"),
-    LONG ("long");
+    NOT_AVAILABLE ("notavailable"),
+    SHORT ("short");
 
     public String hashCode;
 
@@ -51,6 +51,16 @@ public enum KalturaDurationType implements KalturaEnumAsString {
     }
 
     public static KalturaDurationType get(String hashCode) {
+        if (hashCode.equals("long"))
+        {
+           return LONG;
+        }
+        else 
+        if (hashCode.equals("medium"))
+        {
+           return MEDIUM;
+        }
+        else 
         if (hashCode.equals("notavailable"))
         {
            return NOT_AVAILABLE;
@@ -61,18 +71,8 @@ public enum KalturaDurationType implements KalturaEnumAsString {
            return SHORT;
         }
         else 
-        if (hashCode.equals("medium"))
-        {
-           return MEDIUM;
-        }
-        else 
-        if (hashCode.equals("long"))
         {
            return LONG;
-        }
-        else 
-        {
-           return NOT_AVAILABLE;
         }
     }
 }

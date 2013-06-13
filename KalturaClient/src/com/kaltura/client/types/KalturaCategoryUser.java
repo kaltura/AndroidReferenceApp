@@ -42,7 +42,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -66,6 +66,8 @@ public class KalturaCategoryUser extends KalturaObjectBase {
     public KalturaUpdateMethodType updateMethod;
 	/**  The full ids of the Category     */
     public String categoryFullIds;
+	/**  Set of category-related permissions for the current category user.     */
+    public String permissionNames;
 
     public KalturaCategoryUser() {
     }
@@ -103,6 +105,9 @@ public class KalturaCategoryUser extends KalturaObjectBase {
             } else if (nodeName.equals("categoryFullIds")) {
                 this.categoryFullIds = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("permissionNames")) {
+                this.permissionNames = ParseUtils.parseString(txt);
+                continue;
             } 
         }
     }
@@ -114,6 +119,7 @@ public class KalturaCategoryUser extends KalturaObjectBase {
         kparams.add("userId", this.userId);
         kparams.add("permissionLevel", this.permissionLevel);
         kparams.add("updateMethod", this.updateMethod);
+        kparams.add("permissionNames", this.permissionNames);
         return kparams;
     }
 

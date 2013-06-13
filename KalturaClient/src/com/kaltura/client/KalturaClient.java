@@ -71,43 +71,36 @@ import com.kaltura.client.services.KalturaWidgetService;
 import com.kaltura.client.services.KalturaXInternalService;
 import com.kaltura.client.services.KalturaMetadataService;
 import com.kaltura.client.services.KalturaMetadataProfileService;
-import com.kaltura.client.services.KalturaMetadataBatchService;
 import com.kaltura.client.services.KalturaDocumentsService;
-import com.kaltura.client.services.KalturaFileSyncService;
-import com.kaltura.client.services.KalturaFilesyncImportBatchService;
+import com.kaltura.client.services.KalturaAnnotationService;
+import com.kaltura.client.services.KalturaAsperaService;
+import com.kaltura.client.services.KalturaAttachmentAssetService;
 import com.kaltura.client.services.KalturaAuditTrailService;
-import com.kaltura.client.services.KalturaVirusScanProfileService;
+import com.kaltura.client.services.KalturaBulkService;
+import com.kaltura.client.services.KalturaCaptionAssetService;
+import com.kaltura.client.services.KalturaCaptionParamsService;
+import com.kaltura.client.services.KalturaCaptionAssetItemService;
 import com.kaltura.client.services.KalturaDistributionProfileService;
 import com.kaltura.client.services.KalturaEntryDistributionService;
 import com.kaltura.client.services.KalturaDistributionProviderService;
 import com.kaltura.client.services.KalturaGenericDistributionProviderService;
 import com.kaltura.client.services.KalturaGenericDistributionProviderActionService;
-import com.kaltura.client.services.KalturaContentDistributionBatchService;
-import com.kaltura.client.services.KalturaAnnotationService;
-import com.kaltura.client.services.KalturaShortLinkService;
-import com.kaltura.client.services.KalturaBulkService;
+import com.kaltura.client.services.KalturaCuePointService;
 import com.kaltura.client.services.KalturaDropFolderService;
 import com.kaltura.client.services.KalturaDropFolderFileService;
-import com.kaltura.client.services.KalturaSharepointExtensionService;
-import com.kaltura.client.services.KalturaCuePointService;
-import com.kaltura.client.services.KalturaCaptionAssetService;
-import com.kaltura.client.services.KalturaCaptionParamsService;
-import com.kaltura.client.services.KalturaCaptionAssetItemService;
-import com.kaltura.client.services.KalturaAttachmentAssetService;
+import com.kaltura.client.services.KalturaEventNotificationTemplateService;
 import com.kaltura.client.services.KalturaLikeService;
+import com.kaltura.client.services.KalturaShortLinkService;
 import com.kaltura.client.services.KalturaTagService;
 import com.kaltura.client.services.KalturaVarConsoleService;
-import com.kaltura.client.services.KalturaEventNotificationTemplateService;
-import com.kaltura.client.services.KalturaSystemPartnerService;
-import com.kaltura.client.services.KalturaEntryAdminService;
-import com.kaltura.client.services.KalturaUiConfAdminService;
-import com.kaltura.client.services.KalturaReportAdminService;
-import com.kaltura.client.services.KalturaKalturaInternalToolsSystemHelperService;
+import com.kaltura.client.services.KalturaVirusScanProfileService;
+import com.kaltura.client.services.KalturaExternalMediaService;
+import com.kaltura.client.services.KalturaWidevineDrmService;
 
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -485,14 +478,6 @@ public class KalturaClient extends KalturaClientBase {
 		return this.metadataProfileService;
 	}
 	
-	protected KalturaMetadataBatchService metadataBatchService;
-	public KalturaMetadataBatchService getMetadataBatchService() {
-		if(this.metadataBatchService == null)
-			this.metadataBatchService = new KalturaMetadataBatchService(this);
-	
-		return this.metadataBatchService;
-	}
-	
 	protected KalturaDocumentsService documentsService;
 	public KalturaDocumentsService getDocumentsService() {
 		if(this.documentsService == null)
@@ -501,20 +486,28 @@ public class KalturaClient extends KalturaClientBase {
 		return this.documentsService;
 	}
 	
-	protected KalturaFileSyncService fileSyncService;
-	public KalturaFileSyncService getFileSyncService() {
-		if(this.fileSyncService == null)
-			this.fileSyncService = new KalturaFileSyncService(this);
+	protected KalturaAnnotationService annotationService;
+	public KalturaAnnotationService getAnnotationService() {
+		if(this.annotationService == null)
+			this.annotationService = new KalturaAnnotationService(this);
 	
-		return this.fileSyncService;
+		return this.annotationService;
 	}
 	
-	protected KalturaFilesyncImportBatchService filesyncImportBatchService;
-	public KalturaFilesyncImportBatchService getFilesyncImportBatchService() {
-		if(this.filesyncImportBatchService == null)
-			this.filesyncImportBatchService = new KalturaFilesyncImportBatchService(this);
+	protected KalturaAsperaService asperaService;
+	public KalturaAsperaService getAsperaService() {
+		if(this.asperaService == null)
+			this.asperaService = new KalturaAsperaService(this);
 	
-		return this.filesyncImportBatchService;
+		return this.asperaService;
+	}
+	
+	protected KalturaAttachmentAssetService attachmentAssetService;
+	public KalturaAttachmentAssetService getAttachmentAssetService() {
+		if(this.attachmentAssetService == null)
+			this.attachmentAssetService = new KalturaAttachmentAssetService(this);
+	
+		return this.attachmentAssetService;
 	}
 	
 	protected KalturaAuditTrailService auditTrailService;
@@ -525,12 +518,36 @@ public class KalturaClient extends KalturaClientBase {
 		return this.auditTrailService;
 	}
 	
-	protected KalturaVirusScanProfileService virusScanProfileService;
-	public KalturaVirusScanProfileService getVirusScanProfileService() {
-		if(this.virusScanProfileService == null)
-			this.virusScanProfileService = new KalturaVirusScanProfileService(this);
+	protected KalturaBulkService bulkService;
+	public KalturaBulkService getBulkService() {
+		if(this.bulkService == null)
+			this.bulkService = new KalturaBulkService(this);
 	
-		return this.virusScanProfileService;
+		return this.bulkService;
+	}
+	
+	protected KalturaCaptionAssetService captionAssetService;
+	public KalturaCaptionAssetService getCaptionAssetService() {
+		if(this.captionAssetService == null)
+			this.captionAssetService = new KalturaCaptionAssetService(this);
+	
+		return this.captionAssetService;
+	}
+	
+	protected KalturaCaptionParamsService captionParamsService;
+	public KalturaCaptionParamsService getCaptionParamsService() {
+		if(this.captionParamsService == null)
+			this.captionParamsService = new KalturaCaptionParamsService(this);
+	
+		return this.captionParamsService;
+	}
+	
+	protected KalturaCaptionAssetItemService captionAssetItemService;
+	public KalturaCaptionAssetItemService getCaptionAssetItemService() {
+		if(this.captionAssetItemService == null)
+			this.captionAssetItemService = new KalturaCaptionAssetItemService(this);
+	
+		return this.captionAssetItemService;
 	}
 	
 	protected KalturaDistributionProfileService distributionProfileService;
@@ -573,36 +590,12 @@ public class KalturaClient extends KalturaClientBase {
 		return this.genericDistributionProviderActionService;
 	}
 	
-	protected KalturaContentDistributionBatchService contentDistributionBatchService;
-	public KalturaContentDistributionBatchService getContentDistributionBatchService() {
-		if(this.contentDistributionBatchService == null)
-			this.contentDistributionBatchService = new KalturaContentDistributionBatchService(this);
+	protected KalturaCuePointService cuePointService;
+	public KalturaCuePointService getCuePointService() {
+		if(this.cuePointService == null)
+			this.cuePointService = new KalturaCuePointService(this);
 	
-		return this.contentDistributionBatchService;
-	}
-	
-	protected KalturaAnnotationService annotationService;
-	public KalturaAnnotationService getAnnotationService() {
-		if(this.annotationService == null)
-			this.annotationService = new KalturaAnnotationService(this);
-	
-		return this.annotationService;
-	}
-	
-	protected KalturaShortLinkService shortLinkService;
-	public KalturaShortLinkService getShortLinkService() {
-		if(this.shortLinkService == null)
-			this.shortLinkService = new KalturaShortLinkService(this);
-	
-		return this.shortLinkService;
-	}
-	
-	protected KalturaBulkService bulkService;
-	public KalturaBulkService getBulkService() {
-		if(this.bulkService == null)
-			this.bulkService = new KalturaBulkService(this);
-	
-		return this.bulkService;
+		return this.cuePointService;
 	}
 	
 	protected KalturaDropFolderService dropFolderService;
@@ -621,52 +614,12 @@ public class KalturaClient extends KalturaClientBase {
 		return this.dropFolderFileService;
 	}
 	
-	protected KalturaSharepointExtensionService sharepointExtensionService;
-	public KalturaSharepointExtensionService getSharepointExtensionService() {
-		if(this.sharepointExtensionService == null)
-			this.sharepointExtensionService = new KalturaSharepointExtensionService(this);
+	protected KalturaEventNotificationTemplateService eventNotificationTemplateService;
+	public KalturaEventNotificationTemplateService getEventNotificationTemplateService() {
+		if(this.eventNotificationTemplateService == null)
+			this.eventNotificationTemplateService = new KalturaEventNotificationTemplateService(this);
 	
-		return this.sharepointExtensionService;
-	}
-	
-	protected KalturaCuePointService cuePointService;
-	public KalturaCuePointService getCuePointService() {
-		if(this.cuePointService == null)
-			this.cuePointService = new KalturaCuePointService(this);
-	
-		return this.cuePointService;
-	}
-	
-	protected KalturaCaptionAssetService captionAssetService;
-	public KalturaCaptionAssetService getCaptionAssetService() {
-		if(this.captionAssetService == null)
-			this.captionAssetService = new KalturaCaptionAssetService(this);
-	
-		return this.captionAssetService;
-	}
-	
-	protected KalturaCaptionParamsService captionParamsService;
-	public KalturaCaptionParamsService getCaptionParamsService() {
-		if(this.captionParamsService == null)
-			this.captionParamsService = new KalturaCaptionParamsService(this);
-	
-		return this.captionParamsService;
-	}
-	
-	protected KalturaCaptionAssetItemService captionAssetItemService;
-	public KalturaCaptionAssetItemService getCaptionAssetItemService() {
-		if(this.captionAssetItemService == null)
-			this.captionAssetItemService = new KalturaCaptionAssetItemService(this);
-	
-		return this.captionAssetItemService;
-	}
-	
-	protected KalturaAttachmentAssetService attachmentAssetService;
-	public KalturaAttachmentAssetService getAttachmentAssetService() {
-		if(this.attachmentAssetService == null)
-			this.attachmentAssetService = new KalturaAttachmentAssetService(this);
-	
-		return this.attachmentAssetService;
+		return this.eventNotificationTemplateService;
 	}
 	
 	protected KalturaLikeService likeService;
@@ -675,6 +628,14 @@ public class KalturaClient extends KalturaClientBase {
 			this.likeService = new KalturaLikeService(this);
 	
 		return this.likeService;
+	}
+	
+	protected KalturaShortLinkService shortLinkService;
+	public KalturaShortLinkService getShortLinkService() {
+		if(this.shortLinkService == null)
+			this.shortLinkService = new KalturaShortLinkService(this);
+	
+		return this.shortLinkService;
 	}
 	
 	protected KalturaTagService tagService;
@@ -693,52 +654,28 @@ public class KalturaClient extends KalturaClientBase {
 		return this.varConsoleService;
 	}
 	
-	protected KalturaEventNotificationTemplateService eventNotificationTemplateService;
-	public KalturaEventNotificationTemplateService getEventNotificationTemplateService() {
-		if(this.eventNotificationTemplateService == null)
-			this.eventNotificationTemplateService = new KalturaEventNotificationTemplateService(this);
+	protected KalturaVirusScanProfileService virusScanProfileService;
+	public KalturaVirusScanProfileService getVirusScanProfileService() {
+		if(this.virusScanProfileService == null)
+			this.virusScanProfileService = new KalturaVirusScanProfileService(this);
 	
-		return this.eventNotificationTemplateService;
+		return this.virusScanProfileService;
 	}
 	
-	protected KalturaSystemPartnerService systemPartnerService;
-	public KalturaSystemPartnerService getSystemPartnerService() {
-		if(this.systemPartnerService == null)
-			this.systemPartnerService = new KalturaSystemPartnerService(this);
+	protected KalturaExternalMediaService externalMediaService;
+	public KalturaExternalMediaService getExternalMediaService() {
+		if(this.externalMediaService == null)
+			this.externalMediaService = new KalturaExternalMediaService(this);
 	
-		return this.systemPartnerService;
+		return this.externalMediaService;
 	}
 	
-	protected KalturaEntryAdminService entryAdminService;
-	public KalturaEntryAdminService getEntryAdminService() {
-		if(this.entryAdminService == null)
-			this.entryAdminService = new KalturaEntryAdminService(this);
+	protected KalturaWidevineDrmService widevineDrmService;
+	public KalturaWidevineDrmService getWidevineDrmService() {
+		if(this.widevineDrmService == null)
+			this.widevineDrmService = new KalturaWidevineDrmService(this);
 	
-		return this.entryAdminService;
-	}
-	
-	protected KalturaUiConfAdminService uiConfAdminService;
-	public KalturaUiConfAdminService getUiConfAdminService() {
-		if(this.uiConfAdminService == null)
-			this.uiConfAdminService = new KalturaUiConfAdminService(this);
-	
-		return this.uiConfAdminService;
-	}
-	
-	protected KalturaReportAdminService reportAdminService;
-	public KalturaReportAdminService getReportAdminService() {
-		if(this.reportAdminService == null)
-			this.reportAdminService = new KalturaReportAdminService(this);
-	
-		return this.reportAdminService;
-	}
-	
-	protected KalturaKalturaInternalToolsSystemHelperService kalturaInternalToolsSystemHelperService;
-	public KalturaKalturaInternalToolsSystemHelperService getKalturaInternalToolsSystemHelperService() {
-		if(this.kalturaInternalToolsSystemHelperService == null)
-			this.kalturaInternalToolsSystemHelperService = new KalturaKalturaInternalToolsSystemHelperService(this);
-	
-		return this.kalturaInternalToolsSystemHelperService;
+		return this.widevineDrmService;
 	}
 	
 }

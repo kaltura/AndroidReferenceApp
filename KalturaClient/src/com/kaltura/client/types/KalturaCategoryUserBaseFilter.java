@@ -41,7 +41,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -63,6 +63,9 @@ public abstract class KalturaCategoryUserBaseFilter extends KalturaFilter {
     public String updateMethodIn;
     public String categoryFullIdsStartsWith;
     public String categoryFullIdsEqual;
+    public String permissionNamesMatchAnd;
+    public String permissionNamesMatchOr;
+    public String permissionNamesNotContains;
 
     public KalturaCategoryUserBaseFilter() {
     }
@@ -122,6 +125,15 @@ public abstract class KalturaCategoryUserBaseFilter extends KalturaFilter {
             } else if (nodeName.equals("categoryFullIdsEqual")) {
                 this.categoryFullIdsEqual = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("permissionNamesMatchAnd")) {
+                this.permissionNamesMatchAnd = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("permissionNamesMatchOr")) {
+                this.permissionNamesMatchOr = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("permissionNamesNotContains")) {
+                this.permissionNamesNotContains = ParseUtils.parseString(txt);
+                continue;
             } 
         }
     }
@@ -145,6 +157,9 @@ public abstract class KalturaCategoryUserBaseFilter extends KalturaFilter {
         kparams.add("updateMethodIn", this.updateMethodIn);
         kparams.add("categoryFullIdsStartsWith", this.categoryFullIdsStartsWith);
         kparams.add("categoryFullIdsEqual", this.categoryFullIdsEqual);
+        kparams.add("permissionNamesMatchAnd", this.permissionNamesMatchAnd);
+        kparams.add("permissionNamesMatchOr", this.permissionNamesMatchOr);
+        kparams.add("permissionNamesNotContains", this.permissionNamesNotContains);
         return kparams;
     }
 

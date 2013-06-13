@@ -30,29 +30,37 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
-public enum KalturaModerationObjectType implements KalturaEnumAsInt {
-    ENTRY (2),
-    USER (3);
+public enum KalturaModerationObjectType implements KalturaEnumAsString {
+    ENTRY ("2"),
+    USER ("3");
 
-    public int hashCode;
+    public String hashCode;
 
-    KalturaModerationObjectType(int hashCode) {
+    KalturaModerationObjectType(String hashCode) {
         this.hashCode = hashCode;
     }
 
-    public int getHashCode() {
+    public String getHashCode() {
         return this.hashCode;
     }
 
-    public static KalturaModerationObjectType get(int hashCode) {
-        switch(hashCode) {
-            case 2: return ENTRY;
-            case 3: return USER;
-            default: return ENTRY;
+    public static KalturaModerationObjectType get(String hashCode) {
+        if (hashCode.equals("2"))
+        {
+           return ENTRY;
+        }
+        else 
+        if (hashCode.equals("3"))
+        {
+           return USER;
+        }
+        else 
+        {
+           return ENTRY;
         }
     }
 }

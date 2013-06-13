@@ -33,6 +33,7 @@ import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.enums.KalturaDropFolderType;
 import com.kaltura.client.enums.KalturaDropFolderStatus;
 import com.kaltura.client.enums.KalturaDropFolderFileHandlerType;
+import com.kaltura.client.enums.KalturaDropFolderErrorCode;
 import com.kaltura.client.utils.ParseUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,7 +42,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -60,6 +61,7 @@ public abstract class KalturaDropFolderBaseFilter extends KalturaFilter {
     public String conversionProfileIdIn;
     public int dcEqual = Integer.MIN_VALUE;
     public String dcIn;
+    public String pathEqual;
     public String pathLike;
     public KalturaDropFolderFileHandlerType fileHandlerTypeEqual;
     public String fileHandlerTypeIn;
@@ -69,6 +71,8 @@ public abstract class KalturaDropFolderBaseFilter extends KalturaFilter {
     public String tagsLike;
     public String tagsMultiLikeOr;
     public String tagsMultiLikeAnd;
+    public KalturaDropFolderErrorCode errorCodeEqual;
+    public String errorCodeIn;
     public int createdAtGreaterThanOrEqual = Integer.MIN_VALUE;
     public int createdAtLessThanOrEqual = Integer.MIN_VALUE;
     public int updatedAtGreaterThanOrEqual = Integer.MIN_VALUE;
@@ -123,6 +127,9 @@ public abstract class KalturaDropFolderBaseFilter extends KalturaFilter {
             } else if (nodeName.equals("dcIn")) {
                 this.dcIn = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("pathEqual")) {
+                this.pathEqual = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("pathLike")) {
                 this.pathLike = ParseUtils.parseString(txt);
                 continue;
@@ -149,6 +156,12 @@ public abstract class KalturaDropFolderBaseFilter extends KalturaFilter {
                 continue;
             } else if (nodeName.equals("tagsMultiLikeAnd")) {
                 this.tagsMultiLikeAnd = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("errorCodeEqual")) {
+                this.errorCodeEqual = KalturaDropFolderErrorCode.get(ParseUtils.parseString(txt));
+                continue;
+            } else if (nodeName.equals("errorCodeIn")) {
+                this.errorCodeIn = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("createdAtGreaterThanOrEqual")) {
                 this.createdAtGreaterThanOrEqual = ParseUtils.parseInt(txt);
@@ -182,6 +195,7 @@ public abstract class KalturaDropFolderBaseFilter extends KalturaFilter {
         kparams.add("conversionProfileIdIn", this.conversionProfileIdIn);
         kparams.add("dcEqual", this.dcEqual);
         kparams.add("dcIn", this.dcIn);
+        kparams.add("pathEqual", this.pathEqual);
         kparams.add("pathLike", this.pathLike);
         kparams.add("fileHandlerTypeEqual", this.fileHandlerTypeEqual);
         kparams.add("fileHandlerTypeIn", this.fileHandlerTypeIn);
@@ -191,6 +205,8 @@ public abstract class KalturaDropFolderBaseFilter extends KalturaFilter {
         kparams.add("tagsLike", this.tagsLike);
         kparams.add("tagsMultiLikeOr", this.tagsMultiLikeOr);
         kparams.add("tagsMultiLikeAnd", this.tagsMultiLikeAnd);
+        kparams.add("errorCodeEqual", this.errorCodeEqual);
+        kparams.add("errorCodeIn", this.errorCodeIn);
         kparams.add("createdAtGreaterThanOrEqual", this.createdAtGreaterThanOrEqual);
         kparams.add("createdAtLessThanOrEqual", this.createdAtLessThanOrEqual);
         kparams.add("updatedAtGreaterThanOrEqual", this.updatedAtGreaterThanOrEqual);

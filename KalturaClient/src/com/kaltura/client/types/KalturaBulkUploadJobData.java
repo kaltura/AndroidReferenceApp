@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -63,7 +63,7 @@ public class KalturaBulkUploadJobData extends KalturaJobData {
     public String filePath;
 	/**  Type of object for bulk upload     */
     public KalturaBulkUploadObjectType bulkUploadObjectType;
-	/**  Name of the bulk upload file     */
+	/**  Friendly name of the file, used to be recognized later in the logs.     */
     public String fileName;
 	/**  Data pertaining to the objects being uploaded     */
     public KalturaBulkUploadObjectData objectData;

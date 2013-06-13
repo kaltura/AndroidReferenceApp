@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -51,14 +51,14 @@ public class KalturaEmailNotificationDispatchJobData extends KalturaEventNotific
 	/**  Define the email sender name     */
     public String fromName;
 	/**  Email recipient emails and names, key is mail address and value is the name     */
-    public ArrayList<KalturaKeyValue> to;
+    public KalturaEmailNotificationRecipientJobData to;
 	/**  Email cc emails and names, key is mail address and value is the name     */
-    public ArrayList<KalturaKeyValue> cc;
+    public KalturaEmailNotificationRecipientJobData cc;
 	/**  Email bcc emails and names, key is mail address and value is the name     */
-    public ArrayList<KalturaKeyValue> bcc;
+    public KalturaEmailNotificationRecipientJobData bcc;
 	/**  Email addresses that a replies should be sent to, key is mail address and value
 	  is the name     */
-    public ArrayList<KalturaKeyValue> replyTo;
+    public KalturaEmailNotificationRecipientJobData replyTo;
 	/**  Define the email priority     */
     public KalturaEmailNotificationTemplatePriority priority;
 	/**  Email address that a reading confirmation will be sent to     */
@@ -92,16 +92,16 @@ public class KalturaEmailNotificationDispatchJobData extends KalturaEventNotific
                 this.fromName = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("to")) {
-                this.to = ParseUtils.parseArray(KalturaKeyValue.class, aNode);
+                this.to = ParseUtils.parseObject(KalturaEmailNotificationRecipientJobData.class, aNode);
                 continue;
             } else if (nodeName.equals("cc")) {
-                this.cc = ParseUtils.parseArray(KalturaKeyValue.class, aNode);
+                this.cc = ParseUtils.parseObject(KalturaEmailNotificationRecipientJobData.class, aNode);
                 continue;
             } else if (nodeName.equals("bcc")) {
-                this.bcc = ParseUtils.parseArray(KalturaKeyValue.class, aNode);
+                this.bcc = ParseUtils.parseObject(KalturaEmailNotificationRecipientJobData.class, aNode);
                 continue;
             } else if (nodeName.equals("replyTo")) {
-                this.replyTo = ParseUtils.parseArray(KalturaKeyValue.class, aNode);
+                this.replyTo = ParseUtils.parseObject(KalturaEmailNotificationRecipientJobData.class, aNode);
                 continue;
             } else if (nodeName.equals("priority")) {
                 this.priority = KalturaEmailNotificationTemplatePriority.get(ParseUtils.parseInt(txt));

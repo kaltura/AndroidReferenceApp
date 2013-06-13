@@ -39,7 +39,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -50,7 +50,13 @@ public class KalturaUserFilter extends KalturaUserBaseFilter {
     public String idIn;
     public KalturaNullableBoolean loginEnabledEqual;
     public String roleIdEqual;
+    public String roleIdsEqual;
+    public String roleIdsIn;
     public String firstNameOrLastNameStartsWith;
+	/**  Permission names filter expression     */
+    public String permissionNamesMultiLikeOr;
+	/**  Permission names filter expression     */
+    public String permissionNamesMultiLikeAnd;
 
     public KalturaUserFilter() {
     }
@@ -77,8 +83,20 @@ public class KalturaUserFilter extends KalturaUserBaseFilter {
             } else if (nodeName.equals("roleIdEqual")) {
                 this.roleIdEqual = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("roleIdsEqual")) {
+                this.roleIdsEqual = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("roleIdsIn")) {
+                this.roleIdsIn = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("firstNameOrLastNameStartsWith")) {
                 this.firstNameOrLastNameStartsWith = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("permissionNamesMultiLikeOr")) {
+                this.permissionNamesMultiLikeOr = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("permissionNamesMultiLikeAnd")) {
+                this.permissionNamesMultiLikeAnd = ParseUtils.parseString(txt);
                 continue;
             } 
         }
@@ -92,7 +110,11 @@ public class KalturaUserFilter extends KalturaUserBaseFilter {
         kparams.add("idIn", this.idIn);
         kparams.add("loginEnabledEqual", this.loginEnabledEqual);
         kparams.add("roleIdEqual", this.roleIdEqual);
+        kparams.add("roleIdsEqual", this.roleIdsEqual);
+        kparams.add("roleIdsIn", this.roleIdsIn);
         kparams.add("firstNameOrLastNameStartsWith", this.firstNameOrLastNameStartsWith);
+        kparams.add("permissionNamesMultiLikeOr", this.permissionNamesMultiLikeOr);
+        kparams.add("permissionNamesMultiLikeAnd", this.permissionNamesMultiLikeAnd);
         return kparams;
     }
 

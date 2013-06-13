@@ -30,15 +30,15 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaVirusScanEngineType implements KalturaEnumAsString {
-    SYMANTEC_SCAN_ENGINE ("symantecScanEngine.SymantecScanEngine"),
-    SYMANTEC_SCAN_JAVA_ENGINE ("symantecScanEngine.SymantecScanJavaEngine"),
+    CLAMAV_SCAN_ENGINE ("clamAVScanEngine.ClamAV"),
     SYMANTEC_SCAN_DIRECT_ENGINE ("symantecScanEngine.SymantecScanDirectEngine"),
-    CLAMAV_SCAN_ENGINE ("clamAVScanEngine.ClamAV");
+    SYMANTEC_SCAN_ENGINE ("symantecScanEngine.SymantecScanEngine"),
+    SYMANTEC_SCAN_JAVA_ENGINE ("symantecScanEngine.SymantecScanJavaEngine");
 
     public String hashCode;
 
@@ -51,6 +51,16 @@ public enum KalturaVirusScanEngineType implements KalturaEnumAsString {
     }
 
     public static KalturaVirusScanEngineType get(String hashCode) {
+        if (hashCode.equals("clamAVScanEngine.ClamAV"))
+        {
+           return CLAMAV_SCAN_ENGINE;
+        }
+        else 
+        if (hashCode.equals("symantecScanEngine.SymantecScanDirectEngine"))
+        {
+           return SYMANTEC_SCAN_DIRECT_ENGINE;
+        }
+        else 
         if (hashCode.equals("symantecScanEngine.SymantecScanEngine"))
         {
            return SYMANTEC_SCAN_ENGINE;
@@ -61,18 +71,8 @@ public enum KalturaVirusScanEngineType implements KalturaEnumAsString {
            return SYMANTEC_SCAN_JAVA_ENGINE;
         }
         else 
-        if (hashCode.equals("symantecScanEngine.SymantecScanDirectEngine"))
-        {
-           return SYMANTEC_SCAN_DIRECT_ENGINE;
-        }
-        else 
-        if (hashCode.equals("clamAVScanEngine.ClamAV"))
         {
            return CLAMAV_SCAN_ENGINE;
-        }
-        else 
-        {
-           return SYMANTEC_SCAN_ENGINE;
         }
     }
 }

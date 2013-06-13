@@ -30,39 +30,39 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDistributionProviderType implements KalturaEnumAsString {
-    GENERIC ("1"),
-    SYNDICATION ("2"),
-    MSN ("msnDistribution.MSN"),
-    YOUTUBE ("youTubeDistribution.YOUTUBE"),
-    YOUTUBE_API ("youtubeApiDistribution.YOUTUBE_API"),
-    DAILYMOTION ("dailymotionDistribution.DAILYMOTION"),
-    PODCAST ("podcastDistribution.PODCAST"),
-    TVCOM ("tvComDistribution.TVCOM"),
-    FREEWHEEL ("freewheelDistribution.FREEWHEEL"),
-    FREEWHEEL_GENERIC ("freewheelGenericDistribution.FREEWHEEL_GENERIC"),
-    HULU ("huluDistribution.HULU"),
-    DOUBLECLICK ("doubleClickDistribution.DOUBLECLICK"),
-    SYNACOR_HBO ("synacorHboDistribution.SYNACOR_HBO"),
+    ATT_UVERSE ("attUverseDistribution.ATT_UVERSE"),
     AVN ("avnDistribution.AVN"),
     COMCAST_MRSS ("comcastMrssDistribution.COMCAST_MRSS"),
-    IDETIC ("ideticDistribution.IDETIC"),
-    TIME_WARNER ("timeWarnerDistribution.TIME_WARNER"),
-    YAHOO ("yahooDistribution.YAHOO"),
-    NDN ("ndnDistribution.NDN"),
-    UVERSE ("uverseDistribution.UVERSE"),
-    VERIZON_VCAST ("verizonVcastDistribution.VERIZON_VCAST"),
-    QUICKPLAY ("quickPlayDistribution.QUICKPLAY"),
+    CROSS_KALTURA ("crossKalturaDistribution.CROSS_KALTURA"),
+    DAILYMOTION ("dailymotionDistribution.DAILYMOTION"),
+    DOUBLECLICK ("doubleClickDistribution.DOUBLECLICK"),
+    FREEWHEEL ("freewheelDistribution.FREEWHEEL"),
+    FREEWHEEL_GENERIC ("freewheelGenericDistribution.FREEWHEEL_GENERIC"),
     FTP ("ftpDistribution.FTP"),
     FTP_SCHEDULED ("ftpDistribution.FTP_SCHEDULED"),
-    ATT_UVERSE ("attUverseDistribution.ATT_UVERSE"),
-    UVERSE_CLICK_TO_ORDER ("uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER"),
+    HULU ("huluDistribution.HULU"),
+    IDETIC ("ideticDistribution.IDETIC"),
     METRO_PCS ("metroPcsDistribution.METRO_PCS"),
-    CROSS_KALTURA ("crossKalturaDistribution.CROSS_KALTURA");
+    MSN ("msnDistribution.MSN"),
+    NDN ("ndnDistribution.NDN"),
+    PODCAST ("podcastDistribution.PODCAST"),
+    QUICKPLAY ("quickPlayDistribution.QUICKPLAY"),
+    SYNACOR_HBO ("synacorHboDistribution.SYNACOR_HBO"),
+    TIME_WARNER ("timeWarnerDistribution.TIME_WARNER"),
+    TVCOM ("tvComDistribution.TVCOM"),
+    UVERSE_CLICK_TO_ORDER ("uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER"),
+    UVERSE ("uverseDistribution.UVERSE"),
+    VERIZON_VCAST ("verizonVcastDistribution.VERIZON_VCAST"),
+    YAHOO ("yahooDistribution.YAHOO"),
+    YOUTUBE ("youTubeDistribution.YOUTUBE"),
+    YOUTUBE_API ("youtubeApiDistribution.YOUTUBE_API"),
+    GENERIC ("1"),
+    SYNDICATION ("2");
 
     public String hashCode;
 
@@ -75,69 +75,9 @@ public enum KalturaDistributionProviderType implements KalturaEnumAsString {
     }
 
     public static KalturaDistributionProviderType get(String hashCode) {
-        if (hashCode.equals("1"))
+        if (hashCode.equals("attUverseDistribution.ATT_UVERSE"))
         {
-           return GENERIC;
-        }
-        else 
-        if (hashCode.equals("2"))
-        {
-           return SYNDICATION;
-        }
-        else 
-        if (hashCode.equals("msnDistribution.MSN"))
-        {
-           return MSN;
-        }
-        else 
-        if (hashCode.equals("youTubeDistribution.YOUTUBE"))
-        {
-           return YOUTUBE;
-        }
-        else 
-        if (hashCode.equals("youtubeApiDistribution.YOUTUBE_API"))
-        {
-           return YOUTUBE_API;
-        }
-        else 
-        if (hashCode.equals("dailymotionDistribution.DAILYMOTION"))
-        {
-           return DAILYMOTION;
-        }
-        else 
-        if (hashCode.equals("podcastDistribution.PODCAST"))
-        {
-           return PODCAST;
-        }
-        else 
-        if (hashCode.equals("tvComDistribution.TVCOM"))
-        {
-           return TVCOM;
-        }
-        else 
-        if (hashCode.equals("freewheelDistribution.FREEWHEEL"))
-        {
-           return FREEWHEEL;
-        }
-        else 
-        if (hashCode.equals("freewheelGenericDistribution.FREEWHEEL_GENERIC"))
-        {
-           return FREEWHEEL_GENERIC;
-        }
-        else 
-        if (hashCode.equals("huluDistribution.HULU"))
-        {
-           return HULU;
-        }
-        else 
-        if (hashCode.equals("doubleClickDistribution.DOUBLECLICK"))
-        {
-           return DOUBLECLICK;
-        }
-        else 
-        if (hashCode.equals("synacorHboDistribution.SYNACOR_HBO"))
-        {
-           return SYNACOR_HBO;
+           return ATT_UVERSE;
         }
         else 
         if (hashCode.equals("avnDistribution.AVN"))
@@ -150,39 +90,29 @@ public enum KalturaDistributionProviderType implements KalturaEnumAsString {
            return COMCAST_MRSS;
         }
         else 
-        if (hashCode.equals("ideticDistribution.IDETIC"))
+        if (hashCode.equals("crossKalturaDistribution.CROSS_KALTURA"))
         {
-           return IDETIC;
+           return CROSS_KALTURA;
         }
         else 
-        if (hashCode.equals("timeWarnerDistribution.TIME_WARNER"))
+        if (hashCode.equals("dailymotionDistribution.DAILYMOTION"))
         {
-           return TIME_WARNER;
+           return DAILYMOTION;
         }
         else 
-        if (hashCode.equals("yahooDistribution.YAHOO"))
+        if (hashCode.equals("doubleClickDistribution.DOUBLECLICK"))
         {
-           return YAHOO;
+           return DOUBLECLICK;
         }
         else 
-        if (hashCode.equals("ndnDistribution.NDN"))
+        if (hashCode.equals("freewheelDistribution.FREEWHEEL"))
         {
-           return NDN;
+           return FREEWHEEL;
         }
         else 
-        if (hashCode.equals("uverseDistribution.UVERSE"))
+        if (hashCode.equals("freewheelGenericDistribution.FREEWHEEL_GENERIC"))
         {
-           return UVERSE;
-        }
-        else 
-        if (hashCode.equals("verizonVcastDistribution.VERIZON_VCAST"))
-        {
-           return VERIZON_VCAST;
-        }
-        else 
-        if (hashCode.equals("quickPlayDistribution.QUICKPLAY"))
-        {
-           return QUICKPLAY;
+           return FREEWHEEL_GENERIC;
         }
         else 
         if (hashCode.equals("ftpDistribution.FTP"))
@@ -195,14 +125,14 @@ public enum KalturaDistributionProviderType implements KalturaEnumAsString {
            return FTP_SCHEDULED;
         }
         else 
-        if (hashCode.equals("attUverseDistribution.ATT_UVERSE"))
+        if (hashCode.equals("huluDistribution.HULU"))
         {
-           return ATT_UVERSE;
+           return HULU;
         }
         else 
-        if (hashCode.equals("uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER"))
+        if (hashCode.equals("ideticDistribution.IDETIC"))
         {
-           return UVERSE_CLICK_TO_ORDER;
+           return IDETIC;
         }
         else 
         if (hashCode.equals("metroPcsDistribution.METRO_PCS"))
@@ -210,13 +140,83 @@ public enum KalturaDistributionProviderType implements KalturaEnumAsString {
            return METRO_PCS;
         }
         else 
-        if (hashCode.equals("crossKalturaDistribution.CROSS_KALTURA"))
+        if (hashCode.equals("msnDistribution.MSN"))
         {
-           return CROSS_KALTURA;
+           return MSN;
+        }
+        else 
+        if (hashCode.equals("ndnDistribution.NDN"))
+        {
+           return NDN;
+        }
+        else 
+        if (hashCode.equals("podcastDistribution.PODCAST"))
+        {
+           return PODCAST;
+        }
+        else 
+        if (hashCode.equals("quickPlayDistribution.QUICKPLAY"))
+        {
+           return QUICKPLAY;
+        }
+        else 
+        if (hashCode.equals("synacorHboDistribution.SYNACOR_HBO"))
+        {
+           return SYNACOR_HBO;
+        }
+        else 
+        if (hashCode.equals("timeWarnerDistribution.TIME_WARNER"))
+        {
+           return TIME_WARNER;
+        }
+        else 
+        if (hashCode.equals("tvComDistribution.TVCOM"))
+        {
+           return TVCOM;
+        }
+        else 
+        if (hashCode.equals("uverseClickToOrderDistribution.UVERSE_CLICK_TO_ORDER"))
+        {
+           return UVERSE_CLICK_TO_ORDER;
+        }
+        else 
+        if (hashCode.equals("uverseDistribution.UVERSE"))
+        {
+           return UVERSE;
+        }
+        else 
+        if (hashCode.equals("verizonVcastDistribution.VERIZON_VCAST"))
+        {
+           return VERIZON_VCAST;
+        }
+        else 
+        if (hashCode.equals("yahooDistribution.YAHOO"))
+        {
+           return YAHOO;
+        }
+        else 
+        if (hashCode.equals("youTubeDistribution.YOUTUBE"))
+        {
+           return YOUTUBE;
+        }
+        else 
+        if (hashCode.equals("youtubeApiDistribution.YOUTUBE_API"))
+        {
+           return YOUTUBE_API;
+        }
+        else 
+        if (hashCode.equals("1"))
+        {
+           return GENERIC;
+        }
+        else 
+        if (hashCode.equals("2"))
+        {
+           return SYNDICATION;
         }
         else 
         {
-           return GENERIC;
+           return ATT_UVERSE;
         }
     }
 }

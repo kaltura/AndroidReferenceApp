@@ -30,21 +30,21 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaFileSyncOrderBy implements KalturaEnumAsString {
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
-    READY_AT_ASC ("+readyAt"),
-    READY_AT_DESC ("-readyAt"),
-    SYNC_TIME_ASC ("+syncTime"),
-    SYNC_TIME_DESC ("-syncTime"),
     FILE_SIZE_ASC ("+fileSize"),
-    FILE_SIZE_DESC ("-fileSize");
+    READY_AT_ASC ("+readyAt"),
+    SYNC_TIME_ASC ("+syncTime"),
+    UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    FILE_SIZE_DESC ("-fileSize"),
+    READY_AT_DESC ("-readyAt"),
+    SYNC_TIME_DESC ("-syncTime"),
+    UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
 
@@ -62,19 +62,9 @@ public enum KalturaFileSyncOrderBy implements KalturaEnumAsString {
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
+        if (hashCode.equals("+fileSize"))
         {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
+           return FILE_SIZE_ASC;
         }
         else 
         if (hashCode.equals("+readyAt"))
@@ -82,14 +72,29 @@ public enum KalturaFileSyncOrderBy implements KalturaEnumAsString {
            return READY_AT_ASC;
         }
         else 
-        if (hashCode.equals("-readyAt"))
-        {
-           return READY_AT_DESC;
-        }
-        else 
         if (hashCode.equals("+syncTime"))
         {
            return SYNC_TIME_ASC;
+        }
+        else 
+        if (hashCode.equals("+updatedAt"))
+        {
+           return UPDATED_AT_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-fileSize"))
+        {
+           return FILE_SIZE_DESC;
+        }
+        else 
+        if (hashCode.equals("-readyAt"))
+        {
+           return READY_AT_DESC;
         }
         else 
         if (hashCode.equals("-syncTime"))
@@ -97,14 +102,9 @@ public enum KalturaFileSyncOrderBy implements KalturaEnumAsString {
            return SYNC_TIME_DESC;
         }
         else 
-        if (hashCode.equals("+fileSize"))
+        if (hashCode.equals("-updatedAt"))
         {
-           return FILE_SIZE_ASC;
-        }
-        else 
-        if (hashCode.equals("-fileSize"))
-        {
-           return FILE_SIZE_DESC;
+           return UPDATED_AT_DESC;
         }
         else 
         {

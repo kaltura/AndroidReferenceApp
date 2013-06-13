@@ -39,7 +39,7 @@ import com.kaltura.client.enums.*;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -59,12 +59,17 @@ public class KalturaPartnerService extends KalturaServiceBase {
         return this.register(partner, cmsPassword, Integer.MIN_VALUE);
     }
 
-	/**  Create a new Partner object     */
     public KalturaPartner register(KalturaPartner partner, String cmsPassword, int templatePartnerId) throws KalturaApiException {
+        return this.register(partner, cmsPassword, templatePartnerId, false);
+    }
+
+	/**  Create a new Partner object     */
+    public KalturaPartner register(KalturaPartner partner, String cmsPassword, int templatePartnerId, boolean silent) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("partner", partner);
         kparams.add("cmsPassword", cmsPassword);
         kparams.add("templatePartnerId", templatePartnerId);
+        kparams.add("silent", silent);
         this.kalturaClient.queueServiceCall("partner", "register", kparams);
         if (this.kalturaClient.isMultiRequest())
             return null;

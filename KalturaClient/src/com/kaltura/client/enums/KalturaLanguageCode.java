@@ -30,140 +30,141 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaLanguageCode implements KalturaEnumAsString {
-    AB ("ab"),
     AA ("aa"),
+    AB ("ab"),
     AF ("af"),
-    SQ ("sq"),
     AM ("am"),
     AR ("ar"),
-    HY ("hy"),
     AS_ ("as"),
     AY ("ay"),
     AZ ("az"),
     BA ("ba"),
-    EU ("eu"),
-    BN ("bn"),
-    DZ ("dz"),
+    BE ("be"),
+    BG ("bg"),
     BH ("bh"),
     BI ("bi"),
+    BN ("bn"),
+    BO ("bo"),
     BR ("br"),
-    BG ("bg"),
-    MY ("my"),
-    BE ("be"),
-    KM ("km"),
     CA ("ca"),
-    ZH ("zh"),
     CO ("co"),
-    HR ("hr"),
     CS ("cs"),
+    CY ("cy"),
     DA ("da"),
-    NL ("nl"),
+    DE ("de"),
+    DZ ("dz"),
+    EL ("el"),
     EN ("en"),
     EO ("eo"),
+    ES ("es"),
     ET ("et"),
-    FO ("fo"),
+    EU ("eu"),
     FA ("fa"),
-    FJ ("fj"),
     FI ("fi"),
+    FJ ("fj"),
+    FO ("fo"),
     FR ("fr"),
     FY ("fy"),
-    GL ("gl"),
+    GA ("ga"),
     GD ("gd"),
-    GV ("gv"),
-    KA ("ka"),
-    DE ("de"),
-    EL ("el"),
-    KL ("kl"),
+    GL ("gl"),
     GN ("gn"),
     GU ("gu"),
+    GV ("gv"),
     HA ("ha"),
     HE ("he"),
-    IW ("iw"),
     HI ("hi"),
+    HR ("hr"),
     HU ("hu"),
-    IS ("is"),
-    ID ("id"),
-    IN ("in"),
+    HY ("hy"),
     IA ("ia"),
+    ID ("id"),
     IE ("ie"),
-    IU ("iu"),
     IK ("ik"),
-    GA ("ga"),
+    IN ("in"),
+    IS ("is"),
     IT ("it"),
+    IU ("iu"),
+    IW ("iw"),
     JA ("ja"),
+    JI ("ji"),
     JV ("jv"),
-    KN ("kn"),
-    KS ("ks"),
+    KA ("ka"),
     KK ("kk"),
-    RW ("rw"),
-    KY ("ky"),
-    RN ("rn"),
+    KL ("kl"),
+    KM ("km"),
+    KN ("kn"),
     KO ("ko"),
+    KS ("ks"),
     KU ("ku"),
-    LO ("lo"),
+    KY ("ky"),
     LA ("la"),
-    LV ("lv"),
     LI ("li"),
     LN ("ln"),
+    LO ("lo"),
     LT ("lt"),
-    MK ("mk"),
+    LV ("lv"),
     MG ("mg"),
-    MS ("ms"),
-    ML ("ml"),
-    MT ("mt"),
     MI ("mi"),
-    MR ("mr"),
-    MO ("mo"),
+    MK ("mk"),
+    ML ("ml"),
     MN ("mn"),
+    MO ("mo"),
+    MR ("mr"),
+    MS ("ms"),
+    MT ("mt"),
+    MY ("my"),
     NA ("na"),
     NE ("ne"),
+    NL ("nl"),
     NO ("no"),
     OC ("oc"),
-    OR_ ("or"),
     OM ("om"),
-    PS ("ps"),
-    PL ("pl"),
-    PT ("pt"),
+    OR_ ("or"),
     PA ("pa"),
+    PL ("pl"),
+    PS ("ps"),
+    PT ("pt"),
     QU ("qu"),
     RM ("rm"),
+    RN ("rn"),
     RO ("ro"),
     RU ("ru"),
-    SM ("sm"),
-    SG ("sg"),
+    RW ("rw"),
     SA ("sa"),
-    SR ("sr"),
-    SH ("sh"),
-    ST ("st"),
-    TN ("tn"),
-    SN ("sn"),
     SD ("sd"),
+    SG ("sg"),
+    SH ("sh"),
     SI ("si"),
-    SS ("ss"),
     SK ("sk"),
     SL ("sl"),
+    SM ("sm"),
+    SN ("sn"),
     SO ("so"),
-    ES ("es"),
+    SQ ("sq"),
+    SR ("sr"),
+    SS ("ss"),
+    ST ("st"),
     SU ("su"),
-    SW ("sw"),
     SV ("sv"),
-    TL ("tl"),
-    TG ("tg"),
+    SW ("sw"),
     TA ("ta"),
-    TT ("tt"),
     TE ("te"),
+    TG ("tg"),
     TH ("th"),
-    BO ("bo"),
     TI ("ti"),
-    TO ("to"),
-    TS ("ts"),
-    TR ("tr"),
     TK ("tk"),
+    TL ("tl"),
+    TN ("tn"),
+    TO ("to"),
+    TR ("tr"),
+    TS ("ts"),
+    TT ("tt"),
     TW ("tw"),
     UG ("ug"),
     UK ("uk"),
@@ -171,12 +172,11 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
     UZ ("uz"),
     VI ("vi"),
     VO ("vo"),
-    CY ("cy"),
     WO ("wo"),
     XH ("xh"),
     YI ("yi"),
-    JI ("ji"),
     YO ("yo"),
+    ZH ("zh"),
     ZU ("zu");
 
     public String hashCode;
@@ -190,24 +190,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
     }
 
     public static KalturaLanguageCode get(String hashCode) {
-        if (hashCode.equals("ab"))
-        {
-           return AB;
-        }
-        else 
         if (hashCode.equals("aa"))
         {
            return AA;
         }
         else 
+        if (hashCode.equals("ab"))
+        {
+           return AB;
+        }
+        else 
         if (hashCode.equals("af"))
         {
            return AF;
-        }
-        else 
-        if (hashCode.equals("sq"))
-        {
-           return SQ;
         }
         else 
         if (hashCode.equals("am"))
@@ -218,11 +213,6 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
         if (hashCode.equals("ar"))
         {
            return AR;
-        }
-        else 
-        if (hashCode.equals("hy"))
-        {
-           return HY;
         }
         else 
         if (hashCode.equals("as"))
@@ -245,19 +235,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return BA;
         }
         else 
-        if (hashCode.equals("eu"))
+        if (hashCode.equals("be"))
         {
-           return EU;
+           return BE;
         }
         else 
-        if (hashCode.equals("bn"))
+        if (hashCode.equals("bg"))
         {
-           return BN;
-        }
-        else 
-        if (hashCode.equals("dz"))
-        {
-           return DZ;
+           return BG;
         }
         else 
         if (hashCode.equals("bh"))
@@ -270,29 +255,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return BI;
         }
         else 
+        if (hashCode.equals("bn"))
+        {
+           return BN;
+        }
+        else 
+        if (hashCode.equals("bo"))
+        {
+           return BO;
+        }
+        else 
         if (hashCode.equals("br"))
         {
            return BR;
-        }
-        else 
-        if (hashCode.equals("bg"))
-        {
-           return BG;
-        }
-        else 
-        if (hashCode.equals("my"))
-        {
-           return MY;
-        }
-        else 
-        if (hashCode.equals("be"))
-        {
-           return BE;
-        }
-        else 
-        if (hashCode.equals("km"))
-        {
-           return KM;
         }
         else 
         if (hashCode.equals("ca"))
@@ -300,19 +275,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return CA;
         }
         else 
-        if (hashCode.equals("zh"))
-        {
-           return ZH;
-        }
-        else 
         if (hashCode.equals("co"))
         {
            return CO;
-        }
-        else 
-        if (hashCode.equals("hr"))
-        {
-           return HR;
         }
         else 
         if (hashCode.equals("cs"))
@@ -320,14 +285,29 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return CS;
         }
         else 
+        if (hashCode.equals("cy"))
+        {
+           return CY;
+        }
+        else 
         if (hashCode.equals("da"))
         {
            return DA;
         }
         else 
-        if (hashCode.equals("nl"))
+        if (hashCode.equals("de"))
         {
-           return NL;
+           return DE;
+        }
+        else 
+        if (hashCode.equals("dz"))
+        {
+           return DZ;
+        }
+        else 
+        if (hashCode.equals("el"))
+        {
+           return EL;
         }
         else 
         if (hashCode.equals("en"))
@@ -340,14 +320,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return EO;
         }
         else 
+        if (hashCode.equals("es"))
+        {
+           return ES;
+        }
+        else 
         if (hashCode.equals("et"))
         {
            return ET;
         }
         else 
-        if (hashCode.equals("fo"))
+        if (hashCode.equals("eu"))
         {
-           return FO;
+           return EU;
         }
         else 
         if (hashCode.equals("fa"))
@@ -355,14 +340,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return FA;
         }
         else 
+        if (hashCode.equals("fi"))
+        {
+           return FI;
+        }
+        else 
         if (hashCode.equals("fj"))
         {
            return FJ;
         }
         else 
-        if (hashCode.equals("fi"))
+        if (hashCode.equals("fo"))
         {
-           return FI;
+           return FO;
         }
         else 
         if (hashCode.equals("fr"))
@@ -375,9 +365,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return FY;
         }
         else 
-        if (hashCode.equals("gl"))
+        if (hashCode.equals("ga"))
         {
-           return GL;
+           return GA;
         }
         else 
         if (hashCode.equals("gd"))
@@ -385,29 +375,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return GD;
         }
         else 
-        if (hashCode.equals("gv"))
+        if (hashCode.equals("gl"))
         {
-           return GV;
-        }
-        else 
-        if (hashCode.equals("ka"))
-        {
-           return KA;
-        }
-        else 
-        if (hashCode.equals("de"))
-        {
-           return DE;
-        }
-        else 
-        if (hashCode.equals("el"))
-        {
-           return EL;
-        }
-        else 
-        if (hashCode.equals("kl"))
-        {
-           return KL;
+           return GL;
         }
         else 
         if (hashCode.equals("gn"))
@@ -420,6 +390,11 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return GU;
         }
         else 
+        if (hashCode.equals("gv"))
+        {
+           return GV;
+        }
+        else 
         if (hashCode.equals("ha"))
         {
            return HA;
@@ -430,14 +405,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return HE;
         }
         else 
-        if (hashCode.equals("iw"))
-        {
-           return IW;
-        }
-        else 
         if (hashCode.equals("hi"))
         {
            return HI;
+        }
+        else 
+        if (hashCode.equals("hr"))
+        {
+           return HR;
         }
         else 
         if (hashCode.equals("hu"))
@@ -445,19 +420,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return HU;
         }
         else 
-        if (hashCode.equals("is"))
+        if (hashCode.equals("hy"))
         {
-           return IS;
-        }
-        else 
-        if (hashCode.equals("id"))
-        {
-           return ID;
-        }
-        else 
-        if (hashCode.equals("in"))
-        {
-           return IN;
+           return HY;
         }
         else 
         if (hashCode.equals("ia"))
@@ -465,14 +430,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return IA;
         }
         else 
+        if (hashCode.equals("id"))
+        {
+           return ID;
+        }
+        else 
         if (hashCode.equals("ie"))
         {
            return IE;
-        }
-        else 
-        if (hashCode.equals("iu"))
-        {
-           return IU;
         }
         else 
         if (hashCode.equals("ik"))
@@ -480,9 +445,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return IK;
         }
         else 
-        if (hashCode.equals("ga"))
+        if (hashCode.equals("in"))
         {
-           return GA;
+           return IN;
+        }
+        else 
+        if (hashCode.equals("is"))
+        {
+           return IS;
         }
         else 
         if (hashCode.equals("it"))
@@ -490,9 +460,24 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return IT;
         }
         else 
+        if (hashCode.equals("iu"))
+        {
+           return IU;
+        }
+        else 
+        if (hashCode.equals("iw"))
+        {
+           return IW;
+        }
+        else 
         if (hashCode.equals("ja"))
         {
            return JA;
+        }
+        else 
+        if (hashCode.equals("ji"))
+        {
+           return JI;
         }
         else 
         if (hashCode.equals("jv"))
@@ -500,14 +485,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return JV;
         }
         else 
-        if (hashCode.equals("kn"))
+        if (hashCode.equals("ka"))
         {
-           return KN;
-        }
-        else 
-        if (hashCode.equals("ks"))
-        {
-           return KS;
+           return KA;
         }
         else 
         if (hashCode.equals("kk"))
@@ -515,19 +495,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return KK;
         }
         else 
-        if (hashCode.equals("rw"))
+        if (hashCode.equals("kl"))
         {
-           return RW;
+           return KL;
         }
         else 
-        if (hashCode.equals("ky"))
+        if (hashCode.equals("km"))
         {
-           return KY;
+           return KM;
         }
         else 
-        if (hashCode.equals("rn"))
+        if (hashCode.equals("kn"))
         {
-           return RN;
+           return KN;
         }
         else 
         if (hashCode.equals("ko"))
@@ -535,24 +515,24 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return KO;
         }
         else 
+        if (hashCode.equals("ks"))
+        {
+           return KS;
+        }
+        else 
         if (hashCode.equals("ku"))
         {
            return KU;
         }
         else 
-        if (hashCode.equals("lo"))
+        if (hashCode.equals("ky"))
         {
-           return LO;
+           return KY;
         }
         else 
         if (hashCode.equals("la"))
         {
            return LA;
-        }
-        else 
-        if (hashCode.equals("lv"))
-        {
-           return LV;
         }
         else 
         if (hashCode.equals("li"))
@@ -565,14 +545,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return LN;
         }
         else 
+        if (hashCode.equals("lo"))
+        {
+           return LO;
+        }
+        else 
         if (hashCode.equals("lt"))
         {
            return LT;
         }
         else 
-        if (hashCode.equals("mk"))
+        if (hashCode.equals("lv"))
         {
-           return MK;
+           return LV;
         }
         else 
         if (hashCode.equals("mg"))
@@ -580,9 +565,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return MG;
         }
         else 
-        if (hashCode.equals("ms"))
+        if (hashCode.equals("mi"))
         {
-           return MS;
+           return MI;
+        }
+        else 
+        if (hashCode.equals("mk"))
+        {
+           return MK;
         }
         else 
         if (hashCode.equals("ml"))
@@ -590,19 +580,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return ML;
         }
         else 
-        if (hashCode.equals("mt"))
+        if (hashCode.equals("mn"))
         {
-           return MT;
-        }
-        else 
-        if (hashCode.equals("mi"))
-        {
-           return MI;
-        }
-        else 
-        if (hashCode.equals("mr"))
-        {
-           return MR;
+           return MN;
         }
         else 
         if (hashCode.equals("mo"))
@@ -610,9 +590,24 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return MO;
         }
         else 
-        if (hashCode.equals("mn"))
+        if (hashCode.equals("mr"))
         {
-           return MN;
+           return MR;
+        }
+        else 
+        if (hashCode.equals("ms"))
+        {
+           return MS;
+        }
+        else 
+        if (hashCode.equals("mt"))
+        {
+           return MT;
+        }
+        else 
+        if (hashCode.equals("my"))
+        {
+           return MY;
         }
         else 
         if (hashCode.equals("na"))
@@ -625,6 +620,11 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return NE;
         }
         else 
+        if (hashCode.equals("nl"))
+        {
+           return NL;
+        }
+        else 
         if (hashCode.equals("no"))
         {
            return NO;
@@ -635,19 +635,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return OC;
         }
         else 
-        if (hashCode.equals("or"))
-        {
-           return OR_;
-        }
-        else 
         if (hashCode.equals("om"))
         {
            return OM;
         }
         else 
-        if (hashCode.equals("ps"))
+        if (hashCode.equals("or"))
         {
-           return PS;
+           return OR_;
+        }
+        else 
+        if (hashCode.equals("pa"))
+        {
+           return PA;
         }
         else 
         if (hashCode.equals("pl"))
@@ -655,14 +655,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return PL;
         }
         else 
+        if (hashCode.equals("ps"))
+        {
+           return PS;
+        }
+        else 
         if (hashCode.equals("pt"))
         {
            return PT;
-        }
-        else 
-        if (hashCode.equals("pa"))
-        {
-           return PA;
         }
         else 
         if (hashCode.equals("qu"))
@@ -675,6 +675,11 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return RM;
         }
         else 
+        if (hashCode.equals("rn"))
+        {
+           return RN;
+        }
+        else 
         if (hashCode.equals("ro"))
         {
            return RO;
@@ -685,14 +690,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return RU;
         }
         else 
-        if (hashCode.equals("sm"))
+        if (hashCode.equals("rw"))
         {
-           return SM;
-        }
-        else 
-        if (hashCode.equals("sg"))
-        {
-           return SG;
+           return RW;
         }
         else 
         if (hashCode.equals("sa"))
@@ -700,9 +700,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return SA;
         }
         else 
-        if (hashCode.equals("sr"))
+        if (hashCode.equals("sd"))
         {
-           return SR;
+           return SD;
+        }
+        else 
+        if (hashCode.equals("sg"))
+        {
+           return SG;
         }
         else 
         if (hashCode.equals("sh"))
@@ -710,34 +715,9 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return SH;
         }
         else 
-        if (hashCode.equals("st"))
-        {
-           return ST;
-        }
-        else 
-        if (hashCode.equals("tn"))
-        {
-           return TN;
-        }
-        else 
-        if (hashCode.equals("sn"))
-        {
-           return SN;
-        }
-        else 
-        if (hashCode.equals("sd"))
-        {
-           return SD;
-        }
-        else 
         if (hashCode.equals("si"))
         {
            return SI;
-        }
-        else 
-        if (hashCode.equals("ss"))
-        {
-           return SS;
         }
         else 
         if (hashCode.equals("sk"))
@@ -750,14 +730,39 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return SL;
         }
         else 
+        if (hashCode.equals("sm"))
+        {
+           return SM;
+        }
+        else 
+        if (hashCode.equals("sn"))
+        {
+           return SN;
+        }
+        else 
         if (hashCode.equals("so"))
         {
            return SO;
         }
         else 
-        if (hashCode.equals("es"))
+        if (hashCode.equals("sq"))
         {
-           return ES;
+           return SQ;
+        }
+        else 
+        if (hashCode.equals("sr"))
+        {
+           return SR;
+        }
+        else 
+        if (hashCode.equals("ss"))
+        {
+           return SS;
+        }
+        else 
+        if (hashCode.equals("st"))
+        {
+           return ST;
         }
         else 
         if (hashCode.equals("su"))
@@ -765,24 +770,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return SU;
         }
         else 
-        if (hashCode.equals("sw"))
-        {
-           return SW;
-        }
-        else 
         if (hashCode.equals("sv"))
         {
            return SV;
         }
         else 
-        if (hashCode.equals("tl"))
+        if (hashCode.equals("sw"))
         {
-           return TL;
-        }
-        else 
-        if (hashCode.equals("tg"))
-        {
-           return TG;
+           return SW;
         }
         else 
         if (hashCode.equals("ta"))
@@ -790,14 +785,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return TA;
         }
         else 
-        if (hashCode.equals("tt"))
-        {
-           return TT;
-        }
-        else 
         if (hashCode.equals("te"))
         {
            return TE;
+        }
+        else 
+        if (hashCode.equals("tg"))
+        {
+           return TG;
         }
         else 
         if (hashCode.equals("th"))
@@ -805,14 +800,24 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return TH;
         }
         else 
-        if (hashCode.equals("bo"))
-        {
-           return BO;
-        }
-        else 
         if (hashCode.equals("ti"))
         {
            return TI;
+        }
+        else 
+        if (hashCode.equals("tk"))
+        {
+           return TK;
+        }
+        else 
+        if (hashCode.equals("tl"))
+        {
+           return TL;
+        }
+        else 
+        if (hashCode.equals("tn"))
+        {
+           return TN;
         }
         else 
         if (hashCode.equals("to"))
@@ -820,19 +825,19 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return TO;
         }
         else 
-        if (hashCode.equals("ts"))
-        {
-           return TS;
-        }
-        else 
         if (hashCode.equals("tr"))
         {
            return TR;
         }
         else 
-        if (hashCode.equals("tk"))
+        if (hashCode.equals("ts"))
         {
-           return TK;
+           return TS;
+        }
+        else 
+        if (hashCode.equals("tt"))
+        {
+           return TT;
         }
         else 
         if (hashCode.equals("tw"))
@@ -870,11 +875,6 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return VO;
         }
         else 
-        if (hashCode.equals("cy"))
-        {
-           return CY;
-        }
-        else 
         if (hashCode.equals("wo"))
         {
            return WO;
@@ -890,14 +890,14 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
            return YI;
         }
         else 
-        if (hashCode.equals("ji"))
-        {
-           return JI;
-        }
-        else 
         if (hashCode.equals("yo"))
         {
            return YO;
+        }
+        else 
+        if (hashCode.equals("zh"))
+        {
+           return ZH;
         }
         else 
         if (hashCode.equals("zu"))
@@ -906,7 +906,7 @@ public enum KalturaLanguageCode implements KalturaEnumAsString {
         }
         else 
         {
-           return AB;
+           return AA;
         }
     }
 }

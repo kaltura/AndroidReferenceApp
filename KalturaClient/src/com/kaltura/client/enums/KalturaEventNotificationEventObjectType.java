@@ -30,13 +30,14 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaEventNotificationEventObjectType implements KalturaEnumAsString {
     ENTRY ("1"),
     CATEGORY ("2"),
+    ASSET ("3"),
     FLAVORASSET ("4"),
     THUMBASSET ("5"),
     KUSER ("8"),
@@ -44,7 +45,6 @@ public enum KalturaEventNotificationEventObjectType implements KalturaEnumAsStri
     BATCHJOB ("10"),
     BULKUPLOADRESULT ("11"),
     CATEGORYKUSER ("12"),
-    CONTROLPANELCOMMAND ("13"),
     CONVERSIONPROFILE2 ("14"),
     FLAVORPARAMS ("15"),
     FLAVORPARAMSCONVERSIONPROFILE ("16"),
@@ -66,7 +66,8 @@ public enum KalturaEventNotificationEventObjectType implements KalturaEnumAsStri
     UPLOADTOKEN ("33"),
     USERLOGINDATA ("34"),
     USERROLE ("35"),
-    WIDGET ("36");
+    WIDGET ("36"),
+    CATEGORYENTRY ("37");
 
     public String hashCode;
 
@@ -87,6 +88,11 @@ public enum KalturaEventNotificationEventObjectType implements KalturaEnumAsStri
         if (hashCode.equals("2"))
         {
            return CATEGORY;
+        }
+        else 
+        if (hashCode.equals("3"))
+        {
+           return ASSET;
         }
         else 
         if (hashCode.equals("4"))
@@ -122,11 +128,6 @@ public enum KalturaEventNotificationEventObjectType implements KalturaEnumAsStri
         if (hashCode.equals("12"))
         {
            return CATEGORYKUSER;
-        }
-        else 
-        if (hashCode.equals("13"))
-        {
-           return CONTROLPANELCOMMAND;
         }
         else 
         if (hashCode.equals("14"))
@@ -237,6 +238,11 @@ public enum KalturaEventNotificationEventObjectType implements KalturaEnumAsStri
         if (hashCode.equals("36"))
         {
            return WIDGET;
+        }
+        else 
+        if (hashCode.equals("37"))
+        {
+           return CATEGORYENTRY;
         }
         else 
         {

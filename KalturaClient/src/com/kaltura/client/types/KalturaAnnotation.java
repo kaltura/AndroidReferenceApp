@@ -38,7 +38,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -50,6 +50,12 @@ public class KalturaAnnotation extends KalturaCuePoint {
     public int endTime = Integer.MIN_VALUE;
 	/**  Duration in milliseconds     */
     public int duration = Integer.MIN_VALUE;
+	/**  Depth in the tree     */
+    public int depth = Integer.MIN_VALUE;
+	/**  Number of all descendants     */
+    public int childrenCount = Integer.MIN_VALUE;
+	/**  Number of children, first generation only.     */
+    public int directChildrenCount = Integer.MIN_VALUE;
 
     public KalturaAnnotation() {
     }
@@ -72,6 +78,15 @@ public class KalturaAnnotation extends KalturaCuePoint {
                 continue;
             } else if (nodeName.equals("duration")) {
                 this.duration = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("depth")) {
+                this.depth = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("childrenCount")) {
+                this.childrenCount = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("directChildrenCount")) {
+                this.directChildrenCount = ParseUtils.parseInt(txt);
                 continue;
             } 
         }

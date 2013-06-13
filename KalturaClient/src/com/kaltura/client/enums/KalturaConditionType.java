@@ -30,11 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaConditionType implements KalturaEnumAsString {
+    METADATA_FIELD_COMPARE ("metadata.FieldCompare"),
+    METADATA_FIELD_MATCH ("metadata.FieldMatch"),
     AUTHENTICATED ("1"),
     COUNTRY ("2"),
     IP_ADDRESS ("3"),
@@ -42,8 +44,7 @@ public enum KalturaConditionType implements KalturaEnumAsString {
     USER_AGENT ("5"),
     FIELD_MATCH ("6"),
     FIELD_COMPARE ("7"),
-    METADATA_FIELD_MATCH ("metadata.FieldMatch"),
-    METADATA_FIELD_COMPARE ("metadata.FieldCompare");
+    ASSET_PROPERTIES_COMPARE ("8");
 
     public String hashCode;
 
@@ -56,6 +57,16 @@ public enum KalturaConditionType implements KalturaEnumAsString {
     }
 
     public static KalturaConditionType get(String hashCode) {
+        if (hashCode.equals("metadata.FieldCompare"))
+        {
+           return METADATA_FIELD_COMPARE;
+        }
+        else 
+        if (hashCode.equals("metadata.FieldMatch"))
+        {
+           return METADATA_FIELD_MATCH;
+        }
+        else 
         if (hashCode.equals("1"))
         {
            return AUTHENTICATED;
@@ -91,18 +102,13 @@ public enum KalturaConditionType implements KalturaEnumAsString {
            return FIELD_COMPARE;
         }
         else 
-        if (hashCode.equals("metadata.FieldMatch"))
+        if (hashCode.equals("8"))
         {
-           return METADATA_FIELD_MATCH;
+           return ASSET_PROPERTIES_COMPARE;
         }
         else 
-        if (hashCode.equals("metadata.FieldCompare"))
         {
            return METADATA_FIELD_COMPARE;
-        }
-        else 
-        {
-           return AUTHENTICATED;
         }
     }
 }

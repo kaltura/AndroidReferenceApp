@@ -30,18 +30,18 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaMetadataObjectType implements KalturaEnumAsString {
+    AD_CUE_POINT ("adCuePoint.AdCuePoint"),
+    ANNOTATION ("annotation.Annotation"),
+    CODE_CUE_POINT ("codeCuePoint.CodeCuePoint"),
     ENTRY ("1"),
     CATEGORY ("2"),
     USER ("3"),
-    PARTNER ("4"),
-    ANNOTATION ("annotation.Annotation"),
-    AD_CUE_POINT ("adCuePoint.AdCuePoint"),
-    CODE_CUE_POINT ("codeCuePoint.CodeCuePoint");
+    PARTNER ("4");
 
     public String hashCode;
 
@@ -54,6 +54,21 @@ public enum KalturaMetadataObjectType implements KalturaEnumAsString {
     }
 
     public static KalturaMetadataObjectType get(String hashCode) {
+        if (hashCode.equals("adCuePoint.AdCuePoint"))
+        {
+           return AD_CUE_POINT;
+        }
+        else 
+        if (hashCode.equals("annotation.Annotation"))
+        {
+           return ANNOTATION;
+        }
+        else 
+        if (hashCode.equals("codeCuePoint.CodeCuePoint"))
+        {
+           return CODE_CUE_POINT;
+        }
+        else 
         if (hashCode.equals("1"))
         {
            return ENTRY;
@@ -74,23 +89,8 @@ public enum KalturaMetadataObjectType implements KalturaEnumAsString {
            return PARTNER;
         }
         else 
-        if (hashCode.equals("annotation.Annotation"))
-        {
-           return ANNOTATION;
-        }
-        else 
-        if (hashCode.equals("adCuePoint.AdCuePoint"))
         {
            return AD_CUE_POINT;
-        }
-        else 
-        if (hashCode.equals("codeCuePoint.CodeCuePoint"))
-        {
-           return CODE_CUE_POINT;
-        }
-        else 
-        {
-           return ENTRY;
         }
     }
 }

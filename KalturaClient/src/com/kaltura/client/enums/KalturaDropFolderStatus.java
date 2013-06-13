@@ -30,14 +30,15 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDropFolderStatus implements KalturaEnumAsInt {
     DISABLED (0),
     ENABLED (1),
-    DELETED (2);
+    DELETED (2),
+    ERROR (3);
 
     public int hashCode;
 
@@ -54,6 +55,7 @@ public enum KalturaDropFolderStatus implements KalturaEnumAsInt {
             case 0: return DISABLED;
             case 1: return ENABLED;
             case 2: return DELETED;
+            case 3: return ERROR;
             default: return DISABLED;
         }
     }

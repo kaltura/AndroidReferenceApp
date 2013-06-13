@@ -30,26 +30,26 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
-    ID_ASC ("+id"),
-    ID_DESC ("-id"),
-    FILE_NAME_ASC ("+fileName"),
-    FILE_NAME_DESC ("-fileName"),
-    FILE_SIZE_ASC ("+fileSize"),
-    FILE_SIZE_DESC ("-fileSize"),
-    FILE_SIZE_LAST_SET_AT_ASC ("+fileSizeLastSetAt"),
-    FILE_SIZE_LAST_SET_AT_DESC ("-fileSizeLastSetAt"),
-    PARSED_SLUG_ASC ("+parsedSlug"),
-    PARSED_SLUG_DESC ("-parsedSlug"),
-    PARSED_FLAVOR_ASC ("+parsedFlavor"),
-    PARSED_FLAVOR_DESC ("-parsedFlavor"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
+    FILE_NAME_ASC ("+fileName"),
+    FILE_SIZE_ASC ("+fileSize"),
+    FILE_SIZE_LAST_SET_AT_ASC ("+fileSizeLastSetAt"),
+    ID_ASC ("+id"),
+    PARSED_FLAVOR_ASC ("+parsedFlavor"),
+    PARSED_SLUG_ASC ("+parsedSlug"),
     UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    FILE_NAME_DESC ("-fileName"),
+    FILE_SIZE_DESC ("-fileSize"),
+    FILE_SIZE_LAST_SET_AT_DESC ("-fileSizeLastSetAt"),
+    ID_DESC ("-id"),
+    PARSED_FLAVOR_DESC ("-parsedFlavor"),
+    PARSED_SLUG_DESC ("-parsedSlug"),
     UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
@@ -63,14 +63,9 @@ public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaDropFolderFileOrderBy get(String hashCode) {
-        if (hashCode.equals("+id"))
+        if (hashCode.equals("+createdAt"))
         {
-           return ID_ASC;
-        }
-        else 
-        if (hashCode.equals("-id"))
-        {
-           return ID_DESC;
+           return CREATED_AT_ASC;
         }
         else 
         if (hashCode.equals("+fileName"))
@@ -78,19 +73,9 @@ public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
            return FILE_NAME_ASC;
         }
         else 
-        if (hashCode.equals("-fileName"))
-        {
-           return FILE_NAME_DESC;
-        }
-        else 
         if (hashCode.equals("+fileSize"))
         {
            return FILE_SIZE_ASC;
-        }
-        else 
-        if (hashCode.equals("-fileSize"))
-        {
-           return FILE_SIZE_DESC;
         }
         else 
         if (hashCode.equals("+fileSizeLastSetAt"))
@@ -98,19 +83,9 @@ public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
            return FILE_SIZE_LAST_SET_AT_ASC;
         }
         else 
-        if (hashCode.equals("-fileSizeLastSetAt"))
+        if (hashCode.equals("+id"))
         {
-           return FILE_SIZE_LAST_SET_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+parsedSlug"))
-        {
-           return PARSED_SLUG_ASC;
-        }
-        else 
-        if (hashCode.equals("-parsedSlug"))
-        {
-           return PARSED_SLUG_DESC;
+           return ID_ASC;
         }
         else 
         if (hashCode.equals("+parsedFlavor"))
@@ -118,14 +93,14 @@ public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
            return PARSED_FLAVOR_ASC;
         }
         else 
-        if (hashCode.equals("-parsedFlavor"))
+        if (hashCode.equals("+parsedSlug"))
         {
-           return PARSED_FLAVOR_DESC;
+           return PARSED_SLUG_ASC;
         }
         else 
-        if (hashCode.equals("+createdAt"))
+        if (hashCode.equals("+updatedAt"))
         {
-           return CREATED_AT_ASC;
+           return UPDATED_AT_ASC;
         }
         else 
         if (hashCode.equals("-createdAt"))
@@ -133,9 +108,34 @@ public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
            return CREATED_AT_DESC;
         }
         else 
-        if (hashCode.equals("+updatedAt"))
+        if (hashCode.equals("-fileName"))
         {
-           return UPDATED_AT_ASC;
+           return FILE_NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-fileSize"))
+        {
+           return FILE_SIZE_DESC;
+        }
+        else 
+        if (hashCode.equals("-fileSizeLastSetAt"))
+        {
+           return FILE_SIZE_LAST_SET_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-id"))
+        {
+           return ID_DESC;
+        }
+        else 
+        if (hashCode.equals("-parsedFlavor"))
+        {
+           return PARSED_FLAVOR_DESC;
+        }
+        else 
+        if (hashCode.equals("-parsedSlug"))
+        {
+           return PARSED_SLUG_DESC;
         }
         else 
         if (hashCode.equals("-updatedAt"))
@@ -144,7 +144,7 @@ public enum KalturaDropFolderFileOrderBy implements KalturaEnumAsString {
         }
         else 
         {
-           return ID_ASC;
+           return CREATED_AT_ASC;
         }
     }
 }

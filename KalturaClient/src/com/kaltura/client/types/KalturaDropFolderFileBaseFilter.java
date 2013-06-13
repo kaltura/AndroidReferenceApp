@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -63,6 +63,9 @@ public abstract class KalturaDropFolderFileBaseFilter extends KalturaFilter {
     public String parsedFlavorEqual;
     public String parsedFlavorIn;
     public String parsedFlavorLike;
+    public int leadDropFolderFileIdEqual = Integer.MIN_VALUE;
+    public int deletedDropFolderFileIdEqual = Integer.MIN_VALUE;
+    public String entryIdEqual;
     public KalturaDropFolderFileErrorCode errorCodeEqual;
     public String errorCodeIn;
     public int createdAtGreaterThanOrEqual = Integer.MIN_VALUE;
@@ -131,6 +134,15 @@ public abstract class KalturaDropFolderFileBaseFilter extends KalturaFilter {
             } else if (nodeName.equals("parsedFlavorLike")) {
                 this.parsedFlavorLike = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("leadDropFolderFileIdEqual")) {
+                this.leadDropFolderFileIdEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("deletedDropFolderFileIdEqual")) {
+                this.deletedDropFolderFileIdEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("entryIdEqual")) {
+                this.entryIdEqual = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("errorCodeEqual")) {
                 this.errorCodeEqual = KalturaDropFolderFileErrorCode.get(ParseUtils.parseString(txt));
                 continue;
@@ -173,6 +185,9 @@ public abstract class KalturaDropFolderFileBaseFilter extends KalturaFilter {
         kparams.add("parsedFlavorEqual", this.parsedFlavorEqual);
         kparams.add("parsedFlavorIn", this.parsedFlavorIn);
         kparams.add("parsedFlavorLike", this.parsedFlavorLike);
+        kparams.add("leadDropFolderFileIdEqual", this.leadDropFolderFileIdEqual);
+        kparams.add("deletedDropFolderFileIdEqual", this.deletedDropFolderFileIdEqual);
+        kparams.add("entryIdEqual", this.entryIdEqual);
         kparams.add("errorCodeEqual", this.errorCodeEqual);
         kparams.add("errorCodeIn", this.errorCodeIn);
         kparams.add("createdAtGreaterThanOrEqual", this.createdAtGreaterThanOrEqual);

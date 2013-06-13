@@ -30,13 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDropFolderFileHandlerType implements KalturaEnumAsString {
-    CONTENT ("1"),
-    XML ("dropFolderXmlBulkUpload.XML");
+    XML ("dropFolderXmlBulkUpload.XML"),
+    CONTENT ("1");
 
     public String hashCode;
 
@@ -49,18 +49,18 @@ public enum KalturaDropFolderFileHandlerType implements KalturaEnumAsString {
     }
 
     public static KalturaDropFolderFileHandlerType get(String hashCode) {
-        if (hashCode.equals("1"))
-        {
-           return CONTENT;
-        }
-        else 
         if (hashCode.equals("dropFolderXmlBulkUpload.XML"))
         {
            return XML;
         }
         else 
+        if (hashCode.equals("1"))
         {
            return CONTENT;
+        }
+        else 
+        {
+           return XML;
         }
     }
 }

@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -63,6 +63,9 @@ public class KalturaEntryContextDataResult extends KalturaObjectBase {
     public ArrayList<KalturaString> accessControlMessages;
 	/**  Array of actions as received from the access control rules that invalidated     */
     public ArrayList<KalturaAccessControlAction> accessControlActions;
+	/**  Array of allowed flavor assets according to access control limitations and
+	  requested tags     */
+    public ArrayList<KalturaFlavorAsset> flavorAssets;
 
     public KalturaEntryContextDataResult() {
     }
@@ -112,6 +115,9 @@ public class KalturaEntryContextDataResult extends KalturaObjectBase {
             } else if (nodeName.equals("accessControlActions")) {
                 this.accessControlActions = ParseUtils.parseArray(KalturaAccessControlAction.class, aNode);
                 continue;
+            } else if (nodeName.equals("flavorAssets")) {
+                this.flavorAssets = ParseUtils.parseArray(KalturaFlavorAsset.class, aNode);
+                continue;
             } 
         }
     }
@@ -132,6 +138,7 @@ public class KalturaEntryContextDataResult extends KalturaObjectBase {
         kparams.add("storageProfilesXML", this.storageProfilesXML);
         kparams.add("accessControlMessages", this.accessControlMessages);
         kparams.add("accessControlActions", this.accessControlActions);
+        kparams.add("flavorAssets", this.flavorAssets);
         return kparams;
     }
 

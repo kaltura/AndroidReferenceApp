@@ -30,20 +30,20 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaAuditTrailAction implements KalturaEnumAsString {
-    CREATED ("CREATED"),
-    COPIED ("COPIED"),
     CHANGED ("CHANGED"),
-    DELETED ("DELETED"),
-    VIEWED ("VIEWED"),
     CONTENT_VIEWED ("CONTENT_VIEWED"),
+    COPIED ("COPIED"),
+    CREATED ("CREATED"),
+    DELETED ("DELETED"),
     FILE_SYNC_CREATED ("FILE_SYNC_CREATED"),
     RELATION_ADDED ("RELATION_ADDED"),
-    RELATION_REMOVED ("RELATION_REMOVED");
+    RELATION_REMOVED ("RELATION_REMOVED"),
+    VIEWED ("VIEWED");
 
     public String hashCode;
 
@@ -56,9 +56,14 @@ public enum KalturaAuditTrailAction implements KalturaEnumAsString {
     }
 
     public static KalturaAuditTrailAction get(String hashCode) {
-        if (hashCode.equals("CREATED"))
+        if (hashCode.equals("CHANGED"))
         {
-           return CREATED;
+           return CHANGED;
+        }
+        else 
+        if (hashCode.equals("CONTENT_VIEWED"))
+        {
+           return CONTENT_VIEWED;
         }
         else 
         if (hashCode.equals("COPIED"))
@@ -66,24 +71,14 @@ public enum KalturaAuditTrailAction implements KalturaEnumAsString {
            return COPIED;
         }
         else 
-        if (hashCode.equals("CHANGED"))
+        if (hashCode.equals("CREATED"))
         {
-           return CHANGED;
+           return CREATED;
         }
         else 
         if (hashCode.equals("DELETED"))
         {
            return DELETED;
-        }
-        else 
-        if (hashCode.equals("VIEWED"))
-        {
-           return VIEWED;
-        }
-        else 
-        if (hashCode.equals("CONTENT_VIEWED"))
-        {
-           return CONTENT_VIEWED;
         }
         else 
         if (hashCode.equals("FILE_SYNC_CREATED"))
@@ -101,8 +96,13 @@ public enum KalturaAuditTrailAction implements KalturaEnumAsString {
            return RELATION_REMOVED;
         }
         else 
+        if (hashCode.equals("VIEWED"))
         {
-           return CREATED;
+           return VIEWED;
+        }
+        else 
+        {
+           return CHANGED;
         }
     }
 }

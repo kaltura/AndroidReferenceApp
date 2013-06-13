@@ -35,6 +35,7 @@ import com.kaltura.client.enums.KalturaDropFolderType;
 import com.kaltura.client.enums.KalturaDropFolderStatus;
 import com.kaltura.client.enums.KalturaDropFolderFileDeletePolicy;
 import com.kaltura.client.enums.KalturaDropFolderFileHandlerType;
+import com.kaltura.client.enums.KalturaDropFolderErrorCode;
 import com.kaltura.client.utils.ParseUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -43,7 +44,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -67,9 +68,12 @@ public class KalturaDropFolder extends KalturaObjectBase {
     public String fileNamePatterns;
     public KalturaDropFolderFileHandlerConfig fileHandlerConfig;
     public String tags;
+    public KalturaDropFolderErrorCode errorCode;
+    public String errorDescription;
     public String ignoreFileNamePatterns;
     public int createdAt = Integer.MIN_VALUE;
     public int updatedAt = Integer.MIN_VALUE;
+    public int lastAccessedAt = Integer.MIN_VALUE;
 
     public KalturaDropFolder() {
     }
@@ -128,6 +132,12 @@ public class KalturaDropFolder extends KalturaObjectBase {
             } else if (nodeName.equals("tags")) {
                 this.tags = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("errorCode")) {
+                this.errorCode = KalturaDropFolderErrorCode.get(ParseUtils.parseString(txt));
+                continue;
+            } else if (nodeName.equals("errorDescription")) {
+                this.errorDescription = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("ignoreFileNamePatterns")) {
                 this.ignoreFileNamePatterns = ParseUtils.parseString(txt);
                 continue;
@@ -136,6 +146,9 @@ public class KalturaDropFolder extends KalturaObjectBase {
                 continue;
             } else if (nodeName.equals("updatedAt")) {
                 this.updatedAt = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("lastAccessedAt")) {
+                this.lastAccessedAt = ParseUtils.parseInt(txt);
                 continue;
             } 
         }
@@ -159,7 +172,10 @@ public class KalturaDropFolder extends KalturaObjectBase {
         kparams.add("fileNamePatterns", this.fileNamePatterns);
         kparams.add("fileHandlerConfig", this.fileHandlerConfig);
         kparams.add("tags", this.tags);
+        kparams.add("errorCode", this.errorCode);
+        kparams.add("errorDescription", this.errorDescription);
         kparams.add("ignoreFileNamePatterns", this.ignoreFileNamePatterns);
+        kparams.add("lastAccessedAt", this.lastAccessedAt);
         return kparams;
     }
 

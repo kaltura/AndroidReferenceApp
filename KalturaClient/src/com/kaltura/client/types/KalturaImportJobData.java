@@ -38,7 +38,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -47,6 +47,7 @@ public class KalturaImportJobData extends KalturaJobData {
     public String srcFileUrl;
     public String destFileLocalPath;
     public String flavorAssetId;
+    public int fileSize = Integer.MIN_VALUE;
 
     public KalturaImportJobData() {
     }
@@ -67,6 +68,9 @@ public class KalturaImportJobData extends KalturaJobData {
             } else if (nodeName.equals("flavorAssetId")) {
                 this.flavorAssetId = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("fileSize")) {
+                this.fileSize = ParseUtils.parseInt(txt);
+                continue;
             } 
         }
     }
@@ -77,6 +81,7 @@ public class KalturaImportJobData extends KalturaJobData {
         kparams.add("srcFileUrl", this.srcFileUrl);
         kparams.add("destFileLocalPath", this.destFileLocalPath);
         kparams.add("flavorAssetId", this.flavorAssetId);
+        kparams.add("fileSize", this.fileSize);
         return kparams;
     }
 

@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -96,12 +96,12 @@ public enum KalturaITunesSyndicationFeedCategories implements KalturaEnumAsStrin
     SPORTS_RECREATION_COLLEGE_HIGH_SCHOOL ("Sports &amp; Recreation/College &amp; High School"),
     SPORTS_RECREATION_OUTDOOR ("Sports &amp; Recreation/Outdoor"),
     SPORTS_RECREATION_PROFESSIONAL ("Sports &amp; Recreation/Professional"),
+    TV_FILM ("TV &amp; Film"),
     TECHNOLOGY ("Technology"),
     TECHNOLOGY_GADGETS ("Technology/Gadgets"),
-    TECHNOLOGY_TECH_NEWS ("Technology/Tech News"),
     TECHNOLOGY_PODCASTING ("Technology/Podcasting"),
     TECHNOLOGY_SOFTWARE_HOW_TO ("Technology/Software How-To"),
-    TV_FILM ("TV &amp; Film");
+    TECHNOLOGY_TECH_NEWS ("Technology/Tech News");
 
     public String hashCode;
 
@@ -419,6 +419,11 @@ public enum KalturaITunesSyndicationFeedCategories implements KalturaEnumAsStrin
            return SPORTS_RECREATION_PROFESSIONAL;
         }
         else 
+        if (hashCode.equals("TV &amp; Film"))
+        {
+           return TV_FILM;
+        }
+        else 
         if (hashCode.equals("Technology"))
         {
            return TECHNOLOGY;
@@ -427,11 +432,6 @@ public enum KalturaITunesSyndicationFeedCategories implements KalturaEnumAsStrin
         if (hashCode.equals("Technology/Gadgets"))
         {
            return TECHNOLOGY_GADGETS;
-        }
-        else 
-        if (hashCode.equals("Technology/Tech News"))
-        {
-           return TECHNOLOGY_TECH_NEWS;
         }
         else 
         if (hashCode.equals("Technology/Podcasting"))
@@ -444,9 +444,9 @@ public enum KalturaITunesSyndicationFeedCategories implements KalturaEnumAsStrin
            return TECHNOLOGY_SOFTWARE_HOW_TO;
         }
         else 
-        if (hashCode.equals("TV &amp; Film"))
+        if (hashCode.equals("Technology/Tech News"))
         {
-           return TV_FILM;
+           return TECHNOLOGY_TECH_NEWS;
         }
         else 
         {

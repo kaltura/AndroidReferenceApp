@@ -30,42 +30,42 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
-    MEDIA_TYPE_ASC ("+mediaType"),
-    MEDIA_TYPE_DESC ("-mediaType"),
-    PLAYS_ASC ("+plays"),
-    PLAYS_DESC ("-plays"),
-    VIEWS_ASC ("+views"),
-    VIEWS_DESC ("-views"),
-    DURATION_ASC ("+duration"),
-    DURATION_DESC ("-duration"),
-    MS_DURATION_ASC ("+msDuration"),
-    MS_DURATION_DESC ("-msDuration"),
-    NAME_ASC ("+name"),
-    NAME_DESC ("-name"),
-    MODERATION_COUNT_ASC ("+moderationCount"),
-    MODERATION_COUNT_DESC ("-moderationCount"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
-    RANK_ASC ("+rank"),
-    RANK_DESC ("-rank"),
-    TOTAL_RANK_ASC ("+totalRank"),
-    TOTAL_RANK_DESC ("-totalRank"),
-    START_DATE_ASC ("+startDate"),
-    START_DATE_DESC ("-startDate"),
+    DURATION_ASC ("+duration"),
     END_DATE_ASC ("+endDate"),
-    END_DATE_DESC ("-endDate"),
+    MEDIA_TYPE_ASC ("+mediaType"),
+    MODERATION_COUNT_ASC ("+moderationCount"),
+    MS_DURATION_ASC ("+msDuration"),
+    NAME_ASC ("+name"),
     PARTNER_SORT_VALUE_ASC ("+partnerSortValue"),
-    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    PLAYS_ASC ("+plays"),
+    RANK_ASC ("+rank"),
     RECENT_ASC ("+recent"),
-    RECENT_DESC ("-recent"),
+    START_DATE_ASC ("+startDate"),
+    TOTAL_RANK_ASC ("+totalRank"),
+    UPDATED_AT_ASC ("+updatedAt"),
+    VIEWS_ASC ("+views"),
     WEIGHT_ASC ("+weight"),
+    CREATED_AT_DESC ("-createdAt"),
+    DURATION_DESC ("-duration"),
+    END_DATE_DESC ("-endDate"),
+    MEDIA_TYPE_DESC ("-mediaType"),
+    MODERATION_COUNT_DESC ("-moderationCount"),
+    MS_DURATION_DESC ("-msDuration"),
+    NAME_DESC ("-name"),
+    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    PLAYS_DESC ("-plays"),
+    RANK_DESC ("-rank"),
+    RECENT_DESC ("-recent"),
+    START_DATE_DESC ("-startDate"),
+    TOTAL_RANK_DESC ("-totalRank"),
+    UPDATED_AT_DESC ("-updatedAt"),
+    VIEWS_DESC ("-views"),
     WEIGHT_DESC ("-weight");
 
     public String hashCode;
@@ -79,34 +79,9 @@ public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaLiveStreamEntryOrderBy get(String hashCode) {
-        if (hashCode.equals("+mediaType"))
+        if (hashCode.equals("+createdAt"))
         {
-           return MEDIA_TYPE_ASC;
-        }
-        else 
-        if (hashCode.equals("-mediaType"))
-        {
-           return MEDIA_TYPE_DESC;
-        }
-        else 
-        if (hashCode.equals("+plays"))
-        {
-           return PLAYS_ASC;
-        }
-        else 
-        if (hashCode.equals("-plays"))
-        {
-           return PLAYS_DESC;
-        }
-        else 
-        if (hashCode.equals("+views"))
-        {
-           return VIEWS_ASC;
-        }
-        else 
-        if (hashCode.equals("-views"))
-        {
-           return VIEWS_DESC;
+           return CREATED_AT_ASC;
         }
         else 
         if (hashCode.equals("+duration"))
@@ -114,29 +89,14 @@ public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
            return DURATION_ASC;
         }
         else 
-        if (hashCode.equals("-duration"))
+        if (hashCode.equals("+endDate"))
         {
-           return DURATION_DESC;
+           return END_DATE_ASC;
         }
         else 
-        if (hashCode.equals("+msDuration"))
+        if (hashCode.equals("+mediaType"))
         {
-           return MS_DURATION_ASC;
-        }
-        else 
-        if (hashCode.equals("-msDuration"))
-        {
-           return MS_DURATION_DESC;
-        }
-        else 
-        if (hashCode.equals("+name"))
-        {
-           return NAME_ASC;
-        }
-        else 
-        if (hashCode.equals("-name"))
-        {
-           return NAME_DESC;
+           return MEDIA_TYPE_ASC;
         }
         else 
         if (hashCode.equals("+moderationCount"))
@@ -144,69 +104,14 @@ public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
            return MODERATION_COUNT_ASC;
         }
         else 
-        if (hashCode.equals("-moderationCount"))
+        if (hashCode.equals("+msDuration"))
         {
-           return MODERATION_COUNT_DESC;
+           return MS_DURATION_ASC;
         }
         else 
-        if (hashCode.equals("+createdAt"))
+        if (hashCode.equals("+name"))
         {
-           return CREATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-createdAt"))
-        {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+rank"))
-        {
-           return RANK_ASC;
-        }
-        else 
-        if (hashCode.equals("-rank"))
-        {
-           return RANK_DESC;
-        }
-        else 
-        if (hashCode.equals("+totalRank"))
-        {
-           return TOTAL_RANK_ASC;
-        }
-        else 
-        if (hashCode.equals("-totalRank"))
-        {
-           return TOTAL_RANK_DESC;
-        }
-        else 
-        if (hashCode.equals("+startDate"))
-        {
-           return START_DATE_ASC;
-        }
-        else 
-        if (hashCode.equals("-startDate"))
-        {
-           return START_DATE_DESC;
-        }
-        else 
-        if (hashCode.equals("+endDate"))
-        {
-           return END_DATE_ASC;
-        }
-        else 
-        if (hashCode.equals("-endDate"))
-        {
-           return END_DATE_DESC;
+           return NAME_ASC;
         }
         else 
         if (hashCode.equals("+partnerSortValue"))
@@ -214,9 +119,14 @@ public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
            return PARTNER_SORT_VALUE_ASC;
         }
         else 
-        if (hashCode.equals("-partnerSortValue"))
+        if (hashCode.equals("+plays"))
         {
-           return PARTNER_SORT_VALUE_DESC;
+           return PLAYS_ASC;
+        }
+        else 
+        if (hashCode.equals("+rank"))
+        {
+           return RANK_ASC;
         }
         else 
         if (hashCode.equals("+recent"))
@@ -224,14 +134,104 @@ public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
            return RECENT_ASC;
         }
         else 
-        if (hashCode.equals("-recent"))
+        if (hashCode.equals("+startDate"))
         {
-           return RECENT_DESC;
+           return START_DATE_ASC;
+        }
+        else 
+        if (hashCode.equals("+totalRank"))
+        {
+           return TOTAL_RANK_ASC;
+        }
+        else 
+        if (hashCode.equals("+updatedAt"))
+        {
+           return UPDATED_AT_ASC;
+        }
+        else 
+        if (hashCode.equals("+views"))
+        {
+           return VIEWS_ASC;
         }
         else 
         if (hashCode.equals("+weight"))
         {
            return WEIGHT_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-duration"))
+        {
+           return DURATION_DESC;
+        }
+        else 
+        if (hashCode.equals("-endDate"))
+        {
+           return END_DATE_DESC;
+        }
+        else 
+        if (hashCode.equals("-mediaType"))
+        {
+           return MEDIA_TYPE_DESC;
+        }
+        else 
+        if (hashCode.equals("-moderationCount"))
+        {
+           return MODERATION_COUNT_DESC;
+        }
+        else 
+        if (hashCode.equals("-msDuration"))
+        {
+           return MS_DURATION_DESC;
+        }
+        else 
+        if (hashCode.equals("-name"))
+        {
+           return NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-partnerSortValue"))
+        {
+           return PARTNER_SORT_VALUE_DESC;
+        }
+        else 
+        if (hashCode.equals("-plays"))
+        {
+           return PLAYS_DESC;
+        }
+        else 
+        if (hashCode.equals("-rank"))
+        {
+           return RANK_DESC;
+        }
+        else 
+        if (hashCode.equals("-recent"))
+        {
+           return RECENT_DESC;
+        }
+        else 
+        if (hashCode.equals("-startDate"))
+        {
+           return START_DATE_DESC;
+        }
+        else 
+        if (hashCode.equals("-totalRank"))
+        {
+           return TOTAL_RANK_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-views"))
+        {
+           return VIEWS_DESC;
         }
         else 
         if (hashCode.equals("-weight"))
@@ -240,7 +240,7 @@ public enum KalturaLiveStreamEntryOrderBy implements KalturaEnumAsString {
         }
         else 
         {
-           return MEDIA_TYPE_ASC;
+           return CREATED_AT_ASC;
         }
     }
 }

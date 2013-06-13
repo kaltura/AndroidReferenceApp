@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -64,6 +64,8 @@ public class KalturaWidget extends KalturaObjectBase {
 	/**  Set privacy context for search entries that assiged to private and public
 	  categories within a category privacy context.     */
     public String privacyContext;
+	/**  Addes the HTML5 script line to the widget's embed code     */
+    public boolean addEmbedHtml5Support;
 
     public KalturaWidget() {
     }
@@ -116,6 +118,9 @@ public class KalturaWidget extends KalturaObjectBase {
             } else if (nodeName.equals("privacyContext")) {
                 this.privacyContext = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("addEmbedHtml5Support")) {
+                this.addEmbedHtml5Support = ParseUtils.parseBool(txt);
+                continue;
             } 
         }
     }
@@ -131,6 +136,7 @@ public class KalturaWidget extends KalturaObjectBase {
         kparams.add("partnerData", this.partnerData);
         kparams.add("enforceEntitlement", this.enforceEntitlement);
         kparams.add("privacyContext", this.privacyContext);
+        kparams.add("addEmbedHtml5Support", this.addEmbedHtml5Support);
         return kparams;
     }
 

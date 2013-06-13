@@ -44,7 +44,7 @@ import com.kaltura.client.KalturaFile;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -108,11 +108,16 @@ public class KalturaThumbAssetService extends KalturaServiceBase {
         return this.serve(thumbAssetId, Integer.MIN_VALUE);
     }
 
-	/**  Serves thumbnail by its id     */
     public String serve(String thumbAssetId, int version) throws KalturaApiException {
+        return this.serve(thumbAssetId, version, null);
+    }
+
+	/**  Serves thumbnail by its id     */
+    public String serve(String thumbAssetId, int version, KalturaThumbParams thumbParams) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("thumbAssetId", thumbAssetId);
         kparams.add("version", version);
+        kparams.add("thumbParams", thumbParams);
         this.kalturaClient.queueServiceCall("thumbasset", "serve", kparams);
         return this.kalturaClient.serve();
     }
@@ -254,11 +259,16 @@ public class KalturaThumbAssetService extends KalturaServiceBase {
         return this.getUrl(id, Integer.MIN_VALUE);
     }
 
-	/**  Get download URL for the asset     */
     public String getUrl(String id, int storageId) throws KalturaApiException {
+        return this.getUrl(id, storageId, null);
+    }
+
+	/**  Get download URL for the asset     */
+    public String getUrl(String id, int storageId, KalturaThumbParams thumbParams) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("id", id);
         kparams.add("storageId", storageId);
+        kparams.add("thumbParams", thumbParams);
         this.kalturaClient.queueServiceCall("thumbasset", "getUrl", kparams);
         if (this.kalturaClient.isMultiRequest())
             return null;

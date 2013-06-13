@@ -30,19 +30,19 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaMetadataOrderBy implements KalturaEnumAsString {
-    METADATA_PROFILE_VERSION_ASC ("+metadataProfileVersion"),
-    METADATA_PROFILE_VERSION_DESC ("-metadataProfileVersion"),
-    VERSION_ASC ("+version"),
-    VERSION_DESC ("-version"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
+    METADATA_PROFILE_VERSION_ASC ("+metadataProfileVersion"),
     UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt");
+    VERSION_ASC ("+version"),
+    CREATED_AT_DESC ("-createdAt"),
+    METADATA_PROFILE_VERSION_DESC ("-metadataProfileVersion"),
+    UPDATED_AT_DESC ("-updatedAt"),
+    VERSION_DESC ("-version");
 
     public String hashCode;
 
@@ -55,34 +55,14 @@ public enum KalturaMetadataOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaMetadataOrderBy get(String hashCode) {
-        if (hashCode.equals("+metadataProfileVersion"))
-        {
-           return METADATA_PROFILE_VERSION_ASC;
-        }
-        else 
-        if (hashCode.equals("-metadataProfileVersion"))
-        {
-           return METADATA_PROFILE_VERSION_DESC;
-        }
-        else 
-        if (hashCode.equals("+version"))
-        {
-           return VERSION_ASC;
-        }
-        else 
-        if (hashCode.equals("-version"))
-        {
-           return VERSION_DESC;
-        }
-        else 
         if (hashCode.equals("+createdAt"))
         {
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
+        if (hashCode.equals("+metadataProfileVersion"))
         {
-           return CREATED_AT_DESC;
+           return METADATA_PROFILE_VERSION_ASC;
         }
         else 
         if (hashCode.equals("+updatedAt"))
@@ -90,13 +70,33 @@ public enum KalturaMetadataOrderBy implements KalturaEnumAsString {
            return UPDATED_AT_ASC;
         }
         else 
+        if (hashCode.equals("+version"))
+        {
+           return VERSION_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-metadataProfileVersion"))
+        {
+           return METADATA_PROFILE_VERSION_DESC;
+        }
+        else 
         if (hashCode.equals("-updatedAt"))
         {
            return UPDATED_AT_DESC;
         }
         else 
+        if (hashCode.equals("-version"))
         {
-           return METADATA_PROFILE_VERSION_ASC;
+           return VERSION_DESC;
+        }
+        else 
+        {
+           return CREATED_AT_ASC;
         }
     }
 }

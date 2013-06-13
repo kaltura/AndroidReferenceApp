@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -39,7 +39,8 @@ public enum KalturaFeatureStatusType implements KalturaEnumAsInt {
     CATEGORY (2),
     CATEGORY_ENTRY (3),
     ENTRY (4),
-    CATEGORY_USER (5);
+    CATEGORY_USER (5),
+    USER (6);
 
     public int hashCode;
 
@@ -58,6 +59,7 @@ public enum KalturaFeatureStatusType implements KalturaEnumAsInt {
             case 3: return CATEGORY_ENTRY;
             case 4: return ENTRY;
             case 5: return CATEGORY_USER;
+            case 6: return USER;
             default: return LOCK_CATEGORY;
         }
     }

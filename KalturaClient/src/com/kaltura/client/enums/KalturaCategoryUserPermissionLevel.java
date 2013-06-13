@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -38,7 +38,8 @@ public enum KalturaCategoryUserPermissionLevel implements KalturaEnumAsInt {
     MANAGER (0),
     MODERATOR (1),
     CONTRIBUTOR (2),
-    MEMBER (3);
+    MEMBER (3),
+    NONE (4);
 
     public int hashCode;
 
@@ -56,6 +57,7 @@ public enum KalturaCategoryUserPermissionLevel implements KalturaEnumAsInt {
             case 1: return MODERATOR;
             case 2: return CONTRIBUTOR;
             case 3: return MEMBER;
+            case 4: return NONE;
             default: return MANAGER;
         }
     }

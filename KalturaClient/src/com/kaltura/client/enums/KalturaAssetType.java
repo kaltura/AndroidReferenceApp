@@ -30,19 +30,20 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaAssetType implements KalturaEnumAsString {
-    FLAVOR ("1"),
-    THUMBNAIL ("2"),
-    DOCUMENT ("document.Document"),
-    SWF ("document.SWF"),
-    PDF ("document.PDF"),
-    IMAGE ("document.Image"),
+    ATTACHMENT ("attachment.Attachment"),
     CAPTION ("caption.Caption"),
-    ATTACHMENT ("attachment.Attachment");
+    DOCUMENT ("document.Document"),
+    IMAGE ("document.Image"),
+    PDF ("document.PDF"),
+    SWF ("document.SWF"),
+    WIDEVINE_FLAVOR ("widevine.WidevineFlavor"),
+    FLAVOR ("1"),
+    THUMBNAIL ("2");
 
     public String hashCode;
 
@@ -55,6 +56,41 @@ public enum KalturaAssetType implements KalturaEnumAsString {
     }
 
     public static KalturaAssetType get(String hashCode) {
+        if (hashCode.equals("attachment.Attachment"))
+        {
+           return ATTACHMENT;
+        }
+        else 
+        if (hashCode.equals("caption.Caption"))
+        {
+           return CAPTION;
+        }
+        else 
+        if (hashCode.equals("document.Document"))
+        {
+           return DOCUMENT;
+        }
+        else 
+        if (hashCode.equals("document.Image"))
+        {
+           return IMAGE;
+        }
+        else 
+        if (hashCode.equals("document.PDF"))
+        {
+           return PDF;
+        }
+        else 
+        if (hashCode.equals("document.SWF"))
+        {
+           return SWF;
+        }
+        else 
+        if (hashCode.equals("widevine.WidevineFlavor"))
+        {
+           return WIDEVINE_FLAVOR;
+        }
+        else 
         if (hashCode.equals("1"))
         {
            return FLAVOR;
@@ -65,38 +101,8 @@ public enum KalturaAssetType implements KalturaEnumAsString {
            return THUMBNAIL;
         }
         else 
-        if (hashCode.equals("document.Document"))
-        {
-           return DOCUMENT;
-        }
-        else 
-        if (hashCode.equals("document.SWF"))
-        {
-           return SWF;
-        }
-        else 
-        if (hashCode.equals("document.PDF"))
-        {
-           return PDF;
-        }
-        else 
-        if (hashCode.equals("document.Image"))
-        {
-           return IMAGE;
-        }
-        else 
-        if (hashCode.equals("caption.Caption"))
-        {
-           return CAPTION;
-        }
-        else 
-        if (hashCode.equals("attachment.Attachment"))
         {
            return ATTACHMENT;
-        }
-        else 
-        {
-           return FLAVOR;
         }
     }
 }

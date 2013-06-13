@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -39,7 +39,8 @@ public enum KalturaDistributionProtocol implements KalturaEnumAsInt {
     SCP (2),
     SFTP (3),
     HTTP (4),
-    HTTPS (5);
+    HTTPS (5),
+    ASPERA (10);
 
     public int hashCode;
 
@@ -58,6 +59,7 @@ public enum KalturaDistributionProtocol implements KalturaEnumAsInt {
             case 3: return SFTP;
             case 4: return HTTP;
             case 5: return HTTPS;
+            case 10: return ASPERA;
             default: return FTP;
         }
     }

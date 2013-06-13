@@ -30,31 +30,35 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaContainerFormat implements KalturaEnumAsString {
-    FLV ("flv"),
-    MP4 ("mp4"),
+    _3GP ("3gp"),
+    APPLEHTTP ("applehttp"),
     AVI ("avi"),
+    BMP ("bmp"),
+    COPY ("copy"),
+    FLV ("flv"),
+    ISMV ("ismv"),
+    JPG ("jpg"),
+    MKV ("mkv"),
     MOV ("mov"),
     MP3 ("mp3"),
-    _3GP ("3gp"),
-    OGG ("ogg"),
-    WMV ("wmv"),
-    WMA ("wma"),
-    ISMV ("ismv"),
-    MKV ("mkv"),
-    WEBM ("webm"),
+    MP4 ("mp4"),
     MPEG ("mpeg"),
     MPEGTS ("mpegts"),
-    APPLEHTTP ("applehttp"),
-    SWF ("swf"),
+    OGG ("ogg"),
+    OGV ("ogv"),
     PDF ("pdf"),
-    BMP ("bmp"),
     PNG ("png"),
-    JPG ("jpg");
+    SWF ("swf"),
+    WAV ("wav"),
+    WEBM ("webm"),
+    WMA ("wma"),
+    WMV ("wmv"),
+    WVM ("wvm");
 
     public String hashCode;
 
@@ -67,19 +71,49 @@ public enum KalturaContainerFormat implements KalturaEnumAsString {
     }
 
     public static KalturaContainerFormat get(String hashCode) {
-        if (hashCode.equals("flv"))
+        if (hashCode.equals("3gp"))
         {
-           return FLV;
+           return _3GP;
         }
         else 
-        if (hashCode.equals("mp4"))
+        if (hashCode.equals("applehttp"))
         {
-           return MP4;
+           return APPLEHTTP;
         }
         else 
         if (hashCode.equals("avi"))
         {
            return AVI;
+        }
+        else 
+        if (hashCode.equals("bmp"))
+        {
+           return BMP;
+        }
+        else 
+        if (hashCode.equals("copy"))
+        {
+           return COPY;
+        }
+        else 
+        if (hashCode.equals("flv"))
+        {
+           return FLV;
+        }
+        else 
+        if (hashCode.equals("ismv"))
+        {
+           return ISMV;
+        }
+        else 
+        if (hashCode.equals("jpg"))
+        {
+           return JPG;
+        }
+        else 
+        if (hashCode.equals("mkv"))
+        {
+           return MKV;
         }
         else 
         if (hashCode.equals("mov"))
@@ -92,39 +126,9 @@ public enum KalturaContainerFormat implements KalturaEnumAsString {
            return MP3;
         }
         else 
-        if (hashCode.equals("3gp"))
+        if (hashCode.equals("mp4"))
         {
-           return _3GP;
-        }
-        else 
-        if (hashCode.equals("ogg"))
-        {
-           return OGG;
-        }
-        else 
-        if (hashCode.equals("wmv"))
-        {
-           return WMV;
-        }
-        else 
-        if (hashCode.equals("wma"))
-        {
-           return WMA;
-        }
-        else 
-        if (hashCode.equals("ismv"))
-        {
-           return ISMV;
-        }
-        else 
-        if (hashCode.equals("mkv"))
-        {
-           return MKV;
-        }
-        else 
-        if (hashCode.equals("webm"))
-        {
-           return WEBM;
+           return MP4;
         }
         else 
         if (hashCode.equals("mpeg"))
@@ -137,14 +141,14 @@ public enum KalturaContainerFormat implements KalturaEnumAsString {
            return MPEGTS;
         }
         else 
-        if (hashCode.equals("applehttp"))
+        if (hashCode.equals("ogg"))
         {
-           return APPLEHTTP;
+           return OGG;
         }
         else 
-        if (hashCode.equals("swf"))
+        if (hashCode.equals("ogv"))
         {
-           return SWF;
+           return OGV;
         }
         else 
         if (hashCode.equals("pdf"))
@@ -152,23 +156,43 @@ public enum KalturaContainerFormat implements KalturaEnumAsString {
            return PDF;
         }
         else 
-        if (hashCode.equals("bmp"))
-        {
-           return BMP;
-        }
-        else 
         if (hashCode.equals("png"))
         {
            return PNG;
         }
         else 
-        if (hashCode.equals("jpg"))
+        if (hashCode.equals("swf"))
         {
-           return JPG;
+           return SWF;
+        }
+        else 
+        if (hashCode.equals("wav"))
+        {
+           return WAV;
+        }
+        else 
+        if (hashCode.equals("webm"))
+        {
+           return WEBM;
+        }
+        else 
+        if (hashCode.equals("wma"))
+        {
+           return WMA;
+        }
+        else 
+        if (hashCode.equals("wmv"))
+        {
+           return WMV;
+        }
+        else 
+        if (hashCode.equals("wvm"))
+        {
+           return WVM;
         }
         else 
         {
-           return FLV;
+           return _3GP;
         }
     }
 }

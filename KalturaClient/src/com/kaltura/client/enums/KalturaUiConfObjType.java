@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -52,7 +52,9 @@ public enum KalturaUiConfObjType implements KalturaEnumAsInt {
     CLIENTSIDE_ENCODER (15),
     KMC_GENERAL (16),
     KMC_ROLES_AND_PERMISSIONS (17),
-    CLIPPER (18);
+    CLIPPER (18),
+    KSR (19),
+    KUPLOAD (20);
 
     public int hashCode;
 
@@ -84,6 +86,8 @@ public enum KalturaUiConfObjType implements KalturaEnumAsInt {
             case 16: return KMC_GENERAL;
             case 17: return KMC_ROLES_AND_PERMISSIONS;
             case 18: return CLIPPER;
+            case 19: return KSR;
+            case 20: return KUPLOAD;
             default: return PLAYER;
         }
     }

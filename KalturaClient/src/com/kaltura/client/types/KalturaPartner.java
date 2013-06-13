@@ -44,7 +44,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -94,6 +94,18 @@ public class KalturaPartner extends KalturaObjectBase {
     public int publishersQuota = Integer.MIN_VALUE;
     public KalturaPartnerGroupType partnerGroupType;
     public boolean defaultEntitlementEnforcement;
+    public String defaultDeliveryType;
+    public String defaultEmbedCodeType;
+    public ArrayList<KalturaPlayerDeliveryType> deliveryTypes;
+    public ArrayList<KalturaPlayerEmbedCodeType> embedCodeTypes;
+    public int templatePartnerId = Integer.MIN_VALUE;
+    public boolean ignoreSeoLinks;
+    public String host;
+    public String cdnHost;
+    public String rtmpUrl;
+    public String language;
+    public boolean isFirstLogin;
+    public String logoutUrl;
 
     public KalturaPartner() {
     }
@@ -220,6 +232,42 @@ public class KalturaPartner extends KalturaObjectBase {
                 continue;
             } else if (nodeName.equals("defaultEntitlementEnforcement")) {
                 this.defaultEntitlementEnforcement = ParseUtils.parseBool(txt);
+                continue;
+            } else if (nodeName.equals("defaultDeliveryType")) {
+                this.defaultDeliveryType = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("defaultEmbedCodeType")) {
+                this.defaultEmbedCodeType = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("deliveryTypes")) {
+                this.deliveryTypes = ParseUtils.parseArray(KalturaPlayerDeliveryType.class, aNode);
+                continue;
+            } else if (nodeName.equals("embedCodeTypes")) {
+                this.embedCodeTypes = ParseUtils.parseArray(KalturaPlayerEmbedCodeType.class, aNode);
+                continue;
+            } else if (nodeName.equals("templatePartnerId")) {
+                this.templatePartnerId = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("ignoreSeoLinks")) {
+                this.ignoreSeoLinks = ParseUtils.parseBool(txt);
+                continue;
+            } else if (nodeName.equals("host")) {
+                this.host = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("cdnHost")) {
+                this.cdnHost = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("rtmpUrl")) {
+                this.rtmpUrl = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("language")) {
+                this.language = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("isFirstLogin")) {
+                this.isFirstLogin = ParseUtils.parseBool(txt);
+                continue;
+            } else if (nodeName.equals("logoutUrl")) {
+                this.logoutUrl = ParseUtils.parseString(txt);
                 continue;
             } 
         }

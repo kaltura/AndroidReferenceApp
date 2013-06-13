@@ -27,28 +27,41 @@
 // ===================================================================================================
 package com.kaltura.client;
 
-import com.kaltura.client.enums.KalturaSessionType;
-
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.net.SocketTimeoutException;
+import java.net.URLEncoder;
+import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Random;
+import java.util.zip.GZIPInputStream;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpConnectionManager;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.ProxyHost;
+import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.multipart.FilePart;
 import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
@@ -59,7 +72,7 @@ import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.w3c.dom.Element;
 
-import com.kaltura.client.KalturaLogger;
+import com.kaltura.client.enums.KalturaSessionType;
 import com.kaltura.client.utils.XmlUtils;
 
 /**
@@ -73,31 +86,109 @@ abstract public class KalturaClientBase {
 	
 	private static final String UTF8_CHARSET = "UTF-8";
 
-	private static final String PARTNER_ID_PARAM_NAME = "partnerId";
+    private static final String PARTNER_ID_PARAM_NAME = "partnerId";
+    
+    // KS v2 constants
+    private static final int BLOCK_SIZE = 16;
+    private static final String FIELD_EXPIRY = "_e";
+    private static final String FIELD_USER = "_u";
+	private static final String FIELD_TYPE = "_t";
+	private static final int RANDOM_SIZE = 16; 
 
 	private static final int MAX_DEBUG_RESPONSE_STRING_LENGTH = 1024;
 	protected KalturaConfiguration kalturaConfiguration;
-	protected String sessionId;
-	protected List<KalturaServiceActionCall> callsQueue;
-	protected boolean isMultiRequest;
-	protected KalturaParams multiRequestParamsMap;
+    protected String sessionId;
+    protected List<KalturaServiceActionCall> callsQueue;
+    protected boolean isMultiRequest;
+    protected KalturaParams multiRequestParamsMap;
 
 	private static KalturaLogger logger = KalturaLogger.getLogger(KalturaClientBase.class);
-	
-	public KalturaClientBase() {		
+    
+    private Header[] responseHeaders = null; 
+    
+    private boolean acceptGzipEncoding = true;
+    
+    protected static final String HTTP_HEADER_ACCEPT_ENCODING = "Accept-Encoding";
+
+	protected static final String HTTP_HEADER_CONTENT_ENCODING = "Content-Encoding";
+
+	protected static final String ENCODING_GZIP = "gzip";
+    /**
+	 * Set whether to accept GZIP encoding, that is, whether to
+	 * send the HTTP "Accept-Encoding" header with "gzip" as value.
+	 * <p>Default is "true". Turn this flag off if you do not want
+	 * GZIP response compression even if enabled on the HTTP server.
+	 */
+	public void setAcceptGzipEncoding(boolean acceptGzipEncoding) {
+		this.acceptGzipEncoding = acceptGzipEncoding;
 	}
-	
-	public KalturaClientBase(KalturaConfiguration config) {
-		this.kalturaConfiguration = config;
-		this.callsQueue = new ArrayList<KalturaServiceActionCall>();
-		this.multiRequestParamsMap = new KalturaParams();
+    /**
+	 * Return whether to accept GZIP encoding, that is, whether to
+	 * send the HTTP "Accept-Encoding" header with "gzip" as value.
+	 */
+	public boolean isAcceptGzipEncoding() {
+		return acceptGzipEncoding;
 	}
-	
-	abstract String getApiVersion();
-	
-	public String getSessionId() {
-		return this.sessionId;
+    
+    /**
+	 * Determine whether the given response is a GZIP response.
+	 * <p>Default implementation checks whether the HTTP "Content-Encoding"
+	 * header contains "gzip" (in any casing).
+	 * @param postMethod the PostMethod to check
+	 */
+	protected boolean isGzipResponse(PostMethod postMethod) {
+		Header encodingHeader = postMethod.getResponseHeader(HTTP_HEADER_CONTENT_ENCODING);
+		if (encodingHeader == null || encodingHeader.getValue() == null) {
+			return false;
+		}
+		return (encodingHeader.getValue().toLowerCase().indexOf(ENCODING_GZIP) != -1);
 	}
+    
+    /**
+	 * Extract the response body from the given executed remote invocation
+	 * request.
+	 * <p>The default implementation simply fetches the PostMethod's response
+	 * body stream. If the response is recognized as GZIP response, the
+	 * InputStream will get wrapped in a GZIPInputStream.
+	 * @param config the HTTP invoker configuration that specifies the target service
+	 * @param postMethod the PostMethod to read the response body from
+	 * @return an InputStream for the response body
+	 * @throws IOException if thrown by I/O methods
+	 * @see #isGzipResponse
+	 * @see java.util.zip.GZIPInputStream
+	 * @see org.apache.commons.httpclient.methods.PostMethod#getResponseBodyAsStream()
+	 * @see org.apache.commons.httpclient.methods.PostMethod#getResponseHeader(String)
+	 */
+	protected InputStream getResponseBody(PostMethod postMethod)
+			throws IOException {
+
+		if (isGzipResponse(postMethod)) {
+			return new GZIPInputStream(postMethod.getResponseBodyAsStream());
+		}
+		else {
+			return postMethod.getResponseBodyAsStream();
+		}
+	}
+    
+    public Header[] getResponseHeaders()
+    {
+        return responseHeaders;
+    }
+
+    public KalturaClientBase() {
+    }
+
+    public KalturaClientBase(KalturaConfiguration config) {
+        this.kalturaConfiguration = config;
+        this.callsQueue = new ArrayList<KalturaServiceActionCall>();
+        this.multiRequestParamsMap = new KalturaParams();
+    }
+
+    abstract String getApiVersion();
+
+    public String getSessionId() {
+        return this.sessionId;
+    }
 
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
@@ -158,21 +249,46 @@ abstract public class KalturaClientBase {
 			logger.debug("full reqeust url: [" + url + "?" + kparams.toQueryString() + "]");
 
 		HttpClient client = createHttpClient();
-		PostMethod method = createPostMethod(kparams, kfiles, url);
-		String responseString = executeMethod(client, method);			
+		String responseString = null;
+		try {
+			PostMethod method = createPostMethod(kparams, kfiles, url);
+			responseString = executeMethod(client, method);	
+		} finally {
+			closeHttpClient(client);
+		}
+		
 		Element responseXml = XmlUtils.parseXml(responseString);
-		
-		this.validateXmlResult(responseXml);
-	  
-		Element resultXml = null;
-	   	resultXml = getElementByXPath(responseXml, "/xml/result");
-		
+		Element resultXml = this.validateXmlResult(responseXml);
 		this.throwExceptionOnAPIError(resultXml);
-		
+				
 		return resultXml;
 	}
 
-	protected String executeMethod(HttpClient client, PostMethod method) {
+    protected String readRemoteInvocationResult(InputStream is)
+    	throws IOException {
+    
+        try {
+    	  return doReadRemoteInvocationResult(is);
+        }
+        finally {
+    	  is.close();
+        }
+    }
+
+    protected String doReadRemoteInvocationResult(InputStream is)
+    	throws IOException {
+    
+        byte[] buf = new byte[1024];
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int len;
+        while ( (len = is.read(buf)) > 0)
+        {
+        	out.write(buf,0,len);
+        }
+        return new String(out.toByteArray());
+    }
+
+	protected String executeMethod(HttpClient client, PostMethod method) throws KalturaApiException {
 		String responseString = "";
 		try {
 			// Execute the method.
@@ -189,12 +305,34 @@ abstract public class KalturaClientBase {
 				logger.error("Method failed: " + method.getStatusLine ( ));
 			}
 
-			// Read the response body.
-			byte[] responseBody = method.getResponseBody ( );
+			// Read the response body
+            InputStream responseBodyIS = null;
+            if (isGzipResponse(method)) {
+                responseBodyIS = new GZIPInputStream(method.getResponseBodyAsStream());
+                if (logger.isEnabled()) logger.debug("Using gzip compression to handle response for: "+method.getName()+" "+method.getPath()+"?"+method.getQueryString());
+            } else {
+                responseBodyIS = method.getResponseBodyAsStream();
+                if (logger.isEnabled()) logger.debug("No gzip compression for this response");
+            }
+            String responseBody = readRemoteInvocationResult(responseBodyIS);
+            responseHeaders = method.getResponseHeaders();
+            
+            // print server debug info
+            String serverName = null;
+            String serverSession = null;
+            for(Header header : responseHeaders)
+            {
+            	if (header.getName().compareTo("X-Me") == 0)
+                    serverName = header.getValue();
+            	else if (header.getName().compareTo("X-Kaltura-Session") == 0)
+                    serverSession = header.getValue();
+			}
+			if (serverName != null || serverSession != null)
+				logger.debug("Server: [" + serverName + "], Session: [" + serverSession + "]");
 
 			// Deal with the response.
 			// Use caution: ensure correct character encoding and is not binary data
-			responseString = new String (responseBody, UTF8_CHARSET); // Unicon: this MUST be set to UTF-8 charset -AZ
+			responseString = new String (responseBody.getBytes(), UTF8_CHARSET); // Unicon: this MUST be set to UTF-8 charset -AZ
 			if (logger.isEnabled())
 			{
 				if(responseString.length() < MAX_DEBUG_RESPONSE_STRING_LENGTH) {
@@ -204,29 +342,44 @@ abstract public class KalturaClientBase {
 				}
 			}
 			
+			return responseString;
+			
 		} catch ( HttpException e ) {
 			if (logger.isEnabled())
 				logger.error( "Fatal protocol violation: " + e.getMessage ( ) ,e);
+			throw new KalturaApiException("Protocol exception occured while executing request");
+		} catch ( SocketTimeoutException e) {
+			if (logger.isEnabled())
+				logger.error( "Fatal transport error: " + e.getMessage ( ), e);
+			throw new KalturaApiException("Request was timed out");
+		} catch ( ConnectTimeoutException e) {
+			if (logger.isEnabled())
+				logger.error( "Fatal transport error: " + e.getMessage ( ), e);
+			throw new KalturaApiException("Connection to server was timed out");
 		} catch ( IOException e ) {
 			if (logger.isEnabled())
 				logger.error( "Fatal transport error: " + e.getMessage ( ), e);
-		} finally {
+			throw new KalturaApiException("I/O exception occured while reading request response");
+		}  finally {
 			// Release the connection.
 			method.releaseConnection ( );
 		}
-		return responseString;
 	}
 
 	private PostMethod createPostMethod(KalturaParams kparams,
 			KalturaFiles kfiles, String url) {
 		PostMethod method = new PostMethod(url);
-		method.setRequestHeader("Accept","text/xml,application/xml,*/*");
-		method.setRequestHeader("Accept-Charset","utf-8,ISO-8859-1;q=0.7,*;q=0.5");
-		
-		if (!kfiles.isEmpty()) {			
-			method = this.getPostMultiPartWithFiles(method, kparams, kfiles);			
-		} else {
-			method = this.addParams(method, kparams);			
+        method.setRequestHeader("Accept","text/xml,application/xml,*/*");
+        method.setRequestHeader("Accept-Charset","utf-8,ISO-8859-1;q=0.7,*;q=0.5");
+        
+        if (!kfiles.isEmpty()) {        	
+            method = this.getPostMultiPartWithFiles(method, kparams, kfiles);        	
+        } else {
+            method = this.addParams(method, kparams);            
+        }
+        
+        if (isAcceptGzipEncoding()) {
+			method.addRequestHeader(HTTP_HEADER_ACCEPT_ENCODING, ENCODING_GZIP);
 		}
 
 		// Provide custom retry handler is necessary
@@ -235,7 +388,7 @@ abstract public class KalturaClientBase {
 		return method;
 	}
 
-	private HttpClient createHttpClient() {
+	protected HttpClient createHttpClient() {
 		HttpClient client = new HttpClient();
 
 		// added by Unicon to handle proxy hosts
@@ -267,8 +420,29 @@ abstract public class KalturaClientBase {
 		client.getHttpConnectionManager().setParams(connParams);
 		return client;
 	}
+	
+	/**
+	 * We need to make sure that we shut down the connection.
+	 * The possible connection manager types are taken from here:
+	 * http://hc.apache.org/httpclient-legacy/apidocs/org/apache/commons/httpclient/HttpConnectionManager.html
+	 * 
+	 * The issue details is described here:
+	 * http://fuyun.org/2009/09/connection-close-in-httpclient/
+	 * 
+	 * @param client The client we wish to close
+	 */
+	protected void closeHttpClient(HttpClient client) {
+		HttpConnectionManager mgr = client.getHttpConnectionManager();
+		if (mgr instanceof SimpleHttpConnectionManager) {
+		    ((SimpleHttpConnectionManager)mgr).shutdown();
+		}
+		
+		if(mgr instanceof MultiThreadedHttpConnectionManager) {
+			((MultiThreadedHttpConnectionManager)mgr).shutdown();
+		}
+	}
 
-	private String extractParamsFromCallQueue(KalturaParams kparams, KalturaFiles kfiles) {
+	private String extractParamsFromCallQueue(KalturaParams kparams, KalturaFiles kfiles) throws KalturaApiException {
 		
 		String url = this.kalturaConfiguration.getEndpoint() + "/api_v3/index.php?service=";
 		
@@ -397,7 +571,7 @@ abstract public class KalturaClientBase {
 		this.multiRequestParamsMap.put(requestParam, resultParam);
 	}
 
-	private String signature(KalturaParams kparams) {
+	private String signature(KalturaParams kparams) throws KalturaApiException {
 		String str = "";
 		for (String key : kparams.keySet()) {
 			str += (key + kparams.get(key));
@@ -407,7 +581,7 @@ abstract public class KalturaClientBase {
 		try {
 			mdEnc = MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			throw new KalturaApiException("Failed to sign parameters");
 		}		
 		mdEnc.update(str.getBytes(), 0, str.length());
 		String md5 = new BigInteger(1, mdEnc.digest()).toString(16); // Encrypted string
@@ -415,13 +589,13 @@ abstract public class KalturaClientBase {
 		return md5;
 	}
 
-	private void validateXmlResult(Element resultXml) throws KalturaApiException {
+	private Element validateXmlResult(Element resultXml) throws KalturaApiException {
 		
 		Element resultElement = null;
    		resultElement = getElementByXPath(resultXml, "/xml/result");
 						
 		if (resultElement != null) {
-			return;			
+			return resultElement;			
 		} else {
 			throw new KalturaApiException("Invalid result");
 		}
@@ -538,12 +712,7 @@ abstract public class KalturaClientBase {
 			sbInfo.append(userId).append(";"); // index 5 - user ID
 			sbInfo.append(privileges); // index 6 - privileges
 			
-			// sign info with SHA1 algorithm
-			MessageDigest algorithm = MessageDigest.getInstance("SHA1");
-			algorithm.reset();
-			algorithm.update(adminSecretForSigning.getBytes());
-			algorithm.update(sbInfo.toString().getBytes());
-			byte infoSignature[] = algorithm.digest();
+			byte[] infoSignature = signInfoWithSHA1(adminSecretForSigning + (sbInfo.toString()));
 			
 			// convert signature to hex:
 			String signature = this.convertToHex(infoSignature);
@@ -551,12 +720,13 @@ abstract public class KalturaClientBase {
 			// build final string to base64 encode
 			StringBuilder sbToEncode = new StringBuilder();
 			sbToEncode.append(signature.toString()).append("|").append(sbInfo.toString());
-
+			
+			// encode the signature and info with base64
 			String hashedString = new String(Base64.encodeBase64(sbToEncode.toString().getBytes()));
 			
 			// remove line breaks in the session string
 			String ks = hashedString.replace("\n", "");
-			ks = ks.replace("\r", "");
+			ks = hashedString.replace("\r", "");
 			
 			// return the generated session key (KS)
 			return ks;
@@ -564,6 +734,109 @@ abstract public class KalturaClientBase {
 		{
 			throw new Exception(ex);
 		}
+	}
+
+	public String generateSessionV2(String adminSecretForSigning, String userId, KalturaSessionType type, int partnerId, int expiry, String privileges) throws Exception
+	{
+		try {
+		// build fields array
+		KalturaParams fields = new KalturaParams();
+		String[] privilegesArr = privileges.split(",");
+		for (String curPriv : privilegesArr) {
+			String privilege = curPriv.trim();
+			if(privilege.length() == 0)
+				continue;
+			if(privilege.equals("*"))
+				privilege = "all:*";
+			
+			String[] splittedPriv = privilege.split(":");
+			if(splittedPriv.length>1) {
+				fields.add(splittedPriv[0], URLEncoder.encode(splittedPriv[1], UTF8_CHARSET));
+			} else {
+				fields.add(splittedPriv[0], "");
+			}
+		}
+		
+		Integer expiryInt = (int)(System.currentTimeMillis() / 1000) + expiry;
+		String expStr = expiryInt.toString();
+		fields.put(FIELD_EXPIRY,  expStr);
+		fields.put(FIELD_TYPE, Integer.toString(type.getHashCode()));
+		fields.put(FIELD_USER, userId);
+		
+		// build fields string
+		byte[] randomBytes = createRandomByteArray(RANDOM_SIZE);
+		byte[] fieldsByteArray = fields.toQueryString().getBytes();
+		int totalLength = randomBytes.length + fieldsByteArray.length;
+		byte[] fieldsAndRandomBytes = new byte[totalLength];
+		System.arraycopy(randomBytes, 0, fieldsAndRandomBytes, 0, randomBytes.length);
+		System.arraycopy(fieldsByteArray, 0, fieldsAndRandomBytes, randomBytes.length, fieldsByteArray.length);
+
+		byte[] infoSignature = signInfoWithSHA1(fieldsAndRandomBytes);
+		byte[] input = new byte[infoSignature.length + fieldsAndRandomBytes.length];
+		System.arraycopy(infoSignature, 0, input, 0, infoSignature.length);
+		System.arraycopy(fieldsAndRandomBytes,0,input,infoSignature.length, fieldsAndRandomBytes.length);
+		
+		// encrypt and encode
+		byte[] encryptedFields = aesEncrypt(adminSecretForSigning, input);
+		String prefix = "v2|" + partnerId + "|";
+		
+		byte[] output = new byte[encryptedFields.length + prefix.length()];
+		System.arraycopy(prefix.getBytes(), 0, output, 0, prefix.length());
+		System.arraycopy(encryptedFields,0,output,prefix.length(), encryptedFields.length);
+		
+		String encodedKs = new String(Base64.encodeBase64(output));
+		encodedKs = encodedKs.replaceAll("\\+", "-");
+		encodedKs = encodedKs.replaceAll("/", "_");
+		encodedKs = encodedKs.replace("\n", "");
+		encodedKs = encodedKs.replace("\r", "");
+		
+		return encodedKs;
+		} catch (GeneralSecurityException ex) {
+			logger.error("Failed to generate v2 session.");
+			throw new Exception(ex);
+		} 
+	}
+	
+	private byte[] signInfoWithSHA1(String text) throws GeneralSecurityException {
+		return signInfoWithSHA1(text.getBytes());
+	}
+	
+	private byte[] signInfoWithSHA1(byte[] data) throws GeneralSecurityException {
+		MessageDigest algorithm = MessageDigest.getInstance("SHA1");
+		algorithm.reset();
+		algorithm.update(data);
+		byte infoSignature[] = algorithm.digest();
+		return infoSignature;
+	}
+	
+	private byte[] aesEncrypt(String secretForSigning, byte[] text) throws GeneralSecurityException, UnsupportedEncodingException {
+		// Key
+		byte[] hashedKey = signInfoWithSHA1(secretForSigning);
+		byte[] keyBytes = new byte[BLOCK_SIZE];
+		System.arraycopy(hashedKey,0,keyBytes,0,BLOCK_SIZE);
+		SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
+		
+		// IV
+		byte[] ivBytes = new byte[BLOCK_SIZE];
+		IvParameterSpec iv = new IvParameterSpec(ivBytes);
+		
+		// Text
+		int textSize = ((text.length + BLOCK_SIZE - 1) / BLOCK_SIZE) * BLOCK_SIZE;
+		byte[] textAsBytes = new byte[textSize];
+		Arrays.fill(textAsBytes, (byte)0);
+		System.arraycopy(text, 0, textAsBytes, 0, text.length);
+		
+		// Encrypt
+		Cipher cipher = Cipher.getInstance("AES/CBC/NOPADDING");
+	    cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+        return cipher.doFinal(textAsBytes);
+	}
+	
+	
+	private byte[] createRandomByteArray(int size)	{
+		byte[] b = new byte[size];
+		new Random().nextBytes(b);
+		return b;
 	}
 
 	// new function to convert byte array to Hex

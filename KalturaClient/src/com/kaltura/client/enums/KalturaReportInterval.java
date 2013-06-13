@@ -30,13 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaReportInterval implements KalturaEnumAsString {
-    MONTHS ("months"),
-    DAYS ("days");
+    DAYS ("days"),
+    MONTHS ("months");
 
     public String hashCode;
 
@@ -49,18 +49,18 @@ public enum KalturaReportInterval implements KalturaEnumAsString {
     }
 
     public static KalturaReportInterval get(String hashCode) {
-        if (hashCode.equals("months"))
-        {
-           return MONTHS;
-        }
-        else 
         if (hashCode.equals("days"))
         {
            return DAYS;
         }
         else 
+        if (hashCode.equals("months"))
         {
            return MONTHS;
+        }
+        else 
+        {
+           return DAYS;
         }
     }
 }

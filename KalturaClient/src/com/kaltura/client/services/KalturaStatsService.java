@@ -30,15 +30,15 @@ package com.kaltura.client.services;
 import com.kaltura.client.KalturaClient;
 import com.kaltura.client.KalturaServiceBase;
 import org.w3c.dom.Element;
+import com.kaltura.client.utils.ParseUtils;
 import com.kaltura.client.KalturaParams;
 import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.types.*;
-import com.kaltura.client.utils.ParseUtils;
 
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -58,13 +58,15 @@ public class KalturaStatsService extends KalturaServiceBase {
 	  puser id as set by the ppartner current point - in milliseconds duration -
 	  milliseconds user ip process duration - in milliseconds control id seek new
 	  point referrer       KalturaStatsEvent $event     */
-    public void collect(KalturaStatsEvent event) throws KalturaApiException {
+    public boolean collect(KalturaStatsEvent event) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("event", event);
         this.kalturaClient.queueServiceCall("stats", "collect", kparams);
         if (this.kalturaClient.isMultiRequest())
-            return ;
-        this.kalturaClient.doQueue();
+            return false;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        String resultText = resultXmlElement.getTextContent();
+        return ParseUtils.parseBool(resultText);
     }
 
 	/**  Will collect the kmcEvent sent form the KMC client   // this will actually be an

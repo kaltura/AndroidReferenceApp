@@ -30,12 +30,25 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaBatchJobType implements KalturaEnumAsString {
+    PARSE_CAPTION_ASSET ("captionSearch.parseCaptionAsset"),
+    DISTRIBUTION_DELETE ("contentDistribution.DistributionDelete"),
+    DISTRIBUTION_DISABLE ("contentDistribution.DistributionDisable"),
+    DISTRIBUTION_ENABLE ("contentDistribution.DistributionEnable"),
+    DISTRIBUTION_FETCH_REPORT ("contentDistribution.DistributionFetchReport"),
+    DISTRIBUTION_SUBMIT ("contentDistribution.DistributionSubmit"),
+    DISTRIBUTION_SYNC ("contentDistribution.DistributionSync"),
+    DISTRIBUTION_UPDATE ("contentDistribution.DistributionUpdate"),
+    DROP_FOLDER_CONTENT_PROCESSOR ("dropFolder.DropFolderContentProcessor"),
     CONVERT ("0"),
+    DROP_FOLDER_WATCHER ("dropFolder.DropFolderWatcher"),
+    EVENT_NOTIFICATION_HANDLER ("eventNotification.EventNotificationHandler"),
+    TAG_RESOLVE ("tagSearch.TagResolve"),
+    VIRUS_SCAN ("virusScan.VirusScan"),
     IMPORT ("1"),
     DELETE ("2"),
     FLATTEN ("3"),
@@ -65,19 +78,7 @@ public enum KalturaBatchJobType implements KalturaEnumAsString {
     DELETE_FILE ("31"),
     INDEX ("32"),
     MOVE_CATEGORY_ENTRIES ("33"),
-    COPY ("34"),
-    VIRUS_SCAN ("virusScan.VirusScan"),
-    DISTRIBUTION_SUBMIT ("contentDistribution.DistributionSubmit"),
-    DISTRIBUTION_UPDATE ("contentDistribution.DistributionUpdate"),
-    DISTRIBUTION_DELETE ("contentDistribution.DistributionDelete"),
-    DISTRIBUTION_FETCH_REPORT ("contentDistribution.DistributionFetchReport"),
-    DISTRIBUTION_ENABLE ("contentDistribution.DistributionEnable"),
-    DISTRIBUTION_DISABLE ("contentDistribution.DistributionDisable"),
-    DISTRIBUTION_SYNC ("contentDistribution.DistributionSync"),
-    DROP_FOLDER_WATCHER ("dropFolder.DropFolderWatcher"),
-    DROP_FOLDER_HANDLER ("dropFolder.DropFolderHandler"),
-    PARSE_CAPTION_ASSET ("captionSearch.parseCaptionAsset"),
-    EVENT_NOTIFICATION_HANDLER ("eventNotification.EventNotificationHandler");
+    COPY ("34");
 
     public String hashCode;
 
@@ -90,9 +91,74 @@ public enum KalturaBatchJobType implements KalturaEnumAsString {
     }
 
     public static KalturaBatchJobType get(String hashCode) {
+        if (hashCode.equals("captionSearch.parseCaptionAsset"))
+        {
+           return PARSE_CAPTION_ASSET;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionDelete"))
+        {
+           return DISTRIBUTION_DELETE;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionDisable"))
+        {
+           return DISTRIBUTION_DISABLE;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionEnable"))
+        {
+           return DISTRIBUTION_ENABLE;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionFetchReport"))
+        {
+           return DISTRIBUTION_FETCH_REPORT;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionSubmit"))
+        {
+           return DISTRIBUTION_SUBMIT;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionSync"))
+        {
+           return DISTRIBUTION_SYNC;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.DistributionUpdate"))
+        {
+           return DISTRIBUTION_UPDATE;
+        }
+        else 
+        if (hashCode.equals("dropFolder.DropFolderContentProcessor"))
+        {
+           return DROP_FOLDER_CONTENT_PROCESSOR;
+        }
+        else 
         if (hashCode.equals("0"))
         {
            return CONVERT;
+        }
+        else 
+        if (hashCode.equals("dropFolder.DropFolderWatcher"))
+        {
+           return DROP_FOLDER_WATCHER;
+        }
+        else 
+        if (hashCode.equals("eventNotification.EventNotificationHandler"))
+        {
+           return EVENT_NOTIFICATION_HANDLER;
+        }
+        else 
+        if (hashCode.equals("tagSearch.TagResolve"))
+        {
+           return TAG_RESOLVE;
+        }
+        else 
+        if (hashCode.equals("virusScan.VirusScan"))
+        {
+           return VIRUS_SCAN;
         }
         else 
         if (hashCode.equals("1"))
@@ -245,68 +311,8 @@ public enum KalturaBatchJobType implements KalturaEnumAsString {
            return COPY;
         }
         else 
-        if (hashCode.equals("virusScan.VirusScan"))
-        {
-           return VIRUS_SCAN;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionSubmit"))
-        {
-           return DISTRIBUTION_SUBMIT;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionUpdate"))
-        {
-           return DISTRIBUTION_UPDATE;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionDelete"))
-        {
-           return DISTRIBUTION_DELETE;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionFetchReport"))
-        {
-           return DISTRIBUTION_FETCH_REPORT;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionEnable"))
-        {
-           return DISTRIBUTION_ENABLE;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionDisable"))
-        {
-           return DISTRIBUTION_DISABLE;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionSync"))
-        {
-           return DISTRIBUTION_SYNC;
-        }
-        else 
-        if (hashCode.equals("dropFolder.DropFolderWatcher"))
-        {
-           return DROP_FOLDER_WATCHER;
-        }
-        else 
-        if (hashCode.equals("dropFolder.DropFolderHandler"))
-        {
-           return DROP_FOLDER_HANDLER;
-        }
-        else 
-        if (hashCode.equals("captionSearch.parseCaptionAsset"))
         {
            return PARSE_CAPTION_ASSET;
-        }
-        else 
-        if (hashCode.equals("eventNotification.EventNotificationHandler"))
-        {
-           return EVENT_NOTIFICATION_HANDLER;
-        }
-        else 
-        {
-           return CONVERT;
         }
     }
 }

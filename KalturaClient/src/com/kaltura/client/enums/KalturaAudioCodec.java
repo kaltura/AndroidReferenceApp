@@ -30,21 +30,23 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaAudioCodec implements KalturaEnumAsString {
     NONE (""),
-    MP3 ("mp3"),
     AAC ("aac"),
+    AACHE ("aache"),
+    AC3 ("ac3"),
+    AMRNB ("amrnb"),
+    COPY ("copy"),
+    MP3 ("mp3"),
+    MPEG2 ("mpeg2"),
+    PCM ("pcm"),
     VORBIS ("vorbis"),
     WMA ("wma"),
-    WMAPRO ("wmapro"),
-    AMRNB ("amrnb"),
-    MPEG2 ("mpeg2"),
-    AC3 ("ac3"),
-    COPY ("copy");
+    WMAPRO ("wmapro");
 
     public String hashCode;
 
@@ -62,14 +64,44 @@ public enum KalturaAudioCodec implements KalturaEnumAsString {
            return NONE;
         }
         else 
+        if (hashCode.equals("aac"))
+        {
+           return AAC;
+        }
+        else 
+        if (hashCode.equals("aache"))
+        {
+           return AACHE;
+        }
+        else 
+        if (hashCode.equals("ac3"))
+        {
+           return AC3;
+        }
+        else 
+        if (hashCode.equals("amrnb"))
+        {
+           return AMRNB;
+        }
+        else 
+        if (hashCode.equals("copy"))
+        {
+           return COPY;
+        }
+        else 
         if (hashCode.equals("mp3"))
         {
            return MP3;
         }
         else 
-        if (hashCode.equals("aac"))
+        if (hashCode.equals("mpeg2"))
         {
-           return AAC;
+           return MPEG2;
+        }
+        else 
+        if (hashCode.equals("pcm"))
+        {
+           return PCM;
         }
         else 
         if (hashCode.equals("vorbis"))
@@ -85,26 +117,6 @@ public enum KalturaAudioCodec implements KalturaEnumAsString {
         if (hashCode.equals("wmapro"))
         {
            return WMAPRO;
-        }
-        else 
-        if (hashCode.equals("amrnb"))
-        {
-           return AMRNB;
-        }
-        else 
-        if (hashCode.equals("mpeg2"))
-        {
-           return MPEG2;
-        }
-        else 
-        if (hashCode.equals("ac3"))
-        {
-           return AC3;
-        }
-        else 
-        if (hashCode.equals("copy"))
-        {
-           return COPY;
         }
         else 
         {

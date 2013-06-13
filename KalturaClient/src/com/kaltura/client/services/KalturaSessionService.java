@@ -39,7 +39,7 @@ import com.kaltura.client.types.*;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -134,6 +134,49 @@ public class KalturaSessionService extends KalturaServiceBase {
         Element resultXmlElement = this.kalturaClient.doQueue();
         String resultText = resultXmlElement.getTextContent();
         return ParseUtils.parseString(resultText);
+    }
+
+    public KalturaSessionInfo impersonateByKs(String session) throws KalturaApiException {
+        return this.impersonateByKs(session, KalturaSessionType.get(Integer.MIN_VALUE));
+    }
+
+    public KalturaSessionInfo impersonateByKs(String session, KalturaSessionType type) throws KalturaApiException {
+        return this.impersonateByKs(session, type, Integer.MIN_VALUE);
+    }
+
+    public KalturaSessionInfo impersonateByKs(String session, KalturaSessionType type, int expiry) throws KalturaApiException {
+        return this.impersonateByKs(session, type, expiry, null);
+    }
+
+	/**  Start an impersonated session with Kaltura's server.   The result KS info
+	  contains the session key that you should pass to all services that requires a
+	  ticket.   Type, expiry and privileges won't be changed if they're not set     */
+    public KalturaSessionInfo impersonateByKs(String session, KalturaSessionType type, int expiry, String privileges) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("session", session);
+        kparams.add("type", type);
+        kparams.add("expiry", expiry);
+        kparams.add("privileges", privileges);
+        this.kalturaClient.queueServiceCall("session", "impersonateByKs", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaSessionInfo.class, resultXmlElement);
+    }
+
+    public KalturaSessionInfo get() throws KalturaApiException {
+        return this.get(null);
+    }
+
+	/**  Parse session key and return its info     */
+    public KalturaSessionInfo get(String session) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("session", session);
+        this.kalturaClient.queueServiceCall("session", "get", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaSessionInfo.class, resultXmlElement);
     }
 
     public KalturaStartWidgetSessionResponse startWidgetSession(String widgetId) throws KalturaApiException {

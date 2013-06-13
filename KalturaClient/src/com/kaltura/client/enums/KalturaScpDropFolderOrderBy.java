@@ -30,18 +30,18 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaScpDropFolderOrderBy implements KalturaEnumAsString {
-    ID_ASC ("+id"),
-    ID_DESC ("-id"),
-    NAME_ASC ("+name"),
-    NAME_DESC ("-name"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
+    ID_ASC ("+id"),
+    NAME_ASC ("+name"),
     UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    ID_DESC ("-id"),
+    NAME_DESC ("-name"),
     UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
@@ -55,14 +55,14 @@ public enum KalturaScpDropFolderOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaScpDropFolderOrderBy get(String hashCode) {
+        if (hashCode.equals("+createdAt"))
+        {
+           return CREATED_AT_ASC;
+        }
+        else 
         if (hashCode.equals("+id"))
         {
            return ID_ASC;
-        }
-        else 
-        if (hashCode.equals("-id"))
-        {
-           return ID_DESC;
         }
         else 
         if (hashCode.equals("+name"))
@@ -70,14 +70,9 @@ public enum KalturaScpDropFolderOrderBy implements KalturaEnumAsString {
            return NAME_ASC;
         }
         else 
-        if (hashCode.equals("-name"))
+        if (hashCode.equals("+updatedAt"))
         {
-           return NAME_DESC;
-        }
-        else 
-        if (hashCode.equals("+createdAt"))
-        {
-           return CREATED_AT_ASC;
+           return UPDATED_AT_ASC;
         }
         else 
         if (hashCode.equals("-createdAt"))
@@ -85,9 +80,14 @@ public enum KalturaScpDropFolderOrderBy implements KalturaEnumAsString {
            return CREATED_AT_DESC;
         }
         else 
-        if (hashCode.equals("+updatedAt"))
+        if (hashCode.equals("-id"))
         {
-           return UPDATED_AT_ASC;
+           return ID_DESC;
+        }
+        else 
+        if (hashCode.equals("-name"))
+        {
+           return NAME_DESC;
         }
         else 
         if (hashCode.equals("-updatedAt"))
@@ -96,7 +96,7 @@ public enum KalturaScpDropFolderOrderBy implements KalturaEnumAsString {
         }
         else 
         {
-           return ID_ASC;
+           return CREATED_AT_ASC;
         }
     }
 }

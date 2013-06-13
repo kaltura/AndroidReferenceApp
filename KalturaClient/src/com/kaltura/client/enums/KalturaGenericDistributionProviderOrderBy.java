@@ -30,14 +30,14 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaGenericDistributionProviderOrderBy implements KalturaEnumAsString {
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
     UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
     UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
@@ -56,14 +56,14 @@ public enum KalturaGenericDistributionProviderOrderBy implements KalturaEnumAsSt
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
-        {
-           return CREATED_AT_DESC;
-        }
-        else 
         if (hashCode.equals("+updatedAt"))
         {
            return UPDATED_AT_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
         }
         else 
         if (hashCode.equals("-updatedAt"))

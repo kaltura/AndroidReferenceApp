@@ -30,32 +30,32 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaDocumentEntryOrderBy implements KalturaEnumAsString {
-    NAME_ASC ("+name"),
-    NAME_DESC ("-name"),
-    MODERATION_COUNT_ASC ("+moderationCount"),
-    MODERATION_COUNT_DESC ("-moderationCount"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
-    RANK_ASC ("+rank"),
-    RANK_DESC ("-rank"),
-    TOTAL_RANK_ASC ("+totalRank"),
-    TOTAL_RANK_DESC ("-totalRank"),
-    START_DATE_ASC ("+startDate"),
-    START_DATE_DESC ("-startDate"),
     END_DATE_ASC ("+endDate"),
-    END_DATE_DESC ("-endDate"),
+    MODERATION_COUNT_ASC ("+moderationCount"),
+    NAME_ASC ("+name"),
     PARTNER_SORT_VALUE_ASC ("+partnerSortValue"),
-    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    RANK_ASC ("+rank"),
     RECENT_ASC ("+recent"),
-    RECENT_DESC ("-recent"),
+    START_DATE_ASC ("+startDate"),
+    TOTAL_RANK_ASC ("+totalRank"),
+    UPDATED_AT_ASC ("+updatedAt"),
     WEIGHT_ASC ("+weight"),
+    CREATED_AT_DESC ("-createdAt"),
+    END_DATE_DESC ("-endDate"),
+    MODERATION_COUNT_DESC ("-moderationCount"),
+    NAME_DESC ("-name"),
+    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    RANK_DESC ("-rank"),
+    RECENT_DESC ("-recent"),
+    START_DATE_DESC ("-startDate"),
+    TOTAL_RANK_DESC ("-totalRank"),
+    UPDATED_AT_DESC ("-updatedAt"),
     WEIGHT_DESC ("-weight");
 
     public String hashCode;
@@ -69,74 +69,9 @@ public enum KalturaDocumentEntryOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaDocumentEntryOrderBy get(String hashCode) {
-        if (hashCode.equals("+name"))
-        {
-           return NAME_ASC;
-        }
-        else 
-        if (hashCode.equals("-name"))
-        {
-           return NAME_DESC;
-        }
-        else 
-        if (hashCode.equals("+moderationCount"))
-        {
-           return MODERATION_COUNT_ASC;
-        }
-        else 
-        if (hashCode.equals("-moderationCount"))
-        {
-           return MODERATION_COUNT_DESC;
-        }
-        else 
         if (hashCode.equals("+createdAt"))
         {
            return CREATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-createdAt"))
-        {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+rank"))
-        {
-           return RANK_ASC;
-        }
-        else 
-        if (hashCode.equals("-rank"))
-        {
-           return RANK_DESC;
-        }
-        else 
-        if (hashCode.equals("+totalRank"))
-        {
-           return TOTAL_RANK_ASC;
-        }
-        else 
-        if (hashCode.equals("-totalRank"))
-        {
-           return TOTAL_RANK_DESC;
-        }
-        else 
-        if (hashCode.equals("+startDate"))
-        {
-           return START_DATE_ASC;
-        }
-        else 
-        if (hashCode.equals("-startDate"))
-        {
-           return START_DATE_DESC;
         }
         else 
         if (hashCode.equals("+endDate"))
@@ -144,9 +79,14 @@ public enum KalturaDocumentEntryOrderBy implements KalturaEnumAsString {
            return END_DATE_ASC;
         }
         else 
-        if (hashCode.equals("-endDate"))
+        if (hashCode.equals("+moderationCount"))
         {
-           return END_DATE_DESC;
+           return MODERATION_COUNT_ASC;
+        }
+        else 
+        if (hashCode.equals("+name"))
+        {
+           return NAME_ASC;
         }
         else 
         if (hashCode.equals("+partnerSortValue"))
@@ -154,9 +94,9 @@ public enum KalturaDocumentEntryOrderBy implements KalturaEnumAsString {
            return PARTNER_SORT_VALUE_ASC;
         }
         else 
-        if (hashCode.equals("-partnerSortValue"))
+        if (hashCode.equals("+rank"))
         {
-           return PARTNER_SORT_VALUE_DESC;
+           return RANK_ASC;
         }
         else 
         if (hashCode.equals("+recent"))
@@ -164,14 +104,74 @@ public enum KalturaDocumentEntryOrderBy implements KalturaEnumAsString {
            return RECENT_ASC;
         }
         else 
-        if (hashCode.equals("-recent"))
+        if (hashCode.equals("+startDate"))
         {
-           return RECENT_DESC;
+           return START_DATE_ASC;
+        }
+        else 
+        if (hashCode.equals("+totalRank"))
+        {
+           return TOTAL_RANK_ASC;
+        }
+        else 
+        if (hashCode.equals("+updatedAt"))
+        {
+           return UPDATED_AT_ASC;
         }
         else 
         if (hashCode.equals("+weight"))
         {
            return WEIGHT_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-endDate"))
+        {
+           return END_DATE_DESC;
+        }
+        else 
+        if (hashCode.equals("-moderationCount"))
+        {
+           return MODERATION_COUNT_DESC;
+        }
+        else 
+        if (hashCode.equals("-name"))
+        {
+           return NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-partnerSortValue"))
+        {
+           return PARTNER_SORT_VALUE_DESC;
+        }
+        else 
+        if (hashCode.equals("-rank"))
+        {
+           return RANK_DESC;
+        }
+        else 
+        if (hashCode.equals("-recent"))
+        {
+           return RECENT_DESC;
+        }
+        else 
+        if (hashCode.equals("-startDate"))
+        {
+           return START_DATE_DESC;
+        }
+        else 
+        if (hashCode.equals("-totalRank"))
+        {
+           return TOTAL_RANK_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
         }
         else 
         if (hashCode.equals("-weight"))
@@ -180,7 +180,7 @@ public enum KalturaDocumentEntryOrderBy implements KalturaEnumAsString {
         }
         else 
         {
-           return NAME_ASC;
+           return CREATED_AT_ASC;
         }
     }
 }

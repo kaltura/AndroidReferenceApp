@@ -41,7 +41,7 @@ import java.util.ArrayList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -154,11 +154,21 @@ public class KalturaPlaylistService extends KalturaServiceBase {
         return this.execute(id, "");
     }
 
-	/**  Retrieve playlist for playing purpose     */
     public List<KalturaBaseEntry> execute(String id, String detailed) throws KalturaApiException {
+        return this.execute(id, detailed, null);
+    }
+
+    public List<KalturaBaseEntry> execute(String id, String detailed, KalturaContext playlistContext) throws KalturaApiException {
+        return this.execute(id, detailed, playlistContext, null);
+    }
+
+	/**  Retrieve playlist for playing purpose     */
+    public List<KalturaBaseEntry> execute(String id, String detailed, KalturaContext playlistContext, KalturaMediaEntryFilterForPlaylist filter) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("id", id);
         kparams.add("detailed", detailed);
+        kparams.add("playlistContext", playlistContext);
+        kparams.add("filter", filter);
         this.kalturaClient.queueServiceCall("playlist", "execute", kparams);
         if (this.kalturaClient.isMultiRequest())
             return null;

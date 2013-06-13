@@ -38,7 +38,7 @@ import com.kaltura.client.KalturaApiException;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -62,5 +62,17 @@ public class KalturaTagService extends KalturaServiceBase {
             return null;
         Element resultXmlElement = this.kalturaClient.doQueue();
         return ParseUtils.parseObject(KalturaTagListResponse.class, resultXmlElement);
+    }
+
+	/**  Action goes over all tags with instanceCount==0 and checks whether they need to
+	  be removed from the DB. Returns number of removed tags.        */
+    public int deletePending() throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        this.kalturaClient.queueServiceCall("tagsearch_tag", "deletePending", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return 0;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        String resultText = resultXmlElement.getTextContent();
+        return ParseUtils.parseInt(resultText);
     }
 }

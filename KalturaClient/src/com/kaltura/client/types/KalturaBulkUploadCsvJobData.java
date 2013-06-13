@@ -31,6 +31,7 @@ import org.w3c.dom.Element;
 import com.kaltura.client.KalturaParams;
 import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.enums.KalturaBulkUploadCsvVersion;
+import java.util.ArrayList;
 import com.kaltura.client.utils.ParseUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -39,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -48,6 +49,8 @@ import org.w3c.dom.NodeList;
 public class KalturaBulkUploadCsvJobData extends KalturaBulkUploadJobData {
 	/**  The version of the csv file     */
     public KalturaBulkUploadCsvVersion csvVersion;
+	/**  Array containing CSV headers     */
+    public ArrayList<KalturaString> columns;
 
     public KalturaBulkUploadCsvJobData() {
     }
@@ -62,6 +65,9 @@ public class KalturaBulkUploadCsvJobData extends KalturaBulkUploadJobData {
             if (nodeName.equals("csvVersion")) {
                 this.csvVersion = KalturaBulkUploadCsvVersion.get(ParseUtils.parseInt(txt));
                 continue;
+            } else if (nodeName.equals("columns")) {
+                this.columns = ParseUtils.parseArray(KalturaString.class, aNode);
+                continue;
             } 
         }
     }
@@ -69,6 +75,7 @@ public class KalturaBulkUploadCsvJobData extends KalturaBulkUploadJobData {
     public KalturaParams toParams() {
         KalturaParams kparams = super.toParams();
         kparams.add("objectType", "KalturaBulkUploadCsvJobData");
+        kparams.add("columns", this.columns);
         return kparams;
     }
 

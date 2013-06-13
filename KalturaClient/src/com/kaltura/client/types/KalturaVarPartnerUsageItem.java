@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -76,9 +76,12 @@ public class KalturaVarPartnerUsageItem extends KalturaObjectBase {
     public float bandwidth = Float.MIN_VALUE;
 	/**  The total storage consumption (in MB)     */
     public float totalStorage = Float.MIN_VALUE;
-	/**  The change in storage consumption (new uploads) during the given date range (in
-	  MB)     */
+	/**  The added storage consumption (new uploads) during the given date range (in MB) 
+	     */
     public float storage = Float.MIN_VALUE;
+	/**  The deleted storage consumption (new uploads) during the given date range (in
+	  MB)     */
+    public float deletedStorage = Float.MIN_VALUE;
 	/**  The peak amount of storage consumption during the given date range for the
 	  specific publisher     */
     public float peakStorage = Float.MIN_VALUE;
@@ -148,6 +151,9 @@ public class KalturaVarPartnerUsageItem extends KalturaObjectBase {
             } else if (nodeName.equals("storage")) {
                 this.storage = ParseUtils.parseFloat(txt);
                 continue;
+            } else if (nodeName.equals("deletedStorage")) {
+                this.deletedStorage = ParseUtils.parseFloat(txt);
+                continue;
             } else if (nodeName.equals("peakStorage")) {
                 this.peakStorage = ParseUtils.parseFloat(txt);
                 continue;
@@ -183,6 +189,7 @@ public class KalturaVarPartnerUsageItem extends KalturaObjectBase {
         kparams.add("bandwidth", this.bandwidth);
         kparams.add("totalStorage", this.totalStorage);
         kparams.add("storage", this.storage);
+        kparams.add("deletedStorage", this.deletedStorage);
         kparams.add("peakStorage", this.peakStorage);
         kparams.add("avgStorage", this.avgStorage);
         kparams.add("combinedStorageBandwidth", this.combinedStorageBandwidth);

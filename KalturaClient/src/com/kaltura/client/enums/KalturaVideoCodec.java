@@ -30,27 +30,33 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaVideoCodec implements KalturaEnumAsString {
     NONE (""),
-    VP6 ("vp6"),
+    APCH ("apch"),
+    APCN ("apcn"),
+    APCO ("apco"),
+    APCS ("apcs"),
+    COPY ("copy"),
+    DNXHD ("dnxhd"),
+    DV ("dv"),
+    FLV ("flv"),
     H263 ("h263"),
     H264 ("h264"),
     H264B ("h264b"),
-    H264M ("h264m"),
     H264H ("h264h"),
-    FLV ("flv"),
+    H264M ("h264m"),
+    MPEG2 ("mpeg2"),
     MPEG4 ("mpeg4"),
     THEORA ("theora"),
+    VP6 ("vp6"),
+    VP8 ("vp8"),
     WMV2 ("wmv2"),
     WMV3 ("wmv3"),
-    WVC1A ("wvc1a"),
-    VP8 ("vp8"),
-    MPEG2 ("mpeg2"),
-    COPY ("copy");
+    WVC1A ("wvc1a");
 
     public String hashCode;
 
@@ -68,9 +74,44 @@ public enum KalturaVideoCodec implements KalturaEnumAsString {
            return NONE;
         }
         else 
-        if (hashCode.equals("vp6"))
+        if (hashCode.equals("apch"))
         {
-           return VP6;
+           return APCH;
+        }
+        else 
+        if (hashCode.equals("apcn"))
+        {
+           return APCN;
+        }
+        else 
+        if (hashCode.equals("apco"))
+        {
+           return APCO;
+        }
+        else 
+        if (hashCode.equals("apcs"))
+        {
+           return APCS;
+        }
+        else 
+        if (hashCode.equals("copy"))
+        {
+           return COPY;
+        }
+        else 
+        if (hashCode.equals("dnxhd"))
+        {
+           return DNXHD;
+        }
+        else 
+        if (hashCode.equals("dv"))
+        {
+           return DV;
+        }
+        else 
+        if (hashCode.equals("flv"))
+        {
+           return FLV;
         }
         else 
         if (hashCode.equals("h263"))
@@ -88,19 +129,19 @@ public enum KalturaVideoCodec implements KalturaEnumAsString {
            return H264B;
         }
         else 
-        if (hashCode.equals("h264m"))
-        {
-           return H264M;
-        }
-        else 
         if (hashCode.equals("h264h"))
         {
            return H264H;
         }
         else 
-        if (hashCode.equals("flv"))
+        if (hashCode.equals("h264m"))
         {
-           return FLV;
+           return H264M;
+        }
+        else 
+        if (hashCode.equals("mpeg2"))
+        {
+           return MPEG2;
         }
         else 
         if (hashCode.equals("mpeg4"))
@@ -111,6 +152,16 @@ public enum KalturaVideoCodec implements KalturaEnumAsString {
         if (hashCode.equals("theora"))
         {
            return THEORA;
+        }
+        else 
+        if (hashCode.equals("vp6"))
+        {
+           return VP6;
+        }
+        else 
+        if (hashCode.equals("vp8"))
+        {
+           return VP8;
         }
         else 
         if (hashCode.equals("wmv2"))
@@ -126,21 +177,6 @@ public enum KalturaVideoCodec implements KalturaEnumAsString {
         if (hashCode.equals("wvc1a"))
         {
            return WVC1A;
-        }
-        else 
-        if (hashCode.equals("vp8"))
-        {
-           return VP8;
-        }
-        else 
-        if (hashCode.equals("mpeg2"))
-        {
-           return MPEG2;
-        }
-        else 
-        if (hashCode.equals("copy"))
-        {
-           return COPY;
         }
         else 
         {

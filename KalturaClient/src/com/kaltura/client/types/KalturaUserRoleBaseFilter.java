@@ -39,7 +39,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -49,6 +49,8 @@ public abstract class KalturaUserRoleBaseFilter extends KalturaFilter {
     public String idIn;
     public String nameEqual;
     public String nameIn;
+    public String systemNameEqual;
+    public String systemNameIn;
     public String descriptionLike;
     public KalturaUserRoleStatus statusEqual;
     public String statusIn;
@@ -82,6 +84,12 @@ public abstract class KalturaUserRoleBaseFilter extends KalturaFilter {
                 continue;
             } else if (nodeName.equals("nameIn")) {
                 this.nameIn = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("systemNameEqual")) {
+                this.systemNameEqual = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("systemNameIn")) {
+                this.systemNameIn = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("descriptionLike")) {
                 this.descriptionLike = ParseUtils.parseString(txt);
@@ -127,6 +135,8 @@ public abstract class KalturaUserRoleBaseFilter extends KalturaFilter {
         kparams.add("idIn", this.idIn);
         kparams.add("nameEqual", this.nameEqual);
         kparams.add("nameIn", this.nameIn);
+        kparams.add("systemNameEqual", this.systemNameEqual);
+        kparams.add("systemNameIn", this.systemNameIn);
         kparams.add("descriptionLike", this.descriptionLike);
         kparams.add("statusEqual", this.statusEqual);
         kparams.add("statusIn", this.statusIn);

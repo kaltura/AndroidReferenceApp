@@ -30,26 +30,26 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaTubeMogulSyndicationFeedCategories implements KalturaEnumAsString {
+    ANIMALS_AND_PETS ("Animals &amp; Pets"),
     ARTS_AND_ANIMATION ("Arts &amp; Animation"),
+    AUTOS ("Autos"),
     COMEDY ("Comedy"),
+    COMMERCIALS_PROMOTIONAL ("Commercials/Promotional"),
     ENTERTAINMENT ("Entertainment"),
+    FAMILY_AND_KIDS ("Family &amp; Kids"),
+    HOW_TO_INSTRUCTIONAL_DIY ("How To/Instructional/DIY"),
     MUSIC ("Music"),
     NEWS_AND_BLOGS ("News &amp; Blogs"),
     SCIENCE_AND_TECHNOLOGY ("Science &amp; Technology"),
     SPORTS ("Sports"),
     TRAVEL_AND_PLACES ("Travel &amp; Places"),
     VIDEO_GAMES ("Video Games"),
-    ANIMALS_AND_PETS ("Animals &amp; Pets"),
-    AUTOS ("Autos"),
-    VLOGS_PEOPLE ("Vlogs &amp; People"),
-    HOW_TO_INSTRUCTIONAL_DIY ("How To/Instructional/DIY"),
-    COMMERCIALS_PROMOTIONAL ("Commercials/Promotional"),
-    FAMILY_AND_KIDS ("Family &amp; Kids");
+    VLOGS_PEOPLE ("Vlogs &amp; People");
 
     public String hashCode;
 
@@ -62,9 +62,19 @@ public enum KalturaTubeMogulSyndicationFeedCategories implements KalturaEnumAsSt
     }
 
     public static KalturaTubeMogulSyndicationFeedCategories get(String hashCode) {
+        if (hashCode.equals("Animals &amp; Pets"))
+        {
+           return ANIMALS_AND_PETS;
+        }
+        else 
         if (hashCode.equals("Arts &amp; Animation"))
         {
            return ARTS_AND_ANIMATION;
+        }
+        else 
+        if (hashCode.equals("Autos"))
+        {
+           return AUTOS;
         }
         else 
         if (hashCode.equals("Comedy"))
@@ -72,9 +82,24 @@ public enum KalturaTubeMogulSyndicationFeedCategories implements KalturaEnumAsSt
            return COMEDY;
         }
         else 
+        if (hashCode.equals("Commercials/Promotional"))
+        {
+           return COMMERCIALS_PROMOTIONAL;
+        }
+        else 
         if (hashCode.equals("Entertainment"))
         {
            return ENTERTAINMENT;
+        }
+        else 
+        if (hashCode.equals("Family &amp; Kids"))
+        {
+           return FAMILY_AND_KIDS;
+        }
+        else 
+        if (hashCode.equals("How To/Instructional/DIY"))
+        {
+           return HOW_TO_INSTRUCTIONAL_DIY;
         }
         else 
         if (hashCode.equals("Music"))
@@ -107,38 +132,13 @@ public enum KalturaTubeMogulSyndicationFeedCategories implements KalturaEnumAsSt
            return VIDEO_GAMES;
         }
         else 
-        if (hashCode.equals("Animals &amp; Pets"))
-        {
-           return ANIMALS_AND_PETS;
-        }
-        else 
-        if (hashCode.equals("Autos"))
-        {
-           return AUTOS;
-        }
-        else 
         if (hashCode.equals("Vlogs &amp; People"))
         {
            return VLOGS_PEOPLE;
         }
         else 
-        if (hashCode.equals("How To/Instructional/DIY"))
         {
-           return HOW_TO_INSTRUCTIONAL_DIY;
-        }
-        else 
-        if (hashCode.equals("Commercials/Promotional"))
-        {
-           return COMMERCIALS_PROMOTIONAL;
-        }
-        else 
-        if (hashCode.equals("Family &amp; Kids"))
-        {
-           return FAMILY_AND_KIDS;
-        }
-        else 
-        {
-           return ARTS_AND_ANIMATION;
+           return ANIMALS_AND_PETS;
         }
     }
 }

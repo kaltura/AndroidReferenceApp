@@ -43,7 +43,7 @@ import com.kaltura.client.KalturaFile;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -294,6 +294,23 @@ public class KalturaUserService extends KalturaServiceBase {
             return null;
         Element resultXmlElement = this.kalturaClient.doQueue();
         return ParseUtils.parseObject(KalturaUser.class, resultXmlElement);
+    }
+
+    public String index(String id) throws KalturaApiException {
+        return this.index(id, true);
+    }
+
+	/**  Index an entry by id.     */
+    public String index(String id, boolean shouldUpdate) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("id", id);
+        kparams.add("shouldUpdate", shouldUpdate);
+        this.kalturaClient.queueServiceCall("user", "index", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        String resultText = resultXmlElement.getTextContent();
+        return ParseUtils.parseString(resultText);
     }
 
     public KalturaBulkUpload addFromBulkUpload(KalturaFile fileData) throws KalturaApiException {

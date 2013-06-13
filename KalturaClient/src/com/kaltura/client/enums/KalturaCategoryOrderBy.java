@@ -30,31 +30,31 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaCategoryOrderBy implements KalturaEnumAsString {
-    DEPTH_ASC ("+depth"),
-    DEPTH_DESC ("-depth"),
-    NAME_ASC ("+name"),
-    NAME_DESC ("-name"),
-    FULL_NAME_ASC ("+fullName"),
-    FULL_NAME_DESC ("-fullName"),
-    ENTRIES_COUNT_ASC ("+entriesCount"),
-    ENTRIES_COUNT_DESC ("-entriesCount"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
+    DEPTH_ASC ("+depth"),
     DIRECT_ENTRIES_COUNT_ASC ("+directEntriesCount"),
-    DIRECT_ENTRIES_COUNT_DESC ("-directEntriesCount"),
-    MEMBERS_COUNT_ASC ("+membersCount"),
-    MEMBERS_COUNT_DESC ("-membersCount"),
-    PARTNER_SORT_VALUE_ASC ("+partnerSortValue"),
-    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
     DIRECT_SUB_CATEGORIES_COUNT_ASC ("+directSubCategoriesCount"),
-    DIRECT_SUB_CATEGORIES_COUNT_DESC ("-directSubCategoriesCount");
+    ENTRIES_COUNT_ASC ("+entriesCount"),
+    FULL_NAME_ASC ("+fullName"),
+    MEMBERS_COUNT_ASC ("+membersCount"),
+    NAME_ASC ("+name"),
+    PARTNER_SORT_VALUE_ASC ("+partnerSortValue"),
+    UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    DEPTH_DESC ("-depth"),
+    DIRECT_ENTRIES_COUNT_DESC ("-directEntriesCount"),
+    DIRECT_SUB_CATEGORIES_COUNT_DESC ("-directSubCategoriesCount"),
+    ENTRIES_COUNT_DESC ("-entriesCount"),
+    FULL_NAME_DESC ("-fullName"),
+    MEMBERS_COUNT_DESC ("-membersCount"),
+    NAME_DESC ("-name"),
+    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
 
@@ -67,64 +67,14 @@ public enum KalturaCategoryOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaCategoryOrderBy get(String hashCode) {
-        if (hashCode.equals("+depth"))
-        {
-           return DEPTH_ASC;
-        }
-        else 
-        if (hashCode.equals("-depth"))
-        {
-           return DEPTH_DESC;
-        }
-        else 
-        if (hashCode.equals("+name"))
-        {
-           return NAME_ASC;
-        }
-        else 
-        if (hashCode.equals("-name"))
-        {
-           return NAME_DESC;
-        }
-        else 
-        if (hashCode.equals("+fullName"))
-        {
-           return FULL_NAME_ASC;
-        }
-        else 
-        if (hashCode.equals("-fullName"))
-        {
-           return FULL_NAME_DESC;
-        }
-        else 
-        if (hashCode.equals("+entriesCount"))
-        {
-           return ENTRIES_COUNT_ASC;
-        }
-        else 
-        if (hashCode.equals("-entriesCount"))
-        {
-           return ENTRIES_COUNT_DESC;
-        }
-        else 
         if (hashCode.equals("+createdAt"))
         {
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
+        if (hashCode.equals("+depth"))
         {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
+           return DEPTH_ASC;
         }
         else 
         if (hashCode.equals("+directEntriesCount"))
@@ -132,9 +82,19 @@ public enum KalturaCategoryOrderBy implements KalturaEnumAsString {
            return DIRECT_ENTRIES_COUNT_ASC;
         }
         else 
-        if (hashCode.equals("-directEntriesCount"))
+        if (hashCode.equals("+directSubCategoriesCount"))
         {
-           return DIRECT_ENTRIES_COUNT_DESC;
+           return DIRECT_SUB_CATEGORIES_COUNT_ASC;
+        }
+        else 
+        if (hashCode.equals("+entriesCount"))
+        {
+           return ENTRIES_COUNT_ASC;
+        }
+        else 
+        if (hashCode.equals("+fullName"))
+        {
+           return FULL_NAME_ASC;
         }
         else 
         if (hashCode.equals("+membersCount"))
@@ -142,9 +102,9 @@ public enum KalturaCategoryOrderBy implements KalturaEnumAsString {
            return MEMBERS_COUNT_ASC;
         }
         else 
-        if (hashCode.equals("-membersCount"))
+        if (hashCode.equals("+name"))
         {
-           return MEMBERS_COUNT_DESC;
+           return NAME_ASC;
         }
         else 
         if (hashCode.equals("+partnerSortValue"))
@@ -152,14 +112,24 @@ public enum KalturaCategoryOrderBy implements KalturaEnumAsString {
            return PARTNER_SORT_VALUE_ASC;
         }
         else 
-        if (hashCode.equals("-partnerSortValue"))
+        if (hashCode.equals("+updatedAt"))
         {
-           return PARTNER_SORT_VALUE_DESC;
+           return UPDATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("+directSubCategoriesCount"))
+        if (hashCode.equals("-createdAt"))
         {
-           return DIRECT_SUB_CATEGORIES_COUNT_ASC;
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-depth"))
+        {
+           return DEPTH_DESC;
+        }
+        else 
+        if (hashCode.equals("-directEntriesCount"))
+        {
+           return DIRECT_ENTRIES_COUNT_DESC;
         }
         else 
         if (hashCode.equals("-directSubCategoriesCount"))
@@ -167,8 +137,38 @@ public enum KalturaCategoryOrderBy implements KalturaEnumAsString {
            return DIRECT_SUB_CATEGORIES_COUNT_DESC;
         }
         else 
+        if (hashCode.equals("-entriesCount"))
         {
-           return DEPTH_ASC;
+           return ENTRIES_COUNT_DESC;
+        }
+        else 
+        if (hashCode.equals("-fullName"))
+        {
+           return FULL_NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-membersCount"))
+        {
+           return MEMBERS_COUNT_DESC;
+        }
+        else 
+        if (hashCode.equals("-name"))
+        {
+           return NAME_DESC;
+        }
+        else 
+        if (hashCode.equals("-partnerSortValue"))
+        {
+           return PARTNER_SORT_VALUE_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
+        }
+        else 
+        {
+           return CREATED_AT_ASC;
         }
     }
 }

@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -42,7 +42,6 @@ public enum KalturaReportType implements KalturaEnumAsInt {
     TOP_CONTRIBUTORS (5),
     TOP_SYNDICATION (6),
     CONTENT_CONTRIBUTIONS (7),
-    WIDGETS_STATS (8),
     USER_ENGAGEMENT (11),
     SPEFICIC_USER_ENGAGEMENT (12),
     USER_TOP_CONTENT (13),
@@ -51,8 +50,12 @@ public enum KalturaReportType implements KalturaEnumAsInt {
     APPLICATIONS (16),
     USER_USAGE (17),
     SPECIFIC_USER_USAGE (18),
-    PARTNER_USAGE (201),
-    VAR_USAGE (19);
+    VAR_USAGE (19),
+    TOP_CREATORS (20),
+    PLATFORMS (21),
+    OPERATION_SYSTEM (22),
+    BROWSERS (23),
+    PARTNER_USAGE (201);
 
     public int hashCode;
 
@@ -73,7 +76,6 @@ public enum KalturaReportType implements KalturaEnumAsInt {
             case 5: return TOP_CONTRIBUTORS;
             case 6: return TOP_SYNDICATION;
             case 7: return CONTENT_CONTRIBUTIONS;
-            case 8: return WIDGETS_STATS;
             case 11: return USER_ENGAGEMENT;
             case 12: return SPEFICIC_USER_ENGAGEMENT;
             case 13: return USER_TOP_CONTENT;
@@ -82,8 +84,12 @@ public enum KalturaReportType implements KalturaEnumAsInt {
             case 16: return APPLICATIONS;
             case 17: return USER_USAGE;
             case 18: return SPECIFIC_USER_USAGE;
-            case 201: return PARTNER_USAGE;
             case 19: return VAR_USAGE;
+            case 20: return TOP_CREATORS;
+            case 21: return PLATFORMS;
+            case 22: return OPERATION_SYSTEM;
+            case 23: return BROWSERS;
+            case 201: return PARTNER_USAGE;
             default: return TOP_CONTENT;
         }
     }

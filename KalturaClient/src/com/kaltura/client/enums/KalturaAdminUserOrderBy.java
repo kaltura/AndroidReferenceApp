@@ -30,15 +30,15 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaAdminUserOrderBy implements KalturaEnumAsString {
-    ID_ASC ("+id"),
-    ID_DESC ("-id"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt");
+    ID_ASC ("+id"),
+    CREATED_AT_DESC ("-createdAt"),
+    ID_DESC ("-id");
 
     public String hashCode;
 
@@ -51,19 +51,14 @@ public enum KalturaAdminUserOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaAdminUserOrderBy get(String hashCode) {
-        if (hashCode.equals("+id"))
-        {
-           return ID_ASC;
-        }
-        else 
-        if (hashCode.equals("-id"))
-        {
-           return ID_DESC;
-        }
-        else 
         if (hashCode.equals("+createdAt"))
         {
            return CREATED_AT_ASC;
+        }
+        else 
+        if (hashCode.equals("+id"))
+        {
+           return ID_ASC;
         }
         else 
         if (hashCode.equals("-createdAt"))
@@ -71,8 +66,13 @@ public enum KalturaAdminUserOrderBy implements KalturaEnumAsString {
            return CREATED_AT_DESC;
         }
         else 
+        if (hashCode.equals("-id"))
         {
-           return ID_ASC;
+           return ID_DESC;
+        }
+        else 
+        {
+           return CREATED_AT_ASC;
         }
     }
 }

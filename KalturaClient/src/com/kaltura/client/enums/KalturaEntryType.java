@@ -30,12 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaEntryType implements KalturaEnumAsString {
     AUTOMATIC ("-1"),
+    EXTERNAL_MEDIA ("externalMedia.externalMedia"),
     MEDIA_CLIP ("1"),
     MIX ("2"),
     PLAYLIST ("5"),
@@ -57,6 +58,11 @@ public enum KalturaEntryType implements KalturaEnumAsString {
         if (hashCode.equals("-1"))
         {
            return AUTOMATIC;
+        }
+        else 
+        if (hashCode.equals("externalMedia.externalMedia"))
+        {
+           return EXTERNAL_MEDIA;
         }
         else 
         if (hashCode.equals("1"))

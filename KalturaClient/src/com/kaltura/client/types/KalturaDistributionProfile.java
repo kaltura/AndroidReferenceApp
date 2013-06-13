@@ -43,7 +43,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -69,12 +69,17 @@ public abstract class KalturaDistributionProfile extends KalturaObjectBase {
     public String autoCreateThumb;
 	/**  Comma separated flavor params ids that should be submitted if ready     */
     public String optionalFlavorParamsIds;
-	/**  Comma separated flavor params ids that required to be readt before submission     */
+	/**  Comma separated flavor params ids that required to be ready before submission     */
     public String requiredFlavorParamsIds;
 	/**  Thumbnail dimensions that should be submitted if ready     */
     public ArrayList<KalturaDistributionThumbDimensions> optionalThumbDimensions;
 	/**  Thumbnail dimensions that required to be readt before submission     */
     public ArrayList<KalturaDistributionThumbDimensions> requiredThumbDimensions;
+	/**  Asset Distribution Rules for assets that should be submitted if ready     */
+    public ArrayList<KalturaAssetDistributionRule> optionalAssetDistributionRules;
+	/**  Assets Asset Distribution Rules for assets that are required to be ready before
+	  submission     */
+    public ArrayList<KalturaAssetDistributionRule> requiredAssetDistributionRules;
 	/**  If entry distribution sunrise not specified that will be the default since entry
 	  creation time, in seconds     */
     public int sunriseDefaultOffset = Integer.MIN_VALUE;
@@ -148,6 +153,12 @@ public abstract class KalturaDistributionProfile extends KalturaObjectBase {
             } else if (nodeName.equals("requiredThumbDimensions")) {
                 this.requiredThumbDimensions = ParseUtils.parseArray(KalturaDistributionThumbDimensions.class, aNode);
                 continue;
+            } else if (nodeName.equals("optionalAssetDistributionRules")) {
+                this.optionalAssetDistributionRules = ParseUtils.parseArray(KalturaAssetDistributionRule.class, aNode);
+                continue;
+            } else if (nodeName.equals("requiredAssetDistributionRules")) {
+                this.requiredAssetDistributionRules = ParseUtils.parseArray(KalturaAssetDistributionRule.class, aNode);
+                continue;
             } else if (nodeName.equals("sunriseDefaultOffset")) {
                 this.sunriseDefaultOffset = ParseUtils.parseInt(txt);
                 continue;
@@ -183,6 +194,8 @@ public abstract class KalturaDistributionProfile extends KalturaObjectBase {
         kparams.add("requiredFlavorParamsIds", this.requiredFlavorParamsIds);
         kparams.add("optionalThumbDimensions", this.optionalThumbDimensions);
         kparams.add("requiredThumbDimensions", this.requiredThumbDimensions);
+        kparams.add("optionalAssetDistributionRules", this.optionalAssetDistributionRules);
+        kparams.add("requiredAssetDistributionRules", this.requiredAssetDistributionRules);
         kparams.add("sunriseDefaultOffset", this.sunriseDefaultOffset);
         kparams.add("sunsetDefaultOffset", this.sunsetDefaultOffset);
         kparams.add("recommendedStorageProfileForDownload", this.recommendedStorageProfileForDownload);

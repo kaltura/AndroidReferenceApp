@@ -44,7 +44,7 @@ import com.kaltura.client.KalturaFile;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -239,5 +239,30 @@ public class KalturaMetadataService extends KalturaServiceBase {
         kparams.add("id", id);
         this.kalturaClient.queueServiceCall("metadata_metadata", "serve", kparams);
         return this.kalturaClient.serve();
+    }
+
+    public KalturaMetadata updateFromXSL(int id, File xslFile) throws KalturaApiException {
+        return this.updateFromXSL(id, new KalturaFile(xslFile));
+    }
+
+    public KalturaMetadata updateFromXSL(int id, InputStream xslFile, String xslFileName, long xslFileSize) throws KalturaApiException {
+        return this.updateFromXSL(id, new KalturaFile(xslFile, xslFileName, xslFileSize));
+    }
+
+    public KalturaMetadata updateFromXSL(int id, FileInputStream xslFile, String xslFileName) throws KalturaApiException {
+        return this.updateFromXSL(id, new KalturaFile(xslFile, xslFileName));
+    }
+
+	/**  Action transforms current metadata object XML using a provided XSL.     */
+    public KalturaMetadata updateFromXSL(int id, KalturaFile xslFile) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("id", id);
+        KalturaFiles kfiles = new KalturaFiles();
+        kfiles.add("xslFile", xslFile);
+        this.kalturaClient.queueServiceCall("metadata_metadata", "updateFromXSL", kparams, kfiles);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaMetadata.class, resultXmlElement);
     }
 }

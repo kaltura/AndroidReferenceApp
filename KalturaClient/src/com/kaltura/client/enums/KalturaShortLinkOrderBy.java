@@ -30,17 +30,17 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaShortLinkOrderBy implements KalturaEnumAsString {
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
     EXPIRES_AT_ASC ("+expiresAt"),
-    EXPIRES_AT_DESC ("-expiresAt");
+    UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    EXPIRES_AT_DESC ("-expiresAt"),
+    UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
 
@@ -58,9 +58,9 @@ public enum KalturaShortLinkOrderBy implements KalturaEnumAsString {
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
+        if (hashCode.equals("+expiresAt"))
         {
-           return CREATED_AT_DESC;
+           return EXPIRES_AT_ASC;
         }
         else 
         if (hashCode.equals("+updatedAt"))
@@ -68,19 +68,19 @@ public enum KalturaShortLinkOrderBy implements KalturaEnumAsString {
            return UPDATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-updatedAt"))
+        if (hashCode.equals("-createdAt"))
         {
-           return UPDATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+expiresAt"))
-        {
-           return EXPIRES_AT_ASC;
+           return CREATED_AT_DESC;
         }
         else 
         if (hashCode.equals("-expiresAt"))
         {
            return EXPIRES_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
         }
         else 
         {

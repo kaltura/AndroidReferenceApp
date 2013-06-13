@@ -39,7 +39,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -49,6 +49,10 @@ public class KalturaReportInputBaseFilter extends KalturaObjectBase {
     public int fromDate = Integer.MIN_VALUE;
 	/**  End date as Unix timestamp (In seconds)     */
     public int toDate = Integer.MIN_VALUE;
+	/**  Start day as string (YYYYMMDD)     */
+    public String fromDay;
+	/**  End date as string (YYYYMMDD)     */
+    public String toDay;
 
     public KalturaReportInputBaseFilter() {
     }
@@ -65,6 +69,12 @@ public class KalturaReportInputBaseFilter extends KalturaObjectBase {
             } else if (nodeName.equals("toDate")) {
                 this.toDate = ParseUtils.parseInt(txt);
                 continue;
+            } else if (nodeName.equals("fromDay")) {
+                this.fromDay = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("toDay")) {
+                this.toDay = ParseUtils.parseString(txt);
+                continue;
             } 
         }
     }
@@ -74,6 +84,8 @@ public class KalturaReportInputBaseFilter extends KalturaObjectBase {
         kparams.add("objectType", "KalturaReportInputBaseFilter");
         kparams.add("fromDate", this.fromDate);
         kparams.add("toDate", this.toDate);
+        kparams.add("fromDay", this.fromDay);
+        kparams.add("toDay", this.toDay);
         return kparams;
     }
 

@@ -30,14 +30,14 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaITunesSyndicationFeedAdultValues implements KalturaEnumAsString {
-    YES ("yes"),
+    CLEAN ("clean"),
     NO ("no"),
-    CLEAN ("clean");
+    YES ("yes");
 
     public String hashCode;
 
@@ -50,9 +50,9 @@ public enum KalturaITunesSyndicationFeedAdultValues implements KalturaEnumAsStri
     }
 
     public static KalturaITunesSyndicationFeedAdultValues get(String hashCode) {
-        if (hashCode.equals("yes"))
+        if (hashCode.equals("clean"))
         {
-           return YES;
+           return CLEAN;
         }
         else 
         if (hashCode.equals("no"))
@@ -60,13 +60,13 @@ public enum KalturaITunesSyndicationFeedAdultValues implements KalturaEnumAsStri
            return NO;
         }
         else 
-        if (hashCode.equals("clean"))
+        if (hashCode.equals("yes"))
         {
-           return CLEAN;
+           return YES;
         }
         else 
         {
-           return YES;
+           return CLEAN;
         }
     }
 }

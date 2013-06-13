@@ -33,7 +33,6 @@ import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.enums.KalturaBatchJobType;
 import com.kaltura.client.enums.KalturaBatchJobStatus;
 import com.kaltura.client.enums.KalturaBatchJobErrorTypes;
-import com.kaltura.client.enums.KalturaNullableBoolean;
 import com.kaltura.client.utils.ParseUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -42,12 +41,27 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 
-public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
+public abstract class KalturaBatchJobBaseFilter extends KalturaFilter {
+    public int idEqual = Integer.MIN_VALUE;
+    public int idGreaterThanOrEqual = Integer.MIN_VALUE;
+    public int partnerIdEqual = Integer.MIN_VALUE;
+    public String partnerIdIn;
+    public String partnerIdNotIn;
+    public int createdAtGreaterThanOrEqual = Integer.MIN_VALUE;
+    public int createdAtLessThanOrEqual = Integer.MIN_VALUE;
+    public int updatedAtGreaterThanOrEqual = Integer.MIN_VALUE;
+    public int updatedAtLessThanOrEqual = Integer.MIN_VALUE;
+    public int lockExpirationGreaterThanOrEqual = Integer.MIN_VALUE;
+    public int lockExpirationLessThanOrEqual = Integer.MIN_VALUE;
+    public int executionAttemptsGreaterThanOrEqual = Integer.MIN_VALUE;
+    public int executionAttemptsLessThanOrEqual = Integer.MIN_VALUE;
+    public int lockVersionGreaterThanOrEqual = Integer.MIN_VALUE;
+    public int lockVersionLessThanOrEqual = Integer.MIN_VALUE;
     public String entryIdEqual;
     public KalturaBatchJobType jobTypeEqual;
     public String jobTypeIn;
@@ -55,27 +69,17 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
     public int jobSubTypeEqual = Integer.MIN_VALUE;
     public String jobSubTypeIn;
     public String jobSubTypeNotIn;
-    public int onStressDivertToEqual = Integer.MIN_VALUE;
-    public String onStressDivertToIn;
-    public String onStressDivertToNotIn;
     public KalturaBatchJobStatus statusEqual;
     public String statusIn;
     public String statusNotIn;
     public int abortEqual = Integer.MIN_VALUE;
     public int checkAgainTimeoutGreaterThanOrEqual = Integer.MIN_VALUE;
     public int checkAgainTimeoutLessThanOrEqual = Integer.MIN_VALUE;
-    public int progressGreaterThanOrEqual = Integer.MIN_VALUE;
-    public int progressLessThanOrEqual = Integer.MIN_VALUE;
-    public int updatesCountGreaterThanOrEqual = Integer.MIN_VALUE;
-    public int updatesCountLessThanOrEqual = Integer.MIN_VALUE;
     public int priorityGreaterThanOrEqual = Integer.MIN_VALUE;
     public int priorityLessThanOrEqual = Integer.MIN_VALUE;
     public int priorityEqual = Integer.MIN_VALUE;
     public String priorityIn;
     public String priorityNotIn;
-    public int twinJobIdEqual = Integer.MIN_VALUE;
-    public String twinJobIdIn;
-    public String twinJobIdNotIn;
     public int bulkJobIdEqual = Integer.MIN_VALUE;
     public String bulkJobIdIn;
     public String bulkJobIdNotIn;
@@ -95,9 +99,8 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
     public int errNumberEqual = Integer.MIN_VALUE;
     public String errNumberIn;
     public String errNumberNotIn;
-    public int fileSizeLessThan = Integer.MIN_VALUE;
-    public int fileSizeGreaterThan = Integer.MIN_VALUE;
-    public KalturaNullableBoolean lastWorkerRemoteEqual;
+    public int estimatedEffortLessThan = Integer.MIN_VALUE;
+    public int estimatedEffortGreaterThan = Integer.MIN_VALUE;
     public int schedulerIdEqual = Integer.MIN_VALUE;
     public String schedulerIdIn;
     public String schedulerIdNotIn;
@@ -127,7 +130,52 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
             Node aNode = childNodes.item(i);
             String nodeName = aNode.getNodeName();
             String txt = aNode.getTextContent();
-            if (nodeName.equals("entryIdEqual")) {
+            if (nodeName.equals("idEqual")) {
+                this.idEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("idGreaterThanOrEqual")) {
+                this.idGreaterThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("partnerIdEqual")) {
+                this.partnerIdEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("partnerIdIn")) {
+                this.partnerIdIn = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("partnerIdNotIn")) {
+                this.partnerIdNotIn = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("createdAtGreaterThanOrEqual")) {
+                this.createdAtGreaterThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("createdAtLessThanOrEqual")) {
+                this.createdAtLessThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("updatedAtGreaterThanOrEqual")) {
+                this.updatedAtGreaterThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("updatedAtLessThanOrEqual")) {
+                this.updatedAtLessThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("lockExpirationGreaterThanOrEqual")) {
+                this.lockExpirationGreaterThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("lockExpirationLessThanOrEqual")) {
+                this.lockExpirationLessThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("executionAttemptsGreaterThanOrEqual")) {
+                this.executionAttemptsGreaterThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("executionAttemptsLessThanOrEqual")) {
+                this.executionAttemptsLessThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("lockVersionGreaterThanOrEqual")) {
+                this.lockVersionGreaterThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("lockVersionLessThanOrEqual")) {
+                this.lockVersionLessThanOrEqual = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("entryIdEqual")) {
                 this.entryIdEqual = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("jobTypeEqual")) {
@@ -148,15 +196,6 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
             } else if (nodeName.equals("jobSubTypeNotIn")) {
                 this.jobSubTypeNotIn = ParseUtils.parseString(txt);
                 continue;
-            } else if (nodeName.equals("onStressDivertToEqual")) {
-                this.onStressDivertToEqual = ParseUtils.parseInt(txt);
-                continue;
-            } else if (nodeName.equals("onStressDivertToIn")) {
-                this.onStressDivertToIn = ParseUtils.parseString(txt);
-                continue;
-            } else if (nodeName.equals("onStressDivertToNotIn")) {
-                this.onStressDivertToNotIn = ParseUtils.parseString(txt);
-                continue;
             } else if (nodeName.equals("statusEqual")) {
                 this.statusEqual = KalturaBatchJobStatus.get(ParseUtils.parseInt(txt));
                 continue;
@@ -175,18 +214,6 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
             } else if (nodeName.equals("checkAgainTimeoutLessThanOrEqual")) {
                 this.checkAgainTimeoutLessThanOrEqual = ParseUtils.parseInt(txt);
                 continue;
-            } else if (nodeName.equals("progressGreaterThanOrEqual")) {
-                this.progressGreaterThanOrEqual = ParseUtils.parseInt(txt);
-                continue;
-            } else if (nodeName.equals("progressLessThanOrEqual")) {
-                this.progressLessThanOrEqual = ParseUtils.parseInt(txt);
-                continue;
-            } else if (nodeName.equals("updatesCountGreaterThanOrEqual")) {
-                this.updatesCountGreaterThanOrEqual = ParseUtils.parseInt(txt);
-                continue;
-            } else if (nodeName.equals("updatesCountLessThanOrEqual")) {
-                this.updatesCountLessThanOrEqual = ParseUtils.parseInt(txt);
-                continue;
             } else if (nodeName.equals("priorityGreaterThanOrEqual")) {
                 this.priorityGreaterThanOrEqual = ParseUtils.parseInt(txt);
                 continue;
@@ -201,15 +228,6 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
                 continue;
             } else if (nodeName.equals("priorityNotIn")) {
                 this.priorityNotIn = ParseUtils.parseString(txt);
-                continue;
-            } else if (nodeName.equals("twinJobIdEqual")) {
-                this.twinJobIdEqual = ParseUtils.parseInt(txt);
-                continue;
-            } else if (nodeName.equals("twinJobIdIn")) {
-                this.twinJobIdIn = ParseUtils.parseString(txt);
-                continue;
-            } else if (nodeName.equals("twinJobIdNotIn")) {
-                this.twinJobIdNotIn = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("bulkJobIdEqual")) {
                 this.bulkJobIdEqual = ParseUtils.parseInt(txt);
@@ -268,14 +286,11 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
             } else if (nodeName.equals("errNumberNotIn")) {
                 this.errNumberNotIn = ParseUtils.parseString(txt);
                 continue;
-            } else if (nodeName.equals("fileSizeLessThan")) {
-                this.fileSizeLessThan = ParseUtils.parseInt(txt);
+            } else if (nodeName.equals("estimatedEffortLessThan")) {
+                this.estimatedEffortLessThan = ParseUtils.parseInt(txt);
                 continue;
-            } else if (nodeName.equals("fileSizeGreaterThan")) {
-                this.fileSizeGreaterThan = ParseUtils.parseInt(txt);
-                continue;
-            } else if (nodeName.equals("lastWorkerRemoteEqual")) {
-                this.lastWorkerRemoteEqual = KalturaNullableBoolean.get(ParseUtils.parseInt(txt));
+            } else if (nodeName.equals("estimatedEffortGreaterThan")) {
+                this.estimatedEffortGreaterThan = ParseUtils.parseInt(txt);
                 continue;
             } else if (nodeName.equals("schedulerIdEqual")) {
                 this.schedulerIdEqual = ParseUtils.parseInt(txt);
@@ -338,6 +353,21 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
     public KalturaParams toParams() {
         KalturaParams kparams = super.toParams();
         kparams.add("objectType", "KalturaBatchJobBaseFilter");
+        kparams.add("idEqual", this.idEqual);
+        kparams.add("idGreaterThanOrEqual", this.idGreaterThanOrEqual);
+        kparams.add("partnerIdEqual", this.partnerIdEqual);
+        kparams.add("partnerIdIn", this.partnerIdIn);
+        kparams.add("partnerIdNotIn", this.partnerIdNotIn);
+        kparams.add("createdAtGreaterThanOrEqual", this.createdAtGreaterThanOrEqual);
+        kparams.add("createdAtLessThanOrEqual", this.createdAtLessThanOrEqual);
+        kparams.add("updatedAtGreaterThanOrEqual", this.updatedAtGreaterThanOrEqual);
+        kparams.add("updatedAtLessThanOrEqual", this.updatedAtLessThanOrEqual);
+        kparams.add("lockExpirationGreaterThanOrEqual", this.lockExpirationGreaterThanOrEqual);
+        kparams.add("lockExpirationLessThanOrEqual", this.lockExpirationLessThanOrEqual);
+        kparams.add("executionAttemptsGreaterThanOrEqual", this.executionAttemptsGreaterThanOrEqual);
+        kparams.add("executionAttemptsLessThanOrEqual", this.executionAttemptsLessThanOrEqual);
+        kparams.add("lockVersionGreaterThanOrEqual", this.lockVersionGreaterThanOrEqual);
+        kparams.add("lockVersionLessThanOrEqual", this.lockVersionLessThanOrEqual);
         kparams.add("entryIdEqual", this.entryIdEqual);
         kparams.add("jobTypeEqual", this.jobTypeEqual);
         kparams.add("jobTypeIn", this.jobTypeIn);
@@ -345,27 +375,17 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
         kparams.add("jobSubTypeEqual", this.jobSubTypeEqual);
         kparams.add("jobSubTypeIn", this.jobSubTypeIn);
         kparams.add("jobSubTypeNotIn", this.jobSubTypeNotIn);
-        kparams.add("onStressDivertToEqual", this.onStressDivertToEqual);
-        kparams.add("onStressDivertToIn", this.onStressDivertToIn);
-        kparams.add("onStressDivertToNotIn", this.onStressDivertToNotIn);
         kparams.add("statusEqual", this.statusEqual);
         kparams.add("statusIn", this.statusIn);
         kparams.add("statusNotIn", this.statusNotIn);
         kparams.add("abortEqual", this.abortEqual);
         kparams.add("checkAgainTimeoutGreaterThanOrEqual", this.checkAgainTimeoutGreaterThanOrEqual);
         kparams.add("checkAgainTimeoutLessThanOrEqual", this.checkAgainTimeoutLessThanOrEqual);
-        kparams.add("progressGreaterThanOrEqual", this.progressGreaterThanOrEqual);
-        kparams.add("progressLessThanOrEqual", this.progressLessThanOrEqual);
-        kparams.add("updatesCountGreaterThanOrEqual", this.updatesCountGreaterThanOrEqual);
-        kparams.add("updatesCountLessThanOrEqual", this.updatesCountLessThanOrEqual);
         kparams.add("priorityGreaterThanOrEqual", this.priorityGreaterThanOrEqual);
         kparams.add("priorityLessThanOrEqual", this.priorityLessThanOrEqual);
         kparams.add("priorityEqual", this.priorityEqual);
         kparams.add("priorityIn", this.priorityIn);
         kparams.add("priorityNotIn", this.priorityNotIn);
-        kparams.add("twinJobIdEqual", this.twinJobIdEqual);
-        kparams.add("twinJobIdIn", this.twinJobIdIn);
-        kparams.add("twinJobIdNotIn", this.twinJobIdNotIn);
         kparams.add("bulkJobIdEqual", this.bulkJobIdEqual);
         kparams.add("bulkJobIdIn", this.bulkJobIdIn);
         kparams.add("bulkJobIdNotIn", this.bulkJobIdNotIn);
@@ -385,9 +405,8 @@ public abstract class KalturaBatchJobBaseFilter extends KalturaBaseJobFilter {
         kparams.add("errNumberEqual", this.errNumberEqual);
         kparams.add("errNumberIn", this.errNumberIn);
         kparams.add("errNumberNotIn", this.errNumberNotIn);
-        kparams.add("fileSizeLessThan", this.fileSizeLessThan);
-        kparams.add("fileSizeGreaterThan", this.fileSizeGreaterThan);
-        kparams.add("lastWorkerRemoteEqual", this.lastWorkerRemoteEqual);
+        kparams.add("estimatedEffortLessThan", this.estimatedEffortLessThan);
+        kparams.add("estimatedEffortGreaterThan", this.estimatedEffortGreaterThan);
         kparams.add("schedulerIdEqual", this.schedulerIdEqual);
         kparams.add("schedulerIdIn", this.schedulerIdIn);
         kparams.add("schedulerIdNotIn", this.schedulerIdNotIn);

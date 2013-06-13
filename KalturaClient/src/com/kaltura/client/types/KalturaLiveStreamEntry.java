@@ -30,6 +30,7 @@ package com.kaltura.client.types;
 import org.w3c.dom.Element;
 import com.kaltura.client.KalturaParams;
 import com.kaltura.client.KalturaApiException;
+import com.kaltura.client.enums.KalturaDVRStatus;
 import java.util.ArrayList;
 import com.kaltura.client.utils.ParseUtils;
 import org.w3c.dom.Node;
@@ -39,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -58,6 +59,16 @@ public class KalturaLiveStreamEntry extends KalturaMediaEntry {
     public String streamName;
 	/**  The stream url     */
     public String streamUrl;
+	/**  HLS URL - URL for live stream playback on mobile device     */
+    public String hlsStreamUrl;
+	/**  DVR Status Enabled/Disabled     */
+    public KalturaDVRStatus dvrStatus;
+	/**  Window of time which the DVR allows for backwards scrubbing (in minutes)     */
+    public int dvrWindow = Integer.MIN_VALUE;
+	/**  URL Manager to handle the live stream URL (for instance, add token)     */
+    public String urlManager;
+	/**  Array of key value protocol->live stream url objects     */
+    public ArrayList<KalturaLiveStreamConfiguration> liveStreamConfigurations;
 
     public KalturaLiveStreamEntry() {
     }
@@ -93,6 +104,21 @@ public class KalturaLiveStreamEntry extends KalturaMediaEntry {
             } else if (nodeName.equals("streamUrl")) {
                 this.streamUrl = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("hlsStreamUrl")) {
+                this.hlsStreamUrl = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("dvrStatus")) {
+                this.dvrStatus = KalturaDVRStatus.get(ParseUtils.parseInt(txt));
+                continue;
+            } else if (nodeName.equals("dvrWindow")) {
+                this.dvrWindow = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("urlManager")) {
+                this.urlManager = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("liveStreamConfigurations")) {
+                this.liveStreamConfigurations = ParseUtils.parseArray(KalturaLiveStreamConfiguration.class, aNode);
+                continue;
             } 
         }
     }
@@ -106,6 +132,11 @@ public class KalturaLiveStreamEntry extends KalturaMediaEntry {
         kparams.add("secondaryBroadcastingUrl", this.secondaryBroadcastingUrl);
         kparams.add("streamName", this.streamName);
         kparams.add("streamUrl", this.streamUrl);
+        kparams.add("hlsStreamUrl", this.hlsStreamUrl);
+        kparams.add("dvrStatus", this.dvrStatus);
+        kparams.add("dvrWindow", this.dvrWindow);
+        kparams.add("urlManager", this.urlManager);
+        kparams.add("liveStreamConfigurations", this.liveStreamConfigurations);
         return kparams;
     }
 

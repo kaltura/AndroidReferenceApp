@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -139,11 +139,16 @@ public class KalturaFlavorAssetService extends KalturaServiceBase {
         return ParseUtils.parseArray(KalturaFlavorAsset.class, resultXmlElement);
     }
 
-	/**  Add and convert new Flavor Asset for Entry with specific Flavor Params     */
     public void convert(String entryId, int flavorParamsId) throws KalturaApiException {
+        this.convert(entryId, flavorParamsId, 0);
+    }
+
+	/**  Add and convert new Flavor Asset for Entry with specific Flavor Params     */
+    public void convert(String entryId, int flavorParamsId, int priority) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("entryId", entryId);
         kparams.add("flavorParamsId", flavorParamsId);
+        kparams.add("priority", priority);
         this.kalturaClient.queueServiceCall("flavorasset", "convert", kparams);
         if (this.kalturaClient.isMultiRequest())
             return ;

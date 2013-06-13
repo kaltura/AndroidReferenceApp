@@ -39,7 +39,7 @@ import com.kaltura.client.enums.*;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -60,6 +60,10 @@ public class KalturaEventNotificationTemplateService extends KalturaServiceBase 
             return null;
         Element resultXmlElement = this.kalturaClient.doQueue();
         return ParseUtils.parseObject(KalturaEventNotificationTemplate.class, resultXmlElement);
+    }
+
+    public KalturaEventNotificationTemplate clone(int id) throws KalturaApiException {
+        return this.clone(id, null);
     }
 
 	/**  Allows you to clone exiting event notification template object and create a new
@@ -111,14 +115,13 @@ public class KalturaEventNotificationTemplateService extends KalturaServiceBase 
     }
 
 	/**  Delete an event notification template object     */
-    public KalturaEventNotificationTemplate delete(int id) throws KalturaApiException {
+    public void delete(int id) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("id", id);
         this.kalturaClient.queueServiceCall("eventnotification_eventnotificationtemplate", "delete", kparams);
         if (this.kalturaClient.isMultiRequest())
-            return null;
-        Element resultXmlElement = this.kalturaClient.doQueue();
-        return ParseUtils.parseObject(KalturaEventNotificationTemplate.class, resultXmlElement);
+            return ;
+        this.kalturaClient.doQueue();
     }
 
     public KalturaEventNotificationTemplateListResponse list() throws KalturaApiException {
@@ -171,5 +174,25 @@ public class KalturaEventNotificationTemplateService extends KalturaServiceBase 
         Element resultXmlElement = this.kalturaClient.doQueue();
         String resultText = resultXmlElement.getTextContent();
         return ParseUtils.parseInt(resultText);
+    }
+
+    public KalturaEventNotificationTemplateListResponse listTemplates() throws KalturaApiException {
+        return this.listTemplates(null);
+    }
+
+    public KalturaEventNotificationTemplateListResponse listTemplates(KalturaEventNotificationTemplateFilter filter) throws KalturaApiException {
+        return this.listTemplates(filter, null);
+    }
+
+	/**  Action lists the template partner event notification templates.     */
+    public KalturaEventNotificationTemplateListResponse listTemplates(KalturaEventNotificationTemplateFilter filter, KalturaFilterPager pager) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("filter", filter);
+        kparams.add("pager", pager);
+        this.kalturaClient.queueServiceCall("eventnotification_eventnotificationtemplate", "listTemplates", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaEventNotificationTemplateListResponse.class, resultXmlElement);
     }
 }

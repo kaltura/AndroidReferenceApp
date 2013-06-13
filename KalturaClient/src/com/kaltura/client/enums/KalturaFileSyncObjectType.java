@@ -30,23 +30,23 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaFileSyncObjectType implements KalturaEnumAsString {
+    DISTRIBUTION_PROFILE ("contentDistribution.DistributionProfile"),
+    ENTRY_DISTRIBUTION ("contentDistribution.EntryDistribution"),
+    GENERIC_DISTRIBUTION_ACTION ("contentDistribution.GenericDistributionAction"),
+    EMAIL_NOTIFICATION_TEMPLATE ("emailNotification.EmailNotificationTemplate"),
     ENTRY ("1"),
     UICONF ("2"),
     BATCHJOB ("3"),
-    ASSET ("4"),
+    FLAVOR_ASSET ("4"),
     METADATA ("5"),
     METADATA_PROFILE ("6"),
     SYNDICATION_FEED ("7"),
-    CONVERSION_PROFILE ("8"),
-    GENERIC_DISTRIBUTION_ACTION ("contentDistribution.GenericDistributionAction"),
-    ENTRY_DISTRIBUTION ("contentDistribution.EntryDistribution"),
-    DISTRIBUTION_PROFILE ("contentDistribution.DistributionProfile"),
-    EMAIL_NOTIFICATION_TEMPLATE ("emailNotification.EmailNotificationTemplate");
+    CONVERSION_PROFILE ("8");
 
     public String hashCode;
 
@@ -59,6 +59,26 @@ public enum KalturaFileSyncObjectType implements KalturaEnumAsString {
     }
 
     public static KalturaFileSyncObjectType get(String hashCode) {
+        if (hashCode.equals("contentDistribution.DistributionProfile"))
+        {
+           return DISTRIBUTION_PROFILE;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.EntryDistribution"))
+        {
+           return ENTRY_DISTRIBUTION;
+        }
+        else 
+        if (hashCode.equals("contentDistribution.GenericDistributionAction"))
+        {
+           return GENERIC_DISTRIBUTION_ACTION;
+        }
+        else 
+        if (hashCode.equals("emailNotification.EmailNotificationTemplate"))
+        {
+           return EMAIL_NOTIFICATION_TEMPLATE;
+        }
+        else 
         if (hashCode.equals("1"))
         {
            return ENTRY;
@@ -76,7 +96,7 @@ public enum KalturaFileSyncObjectType implements KalturaEnumAsString {
         else 
         if (hashCode.equals("4"))
         {
-           return ASSET;
+           return FLAVOR_ASSET;
         }
         else 
         if (hashCode.equals("5"))
@@ -99,28 +119,8 @@ public enum KalturaFileSyncObjectType implements KalturaEnumAsString {
            return CONVERSION_PROFILE;
         }
         else 
-        if (hashCode.equals("contentDistribution.GenericDistributionAction"))
-        {
-           return GENERIC_DISTRIBUTION_ACTION;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.EntryDistribution"))
-        {
-           return ENTRY_DISTRIBUTION;
-        }
-        else 
-        if (hashCode.equals("contentDistribution.DistributionProfile"))
         {
            return DISTRIBUTION_PROFILE;
-        }
-        else 
-        if (hashCode.equals("emailNotification.EmailNotificationTemplate"))
-        {
-           return EMAIL_NOTIFICATION_TEMPLATE;
-        }
-        else 
-        {
-           return ENTRY;
         }
     }
 }

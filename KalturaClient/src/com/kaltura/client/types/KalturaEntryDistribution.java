@@ -45,7 +45,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -69,6 +69,8 @@ public class KalturaEntryDistribution extends KalturaObjectBase {
     public String thumbAssetIds;
 	/**  Comma separated flavor asset ids     */
     public String flavorAssetIds;
+	/**  Comma separated asset ids     */
+    public String assetIds;
 	/**  Entry distribution publish time as Unix timestamp (In seconds)     */
     public int sunrise = Integer.MIN_VALUE;
 	/**  Entry distribution un-publish time as Unix timestamp (In seconds)     */
@@ -135,6 +137,9 @@ public class KalturaEntryDistribution extends KalturaObjectBase {
             } else if (nodeName.equals("flavorAssetIds")) {
                 this.flavorAssetIds = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("assetIds")) {
+                this.assetIds = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("sunrise")) {
                 this.sunrise = ParseUtils.parseInt(txt);
                 continue;
@@ -191,6 +196,7 @@ public class KalturaEntryDistribution extends KalturaObjectBase {
         kparams.add("distributionProfileId", this.distributionProfileId);
         kparams.add("thumbAssetIds", this.thumbAssetIds);
         kparams.add("flavorAssetIds", this.flavorAssetIds);
+        kparams.add("assetIds", this.assetIds);
         kparams.add("sunrise", this.sunrise);
         kparams.add("sunset", this.sunset);
         kparams.add("validationErrors", this.validationErrors);

@@ -30,14 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaMediaParserType implements KalturaEnumAsString {
     MEDIAINFO ("0"),
-    FFMPEG ("1"),
-    REMOTE_MEDIAINFO ("remoteMediaInfo.RemoteMediaInfo");
+    FFMPEG ("1");
 
     public String hashCode;
 
@@ -58,11 +57,6 @@ public enum KalturaMediaParserType implements KalturaEnumAsString {
         if (hashCode.equals("1"))
         {
            return FFMPEG;
-        }
-        else 
-        if (hashCode.equals("remoteMediaInfo.RemoteMediaInfo"))
-        {
-           return REMOTE_MEDIAINFO;
         }
         else 
         {

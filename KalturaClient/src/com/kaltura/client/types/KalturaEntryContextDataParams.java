@@ -38,7 +38,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -47,6 +47,8 @@ import org.w3c.dom.NodeList;
 public class KalturaEntryContextDataParams extends KalturaAccessControlScope {
 	/**  Id of the current flavor.     */
     public String flavorAssetId;
+	/**  The tags of the flavors that should be used for playback.     */
+    public String flavorTags;
 	/**  Playback streamer type: RTMP, HTTP, appleHttps, rtsp, sl.     */
     public String streamerType;
 	/**  Protocol of the specific media object.     */
@@ -65,6 +67,9 @@ public class KalturaEntryContextDataParams extends KalturaAccessControlScope {
             if (nodeName.equals("flavorAssetId")) {
                 this.flavorAssetId = ParseUtils.parseString(txt);
                 continue;
+            } else if (nodeName.equals("flavorTags")) {
+                this.flavorTags = ParseUtils.parseString(txt);
+                continue;
             } else if (nodeName.equals("streamerType")) {
                 this.streamerType = ParseUtils.parseString(txt);
                 continue;
@@ -79,6 +84,7 @@ public class KalturaEntryContextDataParams extends KalturaAccessControlScope {
         KalturaParams kparams = super.toParams();
         kparams.add("objectType", "KalturaEntryContextDataParams");
         kparams.add("flavorAssetId", this.flavorAssetId);
+        kparams.add("flavorTags", this.flavorTags);
         kparams.add("streamerType", this.streamerType);
         kparams.add("mediaProtocol", this.mediaProtocol);
         return kparams;

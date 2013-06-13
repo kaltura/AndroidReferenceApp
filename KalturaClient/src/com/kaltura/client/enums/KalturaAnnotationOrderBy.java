@@ -30,23 +30,23 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaAnnotationOrderBy implements KalturaEnumAsString {
-    END_TIME_ASC ("+endTime"),
-    END_TIME_DESC ("-endTime"),
-    DURATION_ASC ("+duration"),
-    DURATION_DESC ("-duration"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
-    START_TIME_ASC ("+startTime"),
-    START_TIME_DESC ("-startTime"),
+    DURATION_ASC ("+duration"),
+    END_TIME_ASC ("+endTime"),
     PARTNER_SORT_VALUE_ASC ("+partnerSortValue"),
-    PARTNER_SORT_VALUE_DESC ("-partnerSortValue");
+    START_TIME_ASC ("+startTime"),
+    UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    DURATION_DESC ("-duration"),
+    END_TIME_DESC ("-endTime"),
+    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    START_TIME_DESC ("-startTime"),
+    UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
 
@@ -59,14 +59,9 @@ public enum KalturaAnnotationOrderBy implements KalturaEnumAsString {
     }
 
     public static KalturaAnnotationOrderBy get(String hashCode) {
-        if (hashCode.equals("+endTime"))
+        if (hashCode.equals("+createdAt"))
         {
-           return END_TIME_ASC;
-        }
-        else 
-        if (hashCode.equals("-endTime"))
-        {
-           return END_TIME_DESC;
+           return CREATED_AT_ASC;
         }
         else 
         if (hashCode.equals("+duration"))
@@ -74,39 +69,9 @@ public enum KalturaAnnotationOrderBy implements KalturaEnumAsString {
            return DURATION_ASC;
         }
         else 
-        if (hashCode.equals("-duration"))
+        if (hashCode.equals("+endTime"))
         {
-           return DURATION_DESC;
-        }
-        else 
-        if (hashCode.equals("+createdAt"))
-        {
-           return CREATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-createdAt"))
-        {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+startTime"))
-        {
-           return START_TIME_ASC;
-        }
-        else 
-        if (hashCode.equals("-startTime"))
-        {
-           return START_TIME_DESC;
+           return END_TIME_ASC;
         }
         else 
         if (hashCode.equals("+partnerSortValue"))
@@ -114,13 +79,48 @@ public enum KalturaAnnotationOrderBy implements KalturaEnumAsString {
            return PARTNER_SORT_VALUE_ASC;
         }
         else 
+        if (hashCode.equals("+startTime"))
+        {
+           return START_TIME_ASC;
+        }
+        else 
+        if (hashCode.equals("+updatedAt"))
+        {
+           return UPDATED_AT_ASC;
+        }
+        else 
+        if (hashCode.equals("-createdAt"))
+        {
+           return CREATED_AT_DESC;
+        }
+        else 
+        if (hashCode.equals("-duration"))
+        {
+           return DURATION_DESC;
+        }
+        else 
+        if (hashCode.equals("-endTime"))
+        {
+           return END_TIME_DESC;
+        }
+        else 
         if (hashCode.equals("-partnerSortValue"))
         {
            return PARTNER_SORT_VALUE_DESC;
         }
         else 
+        if (hashCode.equals("-startTime"))
         {
-           return END_TIME_ASC;
+           return START_TIME_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
+        }
+        else 
+        {
+           return CREATED_AT_ASC;
         }
     }
 }

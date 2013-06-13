@@ -30,13 +30,14 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaAccessControlActionType implements KalturaEnumAsString {
     BLOCK ("1"),
-    PREVIEW ("2");
+    PREVIEW ("2"),
+    LIMIT_FLAVORS ("3");
 
     public String hashCode;
 
@@ -57,6 +58,11 @@ public enum KalturaAccessControlActionType implements KalturaEnumAsString {
         if (hashCode.equals("2"))
         {
            return PREVIEW;
+        }
+        else 
+        if (hashCode.equals("3"))
+        {
+           return LIMIT_FLAVORS;
         }
         else 
         {

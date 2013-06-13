@@ -30,16 +30,16 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaApiParameterPermissionItemOrderBy implements KalturaEnumAsString {
-    ID_ASC ("+id"),
-    ID_DESC ("-id"),
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
+    ID_ASC ("+id"),
     UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    ID_DESC ("-id"),
     UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
@@ -53,19 +53,19 @@ public enum KalturaApiParameterPermissionItemOrderBy implements KalturaEnumAsStr
     }
 
     public static KalturaApiParameterPermissionItemOrderBy get(String hashCode) {
+        if (hashCode.equals("+createdAt"))
+        {
+           return CREATED_AT_ASC;
+        }
+        else 
         if (hashCode.equals("+id"))
         {
            return ID_ASC;
         }
         else 
-        if (hashCode.equals("-id"))
+        if (hashCode.equals("+updatedAt"))
         {
-           return ID_DESC;
-        }
-        else 
-        if (hashCode.equals("+createdAt"))
-        {
-           return CREATED_AT_ASC;
+           return UPDATED_AT_ASC;
         }
         else 
         if (hashCode.equals("-createdAt"))
@@ -73,9 +73,9 @@ public enum KalturaApiParameterPermissionItemOrderBy implements KalturaEnumAsStr
            return CREATED_AT_DESC;
         }
         else 
-        if (hashCode.equals("+updatedAt"))
+        if (hashCode.equals("-id"))
         {
-           return UPDATED_AT_ASC;
+           return ID_DESC;
         }
         else 
         if (hashCode.equals("-updatedAt"))
@@ -84,7 +84,7 @@ public enum KalturaApiParameterPermissionItemOrderBy implements KalturaEnumAsStr
         }
         else 
         {
-           return ID_ASC;
+           return CREATED_AT_ASC;
         }
     }
 }

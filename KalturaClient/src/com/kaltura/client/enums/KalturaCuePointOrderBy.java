@@ -30,19 +30,19 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaCuePointOrderBy implements KalturaEnumAsString {
     CREATED_AT_ASC ("+createdAt"),
-    CREATED_AT_DESC ("-createdAt"),
-    UPDATED_AT_ASC ("+updatedAt"),
-    UPDATED_AT_DESC ("-updatedAt"),
-    START_TIME_ASC ("+startTime"),
-    START_TIME_DESC ("-startTime"),
     PARTNER_SORT_VALUE_ASC ("+partnerSortValue"),
-    PARTNER_SORT_VALUE_DESC ("-partnerSortValue");
+    START_TIME_ASC ("+startTime"),
+    UPDATED_AT_ASC ("+updatedAt"),
+    CREATED_AT_DESC ("-createdAt"),
+    PARTNER_SORT_VALUE_DESC ("-partnerSortValue"),
+    START_TIME_DESC ("-startTime"),
+    UPDATED_AT_DESC ("-updatedAt");
 
     public String hashCode;
 
@@ -60,19 +60,9 @@ public enum KalturaCuePointOrderBy implements KalturaEnumAsString {
            return CREATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("-createdAt"))
+        if (hashCode.equals("+partnerSortValue"))
         {
-           return CREATED_AT_DESC;
-        }
-        else 
-        if (hashCode.equals("+updatedAt"))
-        {
-           return UPDATED_AT_ASC;
-        }
-        else 
-        if (hashCode.equals("-updatedAt"))
-        {
-           return UPDATED_AT_DESC;
+           return PARTNER_SORT_VALUE_ASC;
         }
         else 
         if (hashCode.equals("+startTime"))
@@ -80,19 +70,29 @@ public enum KalturaCuePointOrderBy implements KalturaEnumAsString {
            return START_TIME_ASC;
         }
         else 
-        if (hashCode.equals("-startTime"))
+        if (hashCode.equals("+updatedAt"))
         {
-           return START_TIME_DESC;
+           return UPDATED_AT_ASC;
         }
         else 
-        if (hashCode.equals("+partnerSortValue"))
+        if (hashCode.equals("-createdAt"))
         {
-           return PARTNER_SORT_VALUE_ASC;
+           return CREATED_AT_DESC;
         }
         else 
         if (hashCode.equals("-partnerSortValue"))
         {
            return PARTNER_SORT_VALUE_DESC;
+        }
+        else 
+        if (hashCode.equals("-startTime"))
+        {
+           return START_TIME_DESC;
+        }
+        else 
+        if (hashCode.equals("-updatedAt"))
+        {
+           return UPDATED_AT_DESC;
         }
         else 
         {

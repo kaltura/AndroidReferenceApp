@@ -30,18 +30,19 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaSourceType implements KalturaEnumAsString {
+    LIMELIGHT_LIVE ("limeLight.LIVE_STREAM"),
     FILE ("1"),
     WEBCAM ("2"),
     URL ("5"),
     SEARCH_PROVIDER ("6"),
     AKAMAI_LIVE ("29"),
     MANUAL_LIVE_STREAM ("30"),
-    LIMELIGHT_LIVE ("limeLight.LIVE_STREAM");
+    AKAMAI_UNIVERSAL_LIVE ("31");
 
     public String hashCode;
 
@@ -54,6 +55,11 @@ public enum KalturaSourceType implements KalturaEnumAsString {
     }
 
     public static KalturaSourceType get(String hashCode) {
+        if (hashCode.equals("limeLight.LIVE_STREAM"))
+        {
+           return LIMELIGHT_LIVE;
+        }
+        else 
         if (hashCode.equals("1"))
         {
            return FILE;
@@ -84,13 +90,13 @@ public enum KalturaSourceType implements KalturaEnumAsString {
            return MANUAL_LIVE_STREAM;
         }
         else 
-        if (hashCode.equals("limeLight.LIVE_STREAM"))
+        if (hashCode.equals("31"))
         {
-           return LIMELIGHT_LIVE;
+           return AKAMAI_UNIVERSAL_LIVE;
         }
         else 
         {
-           return FILE;
+           return LIMELIGHT_LIVE;
         }
     }
 }

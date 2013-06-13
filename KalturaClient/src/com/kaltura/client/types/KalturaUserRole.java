@@ -40,7 +40,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -48,6 +48,7 @@ import org.w3c.dom.NodeList;
 public class KalturaUserRole extends KalturaObjectBase {
     public int id = Integer.MIN_VALUE;
     public String name;
+    public String systemName;
     public String description;
     public KalturaUserRoleStatus status;
     public int partnerId = Integer.MIN_VALUE;
@@ -70,6 +71,9 @@ public class KalturaUserRole extends KalturaObjectBase {
                 continue;
             } else if (nodeName.equals("name")) {
                 this.name = ParseUtils.parseString(txt);
+                continue;
+            } else if (nodeName.equals("systemName")) {
+                this.systemName = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("description")) {
                 this.description = ParseUtils.parseString(txt);
@@ -100,6 +104,7 @@ public class KalturaUserRole extends KalturaObjectBase {
         KalturaParams kparams = super.toParams();
         kparams.add("objectType", "KalturaUserRole");
         kparams.add("name", this.name);
+        kparams.add("systemName", this.systemName);
         kparams.add("description", this.description);
         kparams.add("status", this.status);
         kparams.add("permissionNames", this.permissionNames);

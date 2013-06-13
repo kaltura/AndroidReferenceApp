@@ -44,7 +44,7 @@ import com.kaltura.client.KalturaFile;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -105,7 +105,7 @@ public class KalturaMediaService extends KalturaServiceBase {
         return this.addFromSearchResult(mediaEntry, null);
     }
 
-	/**  Adds new media entry by importing the media file from a search provider.    This
+	/**  Adds new media entry by importing the media file from a search provider.   This
 	  action should be used with the search service result.     */
     public KalturaMediaEntry addFromSearchResult(KalturaMediaEntry mediaEntry, KalturaSearchResult searchResult) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
@@ -219,10 +219,15 @@ public class KalturaMediaService extends KalturaServiceBase {
         return ParseUtils.parseObject(KalturaMediaEntry.class, resultXmlElement);
     }
 
-	/**  Get MRSS by entry id      XML will return as an escaped string        */
     public String getMrss(String entryId) throws KalturaApiException {
+        return this.getMrss(entryId, null);
+    }
+
+	/**  Get MRSS by entry id      XML will return as an escaped string        */
+    public String getMrss(String entryId, ArrayList<KalturaExtendingItemMrssParameter> extendingItemsArray) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("entryId", entryId);
+        kparams.add("extendingItemsArray", extendingItemsArray);
         this.kalturaClient.queueServiceCall("media", "getMrss", kparams);
         if (this.kalturaClient.isMultiRequest())
             return null;
@@ -341,7 +346,7 @@ public class KalturaMediaService extends KalturaServiceBase {
     }
 
 	/**  Upload a media file to Kaltura, then the file can be used to create a media
-	  entry.      */
+	  entry.     */
     public String upload(KalturaFile fileData) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         KalturaFiles kfiles = new KalturaFiles();
@@ -465,7 +470,7 @@ public class KalturaMediaService extends KalturaServiceBase {
     }
 
 	/**  Approve the media entry and mark the pending flags (if any) as moderated (this
-	  will make the entry playable)      */
+	  will make the entry playable)     */
     public void approve(String entryId) throws KalturaApiException {
         KalturaParams kparams = new KalturaParams();
         kparams.add("entryId", entryId);

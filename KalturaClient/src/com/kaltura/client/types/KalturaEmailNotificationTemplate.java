@@ -41,7 +41,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -58,20 +58,20 @@ public class KalturaEmailNotificationTemplate extends KalturaEventNotificationTe
 	/**  Define the email sender name     */
     public String fromName;
 	/**  Email recipient emails and names     */
-    public ArrayList<KalturaEmailNotificationRecipient> to;
-	/**  Email cc emails and names     */
-    public ArrayList<KalturaEmailNotificationRecipient> cc;
-	/**  Email bcc emails and names     */
-    public ArrayList<KalturaEmailNotificationRecipient> bcc;
-	/**  Email addresses that a reading confirmation will be sent to     */
-    public ArrayList<KalturaEmailNotificationRecipient> replyTo;
+    public KalturaEmailNotificationRecipientProvider to;
+	/**  Email recipient emails and names     */
+    public KalturaEmailNotificationRecipientProvider cc;
+	/**  Email recipient emails and names     */
+    public KalturaEmailNotificationRecipientProvider bcc;
+	/**  Default email addresses to whom the reply should be sent.      */
+    public KalturaEmailNotificationRecipientProvider replyTo;
 	/**  Define the email priority     */
     public KalturaEmailNotificationTemplatePriority priority;
 	/**  Email address that a reading confirmation will be sent     */
     public String confirmReadingTo;
-	/**  Hostname to use in Message-Id and Received headers and as default HELO string.  
-	   If empty, the value returned by SERVER_NAME is used or 'localhost.localdomain'.
-	      */
+	/**  Hostname to use in Message-Id and Received headers and as default HELLO string. 
+	    If empty, the value returned by SERVER_NAME is used or
+	  'localhost.localdomain'.     */
     public String hostname;
 	/**  Sets the message ID to be used in the Message-Id header.   If empty, a unique id
 	  will be generated.     */
@@ -79,7 +79,7 @@ public class KalturaEmailNotificationTemplate extends KalturaEventNotificationTe
 	/**  Adds a e-mail custom header     */
     public ArrayList<KalturaKeyValue> customHeaders;
 	/**  Define the content dynamic parameters     */
-    public ArrayList<KalturaEmailNotificationParameter> contentParameters;
+    public ArrayList<KalturaEventNotificationParameter> contentParameters;
 
     public KalturaEmailNotificationTemplate() {
     }
@@ -107,16 +107,16 @@ public class KalturaEmailNotificationTemplate extends KalturaEventNotificationTe
                 this.fromName = ParseUtils.parseString(txt);
                 continue;
             } else if (nodeName.equals("to")) {
-                this.to = ParseUtils.parseArray(KalturaEmailNotificationRecipient.class, aNode);
+                this.to = ParseUtils.parseObject(KalturaEmailNotificationRecipientProvider.class, aNode);
                 continue;
             } else if (nodeName.equals("cc")) {
-                this.cc = ParseUtils.parseArray(KalturaEmailNotificationRecipient.class, aNode);
+                this.cc = ParseUtils.parseObject(KalturaEmailNotificationRecipientProvider.class, aNode);
                 continue;
             } else if (nodeName.equals("bcc")) {
-                this.bcc = ParseUtils.parseArray(KalturaEmailNotificationRecipient.class, aNode);
+                this.bcc = ParseUtils.parseObject(KalturaEmailNotificationRecipientProvider.class, aNode);
                 continue;
             } else if (nodeName.equals("replyTo")) {
-                this.replyTo = ParseUtils.parseArray(KalturaEmailNotificationRecipient.class, aNode);
+                this.replyTo = ParseUtils.parseObject(KalturaEmailNotificationRecipientProvider.class, aNode);
                 continue;
             } else if (nodeName.equals("priority")) {
                 this.priority = KalturaEmailNotificationTemplatePriority.get(ParseUtils.parseInt(txt));
@@ -134,7 +134,7 @@ public class KalturaEmailNotificationTemplate extends KalturaEventNotificationTe
                 this.customHeaders = ParseUtils.parseArray(KalturaKeyValue.class, aNode);
                 continue;
             } else if (nodeName.equals("contentParameters")) {
-                this.contentParameters = ParseUtils.parseArray(KalturaEmailNotificationParameter.class, aNode);
+                this.contentParameters = ParseUtils.parseArray(KalturaEventNotificationParameter.class, aNode);
                 continue;
             } 
         }

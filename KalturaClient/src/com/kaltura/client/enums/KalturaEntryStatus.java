@@ -30,23 +30,23 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaEntryStatus implements KalturaEnumAsString {
     ERROR_IMPORTING ("-2"),
     ERROR_CONVERTING ("-1"),
+    SCAN_FAILURE ("virusScan.ScanFailure"),
     IMPORT ("0"),
+    INFECTED ("virusScan.Infected"),
     PRECONVERT ("1"),
     READY ("2"),
     DELETED ("3"),
     PENDING ("4"),
     MODERATE ("5"),
     BLOCKED ("6"),
-    NO_CONTENT ("7"),
-    INFECTED ("virusScan.Infected"),
-    SCAN_FAILURE ("virusScan.ScanFailure");
+    NO_CONTENT ("7");
 
     public String hashCode;
 
@@ -69,9 +69,19 @@ public enum KalturaEntryStatus implements KalturaEnumAsString {
            return ERROR_CONVERTING;
         }
         else 
+        if (hashCode.equals("virusScan.ScanFailure"))
+        {
+           return SCAN_FAILURE;
+        }
+        else 
         if (hashCode.equals("0"))
         {
            return IMPORT;
+        }
+        else 
+        if (hashCode.equals("virusScan.Infected"))
+        {
+           return INFECTED;
         }
         else 
         if (hashCode.equals("1"))
@@ -107,16 +117,6 @@ public enum KalturaEntryStatus implements KalturaEnumAsString {
         if (hashCode.equals("7"))
         {
            return NO_CONTENT;
-        }
-        else 
-        if (hashCode.equals("virusScan.Infected"))
-        {
-           return INFECTED;
-        }
-        else 
-        if (hashCode.equals("virusScan.ScanFailure"))
-        {
-           return SCAN_FAILURE;
         }
         else 
         {

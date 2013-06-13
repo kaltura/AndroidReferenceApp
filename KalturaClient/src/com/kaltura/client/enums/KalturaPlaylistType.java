@@ -30,13 +30,13 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaPlaylistType implements KalturaEnumAsInt {
-    DYNAMIC (10),
     STATIC_LIST (3),
+    DYNAMIC (10),
     EXTERNAL (101);
 
     public int hashCode;
@@ -51,10 +51,10 @@ public enum KalturaPlaylistType implements KalturaEnumAsInt {
 
     public static KalturaPlaylistType get(int hashCode) {
         switch(hashCode) {
-            case 10: return DYNAMIC;
             case 3: return STATIC_LIST;
+            case 10: return DYNAMIC;
             case 101: return EXTERNAL;
-            default: return DYNAMIC;
+            default: return STATIC_LIST;
         }
     }
 }

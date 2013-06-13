@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -39,8 +39,6 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
     CONTENT_ADD_PLAYLIST (1010),
     CONTENT_EDIT_PLAYLIST (1011),
     CONTENT_DELETE_PLAYLIST (1012),
-    CONTENT_DELETE_ITEM (1058),
-    CONTENT_DELETE_MIX (1059),
     CONTENT_EDIT_ENTRY (1013),
     CONTENT_CHANGE_THUMBNAIL (1014),
     CONTENT_ADD_TAGS (1015),
@@ -52,9 +50,6 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
     CONTENT_REJECT_MODERATION (1021),
     CONTENT_BULK_UPLOAD (1022),
     CONTENT_ADMIN_KCW_UPLOAD (1023),
-    CONTENT_CONTENT_GO_TO_PAGE (1057),
-    CONTENT_ENTRY_DRILLDOWN (1088),
-    CONTENT_OPEN_PREVIEW_AND_EMBED (1089),
     ACCOUNT_CHANGE_PARTNER_INFO (1030),
     ACCOUNT_CHANGE_LOGIN_INFO (1031),
     ACCOUNT_CONTACT_US_USAGE (1032),
@@ -81,6 +76,9 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
     APP_STUDIO_EDIT_PLAYER_PLAYLIST (1054),
     APP_STUDIO_EDIT_PLAYER_MULTI_TAB_PLAYLIST (1055),
     APP_STUDIO_DUPLICATE_PLAYER (1056),
+    CONTENT_CONTENT_GO_TO_PAGE (1057),
+    CONTENT_DELETE_ITEM (1058),
+    CONTENT_DELETE_MIX (1059),
     REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_TAB (1070),
     REPORTS_AND_ANALYTICS_CONTENT_REPORTS_TAB (1071),
     REPORTS_AND_ANALYTICS_USERS_AND_COMMUNITY_REPORTS_TAB (1072),
@@ -98,7 +96,9 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
     REPORTS_AND_ANALYTICS_MAP_OVERLAYS_DRILLDOWN (1084),
     REPORTS_AND_ANALYTICS_TOP_SYNDICATIONS_DRILL_DOWN (1085),
     REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_VIEW_MONTHLY (1086),
-    REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_VIEW_YEARLY (1087);
+    REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_VIEW_YEARLY (1087),
+    CONTENT_ENTRY_DRILLDOWN (1088),
+    CONTENT_OPEN_PREVIEW_AND_EMBED (1089);
 
     public int hashCode;
 
@@ -116,8 +116,6 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
             case 1010: return CONTENT_ADD_PLAYLIST;
             case 1011: return CONTENT_EDIT_PLAYLIST;
             case 1012: return CONTENT_DELETE_PLAYLIST;
-            case 1058: return CONTENT_DELETE_ITEM;
-            case 1059: return CONTENT_DELETE_MIX;
             case 1013: return CONTENT_EDIT_ENTRY;
             case 1014: return CONTENT_CHANGE_THUMBNAIL;
             case 1015: return CONTENT_ADD_TAGS;
@@ -129,9 +127,6 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
             case 1021: return CONTENT_REJECT_MODERATION;
             case 1022: return CONTENT_BULK_UPLOAD;
             case 1023: return CONTENT_ADMIN_KCW_UPLOAD;
-            case 1057: return CONTENT_CONTENT_GO_TO_PAGE;
-            case 1088: return CONTENT_ENTRY_DRILLDOWN;
-            case 1089: return CONTENT_OPEN_PREVIEW_AND_EMBED;
             case 1030: return ACCOUNT_CHANGE_PARTNER_INFO;
             case 1031: return ACCOUNT_CHANGE_LOGIN_INFO;
             case 1032: return ACCOUNT_CONTACT_US_USAGE;
@@ -158,6 +153,9 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
             case 1054: return APP_STUDIO_EDIT_PLAYER_PLAYLIST;
             case 1055: return APP_STUDIO_EDIT_PLAYER_MULTI_TAB_PLAYLIST;
             case 1056: return APP_STUDIO_DUPLICATE_PLAYER;
+            case 1057: return CONTENT_CONTENT_GO_TO_PAGE;
+            case 1058: return CONTENT_DELETE_ITEM;
+            case 1059: return CONTENT_DELETE_MIX;
             case 1070: return REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_TAB;
             case 1071: return REPORTS_AND_ANALYTICS_CONTENT_REPORTS_TAB;
             case 1072: return REPORTS_AND_ANALYTICS_USERS_AND_COMMUNITY_REPORTS_TAB;
@@ -176,6 +174,8 @@ public enum KalturaStatsKmcEventType implements KalturaEnumAsInt {
             case 1085: return REPORTS_AND_ANALYTICS_TOP_SYNDICATIONS_DRILL_DOWN;
             case 1086: return REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_VIEW_MONTHLY;
             case 1087: return REPORTS_AND_ANALYTICS_BANDWIDTH_USAGE_VIEW_YEARLY;
+            case 1088: return CONTENT_ENTRY_DRILLDOWN;
+            case 1089: return CONTENT_OPEN_PREVIEW_AND_EMBED;
             default: return CONTENT_PAGE_VIEW;
         }
     }

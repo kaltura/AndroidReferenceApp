@@ -30,16 +30,16 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
 public enum KalturaSearchConditionComparison implements KalturaEnumAsString {
     EQUAL ("1"),
     GREATER_THAN ("2"),
-    GREATER_THAN_OR_EQUAL ("3"),
+    GREATER_THAN_OR_EQUEL ("3"),
     LESS_THAN ("4"),
-    LESS_THAN_OR_EQUAL ("5");
+    LESS_THAN_OR_EQUEL ("5");
 
     public String hashCode;
 
@@ -64,7 +64,7 @@ public enum KalturaSearchConditionComparison implements KalturaEnumAsString {
         else 
         if (hashCode.equals("3"))
         {
-           return GREATER_THAN_OR_EQUAL;
+           return GREATER_THAN_OR_EQUEL;
         }
         else 
         if (hashCode.equals("4"))
@@ -74,7 +74,7 @@ public enum KalturaSearchConditionComparison implements KalturaEnumAsString {
         else 
         if (hashCode.equals("5"))
         {
-           return LESS_THAN_OR_EQUAL;
+           return LESS_THAN_OR_EQUEL;
         }
         else 
         {

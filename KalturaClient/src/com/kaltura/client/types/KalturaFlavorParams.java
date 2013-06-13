@@ -41,7 +41,7 @@ import org.w3c.dom.NodeList;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -81,6 +81,12 @@ public class KalturaFlavorParams extends KalturaAssetParams {
     public int aspectRatioProcessingMode = Integer.MIN_VALUE;
     public int forceFrameToMultiplication16 = Integer.MIN_VALUE;
     public int isGopInSec = Integer.MIN_VALUE;
+    public int isAvoidVideoShrinkFramesizeToSource = Integer.MIN_VALUE;
+    public int isAvoidVideoShrinkBitrateToSource = Integer.MIN_VALUE;
+    public int isVideoFrameRateForLowBrAppleHls = Integer.MIN_VALUE;
+    public float anamorphicPixels = Float.MIN_VALUE;
+    public int isAvoidForcedKeyFrames = Integer.MIN_VALUE;
+    public int maxFrameRate = Integer.MIN_VALUE;
     public int videoConstantBitrate = Integer.MIN_VALUE;
     public int videoBitrateTolerance = Integer.MIN_VALUE;
     public int clipOffset = Integer.MIN_VALUE;
@@ -159,6 +165,24 @@ public class KalturaFlavorParams extends KalturaAssetParams {
             } else if (nodeName.equals("isGopInSec")) {
                 this.isGopInSec = ParseUtils.parseInt(txt);
                 continue;
+            } else if (nodeName.equals("isAvoidVideoShrinkFramesizeToSource")) {
+                this.isAvoidVideoShrinkFramesizeToSource = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("isAvoidVideoShrinkBitrateToSource")) {
+                this.isAvoidVideoShrinkBitrateToSource = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("isVideoFrameRateForLowBrAppleHls")) {
+                this.isVideoFrameRateForLowBrAppleHls = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("anamorphicPixels")) {
+                this.anamorphicPixels = ParseUtils.parseFloat(txt);
+                continue;
+            } else if (nodeName.equals("isAvoidForcedKeyFrames")) {
+                this.isAvoidForcedKeyFrames = ParseUtils.parseInt(txt);
+                continue;
+            } else if (nodeName.equals("maxFrameRate")) {
+                this.maxFrameRate = ParseUtils.parseInt(txt);
+                continue;
             } else if (nodeName.equals("videoConstantBitrate")) {
                 this.videoConstantBitrate = ParseUtils.parseInt(txt);
                 continue;
@@ -199,6 +223,12 @@ public class KalturaFlavorParams extends KalturaAssetParams {
         kparams.add("aspectRatioProcessingMode", this.aspectRatioProcessingMode);
         kparams.add("forceFrameToMultiplication16", this.forceFrameToMultiplication16);
         kparams.add("isGopInSec", this.isGopInSec);
+        kparams.add("isAvoidVideoShrinkFramesizeToSource", this.isAvoidVideoShrinkFramesizeToSource);
+        kparams.add("isAvoidVideoShrinkBitrateToSource", this.isAvoidVideoShrinkBitrateToSource);
+        kparams.add("isVideoFrameRateForLowBrAppleHls", this.isVideoFrameRateForLowBrAppleHls);
+        kparams.add("anamorphicPixels", this.anamorphicPixels);
+        kparams.add("isAvoidForcedKeyFrames", this.isAvoidForcedKeyFrames);
+        kparams.add("maxFrameRate", this.maxFrameRate);
         kparams.add("videoConstantBitrate", this.videoConstantBitrate);
         kparams.add("videoBitrateTolerance", this.videoBitrateTolerance);
         kparams.add("clipOffset", this.clipOffset);

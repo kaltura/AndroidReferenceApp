@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -162,25 +162,6 @@ public class KalturaMixingService extends KalturaServiceBase {
             return null;
         Element resultXmlElement = this.kalturaClient.doQueue();
         return ParseUtils.parseObject(KalturaMixEntry.class, resultXmlElement);
-    }
-
-    public int requestFlattening(String entryId, String fileFormat) throws KalturaApiException {
-        return this.requestFlattening(entryId, fileFormat, -1);
-    }
-
-	/**  Request a new flattening job, flattening is used to convert a video mix to a
-	  video file.      */
-    public int requestFlattening(String entryId, String fileFormat, int version) throws KalturaApiException {
-        KalturaParams kparams = new KalturaParams();
-        kparams.add("entryId", entryId);
-        kparams.add("fileFormat", fileFormat);
-        kparams.add("version", version);
-        this.kalturaClient.queueServiceCall("mixing", "requestFlattening", kparams);
-        if (this.kalturaClient.isMultiRequest())
-            return 0;
-        Element resultXmlElement = this.kalturaClient.doQueue();
-        String resultText = resultXmlElement.getTextContent();
-        return ParseUtils.parseInt(resultText);
     }
 
 	/**  Get the mixes in which the media entry is included     */

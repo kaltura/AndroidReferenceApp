@@ -44,7 +44,7 @@ import com.kaltura.client.KalturaFile;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -258,5 +258,44 @@ public class KalturaDocumentService extends KalturaServiceBase {
         kparams.add("forceProxy", forceProxy);
         this.kalturaClient.queueServiceCall("document", "serveByFlavorParamsId", kparams);
         return this.kalturaClient.serve();
+    }
+
+    public KalturaDocumentEntry updateContent(String entryId, KalturaResource resource) throws KalturaApiException {
+        return this.updateContent(entryId, resource, Integer.MIN_VALUE);
+    }
+
+	/**  Replace content associated with the given document entry.     */
+    public KalturaDocumentEntry updateContent(String entryId, KalturaResource resource, int conversionProfileId) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("entryId", entryId);
+        kparams.add("resource", resource);
+        kparams.add("conversionProfileId", conversionProfileId);
+        this.kalturaClient.queueServiceCall("document", "updateContent", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaDocumentEntry.class, resultXmlElement);
+    }
+
+	/**  Approves document replacement     */
+    public KalturaDocumentEntry approveReplace(String entryId) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("entryId", entryId);
+        this.kalturaClient.queueServiceCall("document", "approveReplace", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaDocumentEntry.class, resultXmlElement);
+    }
+
+	/**  Cancels document replacement     */
+    public KalturaDocumentEntry cancelReplace(String entryId) throws KalturaApiException {
+        KalturaParams kparams = new KalturaParams();
+        kparams.add("entryId", entryId);
+        this.kalturaClient.queueServiceCall("document", "cancelReplace", kparams);
+        if (this.kalturaClient.isMultiRequest())
+            return null;
+        Element resultXmlElement = this.kalturaClient.doQueue();
+        return ParseUtils.parseObject(KalturaDocumentEntry.class, resultXmlElement);
     }
 }

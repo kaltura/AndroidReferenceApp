@@ -30,7 +30,7 @@ package com.kaltura.client.enums;
 /**
  * This class was generated using generate.php
  * against an XML schema provided by Kaltura.
- * @date Fri, 17 Aug 12 06:33:26 -0400
+ * @date Tue, 09 Apr 13 06:52:58 -0400
  * 
  * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
  */
@@ -72,9 +72,9 @@ public enum KalturaLanguage implements KalturaEnumAsString {
     FI ("Finnish"),
     FR ("French"),
     FY ("Frisian"),
-    GL ("Galician"),
-    GD ("Gaelic (Scottish)"),
     GV ("Gaelic (Manx)"),
+    GD ("Gaelic (Scottish)"),
+    GL ("Galician"),
     KA ("Georgian"),
     DE ("German"),
     EL ("Greek"),
@@ -82,11 +82,11 @@ public enum KalturaLanguage implements KalturaEnumAsString {
     GN ("Guarani"),
     GU ("Gujarati"),
     HA ("Hausa"),
-    HE ("Hebrew"),
+    IW ("Hebrew"),
     HI ("Hindi"),
     HU ("Hungarian"),
     IS ("Icelandic"),
-    ID ("Indonesian"),
+    IN ("Indonesian"),
     IA ("Interlingua"),
     IE ("Interlingue"),
     IU ("Inuktitut"),
@@ -372,9 +372,9 @@ public enum KalturaLanguage implements KalturaEnumAsString {
            return FY;
         }
         else 
-        if (hashCode.equals("Galician"))
+        if (hashCode.equals("Gaelic (Manx)"))
         {
-           return GL;
+           return GV;
         }
         else 
         if (hashCode.equals("Gaelic (Scottish)"))
@@ -382,9 +382,9 @@ public enum KalturaLanguage implements KalturaEnumAsString {
            return GD;
         }
         else 
-        if (hashCode.equals("Gaelic (Manx)"))
+        if (hashCode.equals("Galician"))
         {
-           return GV;
+           return GL;
         }
         else 
         if (hashCode.equals("Georgian"))
@@ -424,7 +424,7 @@ public enum KalturaLanguage implements KalturaEnumAsString {
         else 
         if (hashCode.equals("Hebrew"))
         {
-           return HE;
+           return IW;
         }
         else 
         if (hashCode.equals("Hindi"))
@@ -444,7 +444,7 @@ public enum KalturaLanguage implements KalturaEnumAsString {
         else 
         if (hashCode.equals("Indonesian"))
         {
-           return ID;
+           return IN;
         }
         else 
         if (hashCode.equals("Interlingua"))

@@ -33,6 +33,7 @@ public class Player extends TemplateActivity implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
     private int duration;
     private Activity activity;
+    private int partnerId;
     private List<KalturaFlavorAsset> listFlavorAssets = new ArrayList<KalturaFlavorAsset>();
     private List<KalturaFlavorAsset> copyListFlavorAssets = new ArrayList<KalturaFlavorAsset>();
     private String url;
@@ -93,7 +94,7 @@ public class Player extends TemplateActivity implements SurfaceHolder.Callback {
     	try {
     	holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     	holder.setFixedSize(400, 300);
-    	viewPlayer = new com.kaltura.player.ViewPlayer(TAG, activity, holder, duration, entryId);
+    	viewPlayer = new com.kaltura.player.ViewPlayer(TAG, activity, holder, duration, entryId, partnerId);
     	viewPlayer.setThumb(url);
     	new DownloadTask().execute();
     	} catch (IllegalArgumentException e) {
@@ -142,6 +143,7 @@ public class Player extends TemplateActivity implements SurfaceHolder.Callback {
             dataUrl = extras.getString("dataUrl");
             url = extras.getString("url");
             duration = extras.getInt("duration");
+            partnerId = extras.getInt("partnerId");
             Log.w(TAG, "dataUrl: " + dataUrl + " duration: " + duration);
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,7 +188,7 @@ public class Player extends TemplateActivity implements SurfaceHolder.Callback {
                     //Getting list of all entries category
                     publishProgress(States.LOADING_DATA);
                     try {
-                        listFlavorAssets = FlavorAsset.listAllFlavorAssets(TAG, entryId, 1, 500);
+                        listFlavorAssets = FlavorAsset.listAllFlavorsFromContext(TAG,  entryId, "widevine_mbr,widevine,iphonenew");//FlavorAsset.listAllFlavorAssets(TAG, entryId, 1, 500);
                         Collections.sort(listFlavorAssets, new Sort<KalturaFlavorAsset>("bitrate", "reverse"));
                         for (KalturaFlavorAsset f : listFlavorAssets) {
                             Log.w(TAG, "FLAVORS:  containerFormat: " + f.containerFormat + " description: " + f.description + " bitrate: " + f.bitrate + " frameRate: " + f.frameRate
@@ -194,7 +196,7 @@ public class Player extends TemplateActivity implements SurfaceHolder.Callback {
                                     + " tags: " + f.tags + " videoCodecId " + f.videoCodecId);
                         }
                         for (KalturaFlavorAsset kalturaFlavorAsset : listFlavorAssets) {
-                            if (!new Integer(Math.round(kalturaFlavorAsset.bitrate / 100) * 100).equals(0) && (kalturaFlavorAsset.tags.indexOf("iphonenew")) != -1) {
+                            if (!new Integer(Math.round(kalturaFlavorAsset.bitrate / 100) * 100).equals(0)) {
                                 copyListFlavorAssets.add(kalturaFlavorAsset);
                             }
                         }

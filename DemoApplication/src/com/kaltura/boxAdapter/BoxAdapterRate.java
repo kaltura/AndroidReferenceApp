@@ -113,6 +113,10 @@ public class BoxAdapterRate extends BaseAdapter {
     public StringBuffer getFlavorBitrate(int position) {
         return Utils.roundBitrate(list.get(position).bitrate);
     }
+    
+    public KalturaFlavorAsset getFlavor(int position) {
+    	return list.get(position);
+    }
 
     public String getListFlavors() {
         String str = "";

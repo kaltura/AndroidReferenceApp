@@ -1,6 +1,8 @@
 package com.kaltura.activity;
 
 //<editor-fold defaultstate="collapsed" desc="comment">
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -21,6 +23,7 @@ public class Settings extends TemplateActivity {
 
     private EditText etEmail;
     private EditText etPassword;
+    public final static String SAVED_EMAIL = "savedEmail";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,11 @@ public class Settings extends TemplateActivity {
         setFont();
         etEmail = (EditText) findViewById(R.id.et_login_user);
         etPassword = (EditText) findViewById(R.id.et_login_password);
-        etEmail.setText("user@email.com");
-        etPassword.setText("password");
+        
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String savedEmail = sharedPref.getString(SAVED_EMAIL, "user@email.com");
+        etEmail.setText(savedEmail);
+        etPassword.setText("");
         AdminUser.host = "http://www.kaltura.com";
         AdminUser.cdnHost = "http://cdnbakmi.kaltura.com";
     }
@@ -94,11 +100,17 @@ public class Settings extends TemplateActivity {
     }
 
     public void authorization(String email, String password) {
+    	final String curEmail = email;
         AdminUser.login(TAG, email, password, new AdminUser.LoginTaskListener() {
 
             @Override
             public void onLoginSuccess() {
-                Toast.makeText(context, "Authorization is success!", Toast.LENGTH_LONG).show();
+            	SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            	SharedPreferences.Editor editor = sharedPref.edit();
+            	editor.putString(SAVED_EMAIL, curEmail);
+            	editor.commit();
+            	
+                Toast.makeText(context, "You are now logged in!", Toast.LENGTH_LONG).show();
                 getActivityMediator().showMain();
             }
 

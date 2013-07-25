@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	
     <uses-feature android:name="android.hardware.camera" />
 	
@@ -61,11 +62,11 @@
         <activity android:name=".Player"></activity>
 			
         <!-- Declaring broadcast receiver for network connection status changing event -->
-        <receiver android:name="com.kaltura.brodcastReceiver.StatusConnection" android:enabled="true" android:exported="false">
+        <!--receiver android:name="com.kaltura.brodcastReceiver.StatusConnection" android:enabled="true" android:exported="false">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
-        </receiver>
+        </receiver-->
         
         <service android:name="com.kaltura.intentService.AuthorizationIntentService"/>
     </application>

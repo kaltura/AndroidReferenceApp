@@ -347,16 +347,18 @@ public class Player extends Observable implements MediaPlayer.OnErrorListener,
     }
 
     public void setStop() {
-        Log.w(TAG, "set stop");
-        try {
-            player.stop();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            Log.w(TAG, "err stop: ", e);
-        }
-        isStarted = false;
-        isPrepared = false;
-        isStopped = true;
+    	if ( isPrepared ) {
+		   Log.w(TAG, "set stop");
+	        try {
+	            player.stop();
+	        } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	            Log.w(TAG, "err stop: ", e);
+	        }
+	        isStarted = false;
+	        isPrepared = false;
+	        isStopped = true;
+    	}
     }
 
     public boolean isStopped() {
@@ -371,17 +373,19 @@ public class Player extends Observable implements MediaPlayer.OnErrorListener,
     }
 
     public void setPause() {
-        Log.w(TAG, "set pause");
-        try {
-            player.pause();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            Log.w(TAG, "err pause: ", e);
-        }
-        isStarted = false;
-        isPaused = true;
-        setChanged();
-        notifyObservers(STATES.PAUSED);
+    	if ( isPrepared ) {
+		   Log.w(TAG, "set pause");
+	        try {
+	            player.pause();
+	        } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	            Log.w(TAG, "err pause: ", e);
+	        }
+	        isStarted = false;
+	        isPaused = true;
+	        setChanged();
+	        notifyObservers(STATES.PAUSED);
+    	}
     }
 
     public boolean isPaused() {
@@ -389,12 +393,15 @@ public class Player extends Observable implements MediaPlayer.OnErrorListener,
     }
 
     public void seekTo(int seek) {
-        try {
-            player.seekTo(seek);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            Log.w(TAG, "err seekTo: ", e);
-        }
+    	if ( isPrepared ) {
+    		try {
+                player.seekTo(seek);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                Log.w(TAG, "err seekTo: ", e);
+            }
+    	}
+        
     }
 
     public int getDuration() {

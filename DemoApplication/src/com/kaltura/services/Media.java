@@ -22,6 +22,7 @@ import com.kaltura.client.types.KalturaMediaListResponse;
  */
 public class Media {
 
+	public static int ENTRIES_MAX_COUNT = 20;
     /**
      * Get a list of all media data from the kaltura server
      *

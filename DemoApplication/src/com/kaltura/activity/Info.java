@@ -27,7 +27,9 @@ import com.kaltura.utils.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+//import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class Info extends TemplateActivity {
 
@@ -37,7 +39,6 @@ public class Info extends TemplateActivity {
     private DownloadEntryTask downloadTask;
     private ImageView iv_thumbnail;
     private boolean isDownload;
-    private Bitmap bitmap;
     private String nameCategory;
     private int orientation;
     private Activity activity;
@@ -72,7 +73,6 @@ public class Info extends TemplateActivity {
         switch (orientation) {
             case Configuration.ORIENTATION_PORTRAIT:
             case Configuration.ORIENTATION_UNDEFINED:
-            case Configuration.ORIENTATION_SQUARE:
                 //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 iv_thumbnail.getLayoutParams().height = display.getHeight() / 2;
                 iv_thumbnail.getLayoutParams().width = display.getWidth();
@@ -109,7 +109,6 @@ public class Info extends TemplateActivity {
         switch (orientation) {
             case Configuration.ORIENTATION_PORTRAIT:
             case Configuration.ORIENTATION_UNDEFINED:
-            case Configuration.ORIENTATION_SQUARE:
                 iv_thumbnail.getLayoutParams().height = display.getHeight() / 2;
                 iv_thumbnail.getLayoutParams().width = display.getWidth();
                 break;
@@ -275,8 +274,7 @@ public class Info extends TemplateActivity {
     private void ImageLoader(String url) {
         Log.w(TAG, "Start image loader");
 
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .cacheInMemory().cacheOnDisc().build();
+        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).build();
 
         // This configuration tuning is custom. You can tune every option, you may tune some of them, 
         // or you can create default configuration by
@@ -284,11 +282,9 @@ public class Info extends TemplateActivity {
         // method.
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(activity).threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(150000000) // 150 Mb
                 .discCacheSize(50000000) // 50 Mb
-                .httpReadTimeout(10000) // 10 s
                 .denyCacheImageMultipleSizesInMemory().build();
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
-        ImageLoader.getInstance().enableLogging(); // Not necessary in common
         imageLoader.init(config);
 
 
@@ -303,24 +299,35 @@ public class Info extends TemplateActivity {
 
         imageLoader.displayImage(url, iv_thumbnail, options, new ImageLoadingListener() {
 
-            @Override
-            public void onLoadingStarted() {
-                // do nothing
+			@Override
+			public void onLoadingStarted(String imageUri, View view) {
+				 // do nothing
                 Log.w(TAG, "onLoadingStarted");
-            }
+				
+			}
 
-            @Override
-            public void onLoadingFailed() {
-                Log.w(TAG, "onLoadingFailed");
-                imageLoader.clearMemoryCache();
-                imageLoader.clearDiscCache();
-            }
+			@Override
+			public void onLoadingFailed(String imageUri, View view,
+					FailReason failReason) {
+				   	Log.w(TAG, "onLoadingFailed");
+	                imageLoader.clearMemoryCache();
+	                imageLoader.clearDiscCache();
+				
+			}
 
-            @Override
-            public void onLoadingComplete() {
-                // do nothing
+			@Override
+			public void onLoadingComplete(String imageUri, View view,
+					Bitmap loadedImage) {
+		         // do nothing
                 Log.w(TAG, "onLoadingComplete: ");
-            }
+				
+			}
+
+			@Override
+			public void onLoadingCancelled(String imageUri, View view) {
+				// TODO Auto-generated method stub
+				
+			}
         });
 
 

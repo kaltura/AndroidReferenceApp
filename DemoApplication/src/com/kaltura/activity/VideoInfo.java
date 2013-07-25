@@ -134,7 +134,7 @@ public class VideoInfo extends TemplateActivity {
                      * Getting list of all categories
                      */
                     publishProgress(States.LOADING_DATA);
-                    listCategory = Category.listAllCategories(TAG, 1, 500);
+                    listCategory = Category.listAllCategories(TAG, 1, Category.CATEGORIES_MAX_COUNT);
                 }
             } catch (KalturaApiException e) {
                 e.printStackTrace();

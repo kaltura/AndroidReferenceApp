@@ -17,6 +17,7 @@ import com.kaltura.client.types.KalturaFilterPager;
  */
 public class Category {
 
+	public static int CATEGORIES_MAX_COUNT = 20;
     /**
      * Get a list of all categories on the kaltura server
      *
@@ -48,7 +49,7 @@ public class Category {
         pager.pageSize = pageSize;
 
         // execute the list action of the mediaService object to recieve the list of entries
-        KalturaCategoryListResponse listResponse = categoryService.list(filter);
+        KalturaCategoryListResponse listResponse = categoryService.list(filter, pager);
 
         // loop through all entries in the reponse list and print their id.
         Log.w(TAG, "Entries list :");

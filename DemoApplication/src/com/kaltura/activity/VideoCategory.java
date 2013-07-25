@@ -45,35 +45,31 @@ import com.kaltura.utils.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+//import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class VideoCategory extends TemplateActivity implements Observer {
 
     private List<KalturaMediaEntry> listEntries;
     private List<KalturaMediaEntry> copyEntries;
-    private BoxAdapterAllEntries gridAllEntries;
     private int categoryId;
     private String categoryName;
     private EditText etSearch;
     private SearchTextEntry searchText;
-    private HashMap<KalturaMediaEntry, Bitmap> listBitmap;
     private KalturaMediaEntry lastCreatedEntry;
     private RelativeLayout rl_category;
     private DownloadListCatigoriesTask downloadTask;
     private View search;
-    private int width;
-    private int height;
     private int sizeListentry;
     private Activity activity;
     private LinearLayout ll_base;
     private List<GridForPort> contentPort;
     private List<GridForLand> contentLand;
     private ProgressBar pb_loading;
-    private boolean isFinish = true;
     private int orientation;
     private View itemTopRight;
     private KalturaMediaEntry rightTopEntry;
-    private Bitmap rightTopBimap;
     private boolean listCategoriesIsLoaded = false;
     private List<ImageView> view;
     private List<ProgressBar> progressBar;
@@ -84,7 +80,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
         listEntries = new ArrayList<KalturaMediaEntry>();
         copyEntries = new ArrayList<KalturaMediaEntry>();
         downloadTask = new DownloadListCatigoriesTask();
-        listBitmap = new HashMap<KalturaMediaEntry, Bitmap>();
+        new HashMap<KalturaMediaEntry, Bitmap>();
         lastCreatedEntry = new KalturaMediaEntry();
         searchText = new SearchTextEntry();
         searchText.addObserver(this);
@@ -123,8 +119,6 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     bar.setVisibleImageMovie(View.VISIBLE);
                     bar.setVisibleNameCategory(View.GONE);
                 }
-                width = display.getWidth() / 2;
-                height = display.getWidth() / 2;
                 downloadTask.execute();
 
 
@@ -138,8 +132,6 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     bar.setVisibleImageMovie(View.VISIBLE);
                     bar.setVisibleNameCategory(View.GONE);
                 }
-                width = display.getHeight() / 2;
-                height = display.getHeight() / 2;
                 downloadTask.execute();
 
                 break;
@@ -219,8 +211,6 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     bar.setVisibleImageMovie(View.VISIBLE);
                     bar.setVisibleNameCategory(View.GONE);
                 }
-                width = display.getWidth() / 2;
-                height = display.getWidth() / 2;
 
                 break;
             case Configuration.ORIENTATION_LANDSCAPE:
@@ -231,8 +221,6 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     bar.setVisibleImageMovie(View.VISIBLE);
                     bar.setVisibleNameCategory(View.GONE);
                 }
-                width = display.getHeight() / 2;
-                height = display.getHeight() / 2;
                 break;
             default:
                 break;
@@ -245,7 +233,6 @@ public class VideoCategory extends TemplateActivity implements Observer {
         switch (keyCode) {
             case KeyEvent.KEYCODE_MENU:
                 getActivityMediator().showMain();
-                isFinish = true;
                 finish();
                 break;
             case KeyEvent.KEYCODE_BACK:
@@ -356,7 +343,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
         Log.w(TAG, "Start image loader");
         float scale = (float) display.getWidth() / (float) display.getHeight();
         DisplayImageOptions options = new DisplayImageOptions.Builder() 
-                .cacheInMemory().cacheOnDisc().build();
+                .cacheInMemory(true).cacheOnDisc(true).build();
 
         // This configuration tuning is custom. You can tune every option, you may tune some of them, 
         // or you can create default configuration by
@@ -364,11 +351,9 @@ public class VideoCategory extends TemplateActivity implements Observer {
         // method.
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(activity).threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(150000000) // 150 Mb
                 .discCacheSize(50000000) // 50 Mb
-                .httpReadTimeout(10000) // 10 s
                 .denyCacheImageMultipleSizesInMemory().build();
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
-        ImageLoader.getInstance().enableLogging(); // Not necessary in common
         imageLoader.init(config);
 
         final List<String> url = new ArrayList<String>();
@@ -483,26 +468,29 @@ public class VideoCategory extends TemplateActivity implements Observer {
         count = 0;
         Log.w(TAG, "size: " + progressBar.size());
         k = 0;
-        imageLoader.enableLogging();
         for (String string : url) {
             imageLoader.displayImage(string, view.get(count), options, new ImageLoadingListener() {
 
-                @Override
-                public void onLoadingStarted() {
-                    // do nothing
+				@Override
+				public void onLoadingStarted(String imageUri, View view) {
+					// do nothing
                     Log.w(TAG, "onLoadingStarted");
-                }
+					
+				}
 
-                @Override
-                public void onLoadingFailed() {
-                    Log.w(TAG, "onLoadingFailed");
+				@Override
+				public void onLoadingFailed(String imageUri, View view,
+						FailReason failReason) {
+			        Log.w(TAG, "onLoadingFailed");
                     imageLoader.clearMemoryCache();
                     imageLoader.clearDiscCache();
-                }
+					
+				}
 
-                @Override
-                public void onLoadingComplete() {
-                    // do nothing
+				@Override
+				public void onLoadingComplete(String imageUri, View view,
+						Bitmap loadedImage) {
+					 // do nothing
                     if (k < progressBar.size()) {
                         try {
                             progressBar.get(k++).setVisibility(View.GONE);
@@ -516,7 +504,14 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     }
                     Log.w(TAG, "onLoadingComplete: " + k);
 
-                }
+					
+				}
+
+				@Override
+				public void onLoadingCancelled(String imageUri, View view) {
+					// TODO Auto-generated method stub
+					
+				}
             });
             count++;
         }

@@ -27,7 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kaltura.bar.ActionBar;
-import com.kaltura.boxAdapter.BoxAdapterAllEntries;
 import com.kaltura.client.enums.KalturaMediaType;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.client.types.KalturaMediaEntryFilter;
@@ -42,33 +41,30 @@ import com.kaltura.utils.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
+//import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 public class MostPopular extends TemplateActivity implements Observer {
 
     private List<KalturaMediaEntry> listEntries;
     private List<KalturaMediaEntry> copyEntries;
-    private BoxAdapterAllEntries gridAllEntries;
     private EditText etSearch;
     private SearchTextEntry searchText;
     private KalturaMediaEntry mostPlaysEntry;
     private RelativeLayout rl_category;
     private DownloadListCatigoriesTask downloadTask;
     private View search;
-    private Bitmap mostPlaysBimap;
     private int width;
-    private int height;
     private ProgressBar pb_loading;
     private LinearLayout ll_base;
-    private List<GridForPort> content;
     private int sizeListentry;
-    private boolean isFinish = true;
     private int orientation;
     private View itemTopRight;
     private List<GridForLand> contentLand;
     private List<GridForPort> contentPort;
     private KalturaMediaEntry rightTopEntry;
-    private Bitmap rightTopBimap;
     private boolean listCategoriesIsLoaded = false;
     private Activity activity;
     private List<ImageView> view;
@@ -111,14 +107,12 @@ public class MostPopular extends TemplateActivity implements Observer {
             case Configuration.ORIENTATION_UNDEFINED:
             case Configuration.ORIENTATION_SQUARE:
                 width = display.getWidth() / 2;
-                height = display.getWidth() / 2;
                 downloadTask.execute();
                 break;
             case Configuration.ORIENTATION_LANDSCAPE:
                 search.setVisibility(View.GONE);
                 bar.setVisibleSearchButon(View.VISIBLE);
                 width = display.getHeight() / 2;
-                height = display.getHeight() / 2;
                 downloadTask.execute();
                 break;
             default:
@@ -159,7 +153,6 @@ public class MostPopular extends TemplateActivity implements Observer {
                     bar.setTitle(getText(R.string.most_popular));
                 }
                 width = display.getWidth() / 2;
-                height = display.getWidth() / 2;
                 break;
             case Configuration.ORIENTATION_LANDSCAPE:
                 search.setVisibility(View.GONE);
@@ -169,7 +162,7 @@ public class MostPopular extends TemplateActivity implements Observer {
                     bar.setTitle(getText(R.string.most_popular));
                 }
                 width = display.getHeight() / 2;
-                height = display.getHeight() / 2;
+                
                 break;
             default:
                 break;
@@ -276,7 +269,7 @@ public class MostPopular extends TemplateActivity implements Observer {
                      */
                     KalturaMediaEntryFilter filter = new KalturaMediaEntryFilter();
                     filter.mediaTypeEqual = KalturaMediaType.VIDEO;
-                    listEntries = Media.listAllEntriesByIdCategories(TAG, filter, 1, 500);
+                    listEntries = Media.listAllEntriesByIdCategories(TAG, filter, 1, Media.ENTRIES_MAX_COUNT);
                 }
                 listCategoriesIsLoaded = true;
                 Log.w(TAG, "thread is end");
@@ -317,8 +310,7 @@ public class MostPopular extends TemplateActivity implements Observer {
     private void ImageLoader() {
         Log.w(TAG, "Start image loader");
         float scale = (float) display.getWidth() / (float) display.getHeight();
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .cacheInMemory().cacheOnDisc().build();
+        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT).bitmapConfig(Bitmap.Config.RGB_565).build();
 
         // This configuration tuning is custom. You can tune every option, you may tune some of them, 
         // or you can create default configuration by
@@ -327,17 +319,16 @@ public class MostPopular extends TemplateActivity implements Observer {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(activity)
                 .threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(150000000) // 150 Mb
                 .discCacheSize(50000000) // 50 Mb
-                .httpReadTimeout(10000) // 10 s
-                .denyCacheImageMultipleSizesInMemory().defaultDisplayImageOptions(options).build();
+                .denyCacheImageMultipleSizesInMemory().defaultDisplayImageOptions(options)
+                .enableLogging().build();
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
-        ImageLoader.getInstance().enableLogging(); // Not necessary in common
         imageLoader.init(config);
 
         final List<String> url = new ArrayList<String>();
         view = new ArrayList<ImageView>();
         progressBar = new ArrayList<ProgressBar>();
-        url.add(mostPlaysEntry.thumbnailUrl + "/width/" + new Integer(display.getWidth()).toString() + "/height/" + new Integer(250).toString());
+        url.add(mostPlaysEntry.thumbnailUrl + "/width/250/height/250");
         ImageView thumb = ((ImageView) findViewById(R.id.iv_thumbnail));
         thumb.getLayoutParams().width = display.getWidth();
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -350,11 +341,7 @@ public class MostPopular extends TemplateActivity implements Observer {
         progressBar.add(pb_loading);
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE && rightTopEntry != null) {
-            url.add(rightTopEntry.thumbnailUrl + "/width/" + new Integer(250/*
-                     * display.getWidth()
-                     */).toString() + "/height/" + new Integer(250/*
-                     * display.getHeight()/2
-                     */).toString());
+            url.add(rightTopEntry.thumbnailUrl + "/width/250/height/250");
             Log.w(TAG, "set last bitmap");
             thumb = ((ImageView) itemTopRight.findViewById(R.id.iv_thumbnail));
             thumb.getLayoutParams().width = display.getWidth();
@@ -377,11 +364,7 @@ public class MostPopular extends TemplateActivity implements Observer {
         }
 
         for (KalturaMediaEntry entry : copyEntries) {
-            url.add(entry.thumbnailUrl + "/width/" + new Integer(250/*
-                     * display.getWidth()/2
-                     */).toString() + "/height/" + new Integer(250/*
-                     * display.getWidth()/2
-                     */).toString());
+            url.add(entry.thumbnailUrl + "/width/250/height/250");
         }
         count = 0;
         for (String string : url) {
@@ -447,38 +430,51 @@ public class MostPopular extends TemplateActivity implements Observer {
         Log.w(TAG, "size: " + progressBar.size());
         k = 0;
         for (String string : url) {
-            imageLoader.displayImage(string, view.get(count), new ImageLoadingListener() {
+        	if (string != null) {
+                imageLoader.displayImage(string, view.get(count), new ImageLoadingListener() {
 
-                @Override
-                public void onLoadingStarted() {
-                    // do nothing
-                    Log.w(TAG, "onLoadingStarted");
-                }
+    				@Override
+    				public void onLoadingStarted(String imageUri, View view) {
+    					 // do nothing
+                        Log.w(TAG, "onLoadingStarted");
+    					
+    				}
 
-                @Override
-                public void onLoadingFailed() {
-                    Log.w(TAG, "onLoadingFailed");
-                    imageLoader.clearMemoryCache();
-                    imageLoader.clearDiscCache();
-                }
+    				@Override
+    				public void onLoadingFailed(String imageUri, View view,
+    						FailReason failReason) {
+                        Log.w(TAG, "onLoadingFailed");
+                        imageLoader.clearMemoryCache();
+                        imageLoader.clearDiscCache();
+    					
+    				}
 
-                @Override
-                public void onLoadingComplete() {
-                    // do nothing
-                    if (k < progressBar.size()) {
-                        progressBar.get(k++).setVisibility(View.GONE);
-                    }
-                    Log.w(TAG, "onLoadingComplete: " + k);
+    				@Override
+    				public void onLoadingComplete(String imageUri, View view,
+    						Bitmap loadedImage) {
+    					// do nothing
+                        if (k < progressBar.size()) {
+                            progressBar.get(k++).setVisibility(View.GONE);
+                        }
+                        Log.w(TAG, "onLoadingComplete: " + k);
 
-                    Log.w(TAG, "k<>size: " + k + "--" + url.size());
-                    if (k >= url.size()) {
-                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                    }
+                        Log.w(TAG, "k<>size: " + k + "--" + url.size());
+                        if (k >= url.size()) {
+                            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                        }
+    					
+    				}
 
+    				@Override
+    				public void onLoadingCancelled(String imageUri, View view) {
+    					// TODO Auto-generated method stub
+    					
+    				}
+                });
+                count++;
+        	}
 
-                }
-            });
-            count++;
+            
         }
 
     }
@@ -489,13 +485,7 @@ public class MostPopular extends TemplateActivity implements Observer {
 
         if (copyEntries.size() > 0) {
             sizeListentry = copyEntries.size();
-            for (KalturaMediaEntry kalturaMediaEntry : copyEntries) {
-                Log.w(TAG, "before sort: " + kalturaMediaEntry.plays);
-            }
             Collections.sort(copyEntries, new Sort<KalturaMediaEntry>("plays", "reverse"));
-            for (KalturaMediaEntry kalturaMediaEntry : copyEntries) {
-                Log.w(TAG, "after sort: " + kalturaMediaEntry.plays);
-            }
             mostPlaysEntry = copyEntries.get(0);
             copyEntries.remove(mostPlaysEntry);
             addContentLastEntry();

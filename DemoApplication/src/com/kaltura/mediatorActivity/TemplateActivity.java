@@ -74,6 +74,12 @@ public abstract class TemplateActivity extends Activity {
         progressDialog.setMessage(nameProcess);
         progressDialog.show();
     }
+    
+    @Override
+    public void onPause() {
+    	progressDialog.dismiss();
+    	super.onPause();
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

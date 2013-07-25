@@ -28,8 +28,6 @@ import com.kaltura.client.types.KalturaMediaEntry;
 public class ItemGrid implements Observer {
 
     private String TAG;
-    private LayoutInflater inflater;
-    private LinearLayout row_grid;
     private View item;
     private ImageView iv_thumbnail;
     private TextView tv_name;
@@ -37,7 +35,6 @@ public class ItemGrid implements Observer {
     private ProgressBar pb_loading;
     private KalturaMediaEntry key;
     private boolean isSetBitmap = false;
-    private Bitmap bitmap;
     private RelativeLayout rl_item_entry;
 
     public ItemGrid(String TAG, View view, int res) {

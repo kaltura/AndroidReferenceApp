@@ -113,7 +113,7 @@ public class Player extends TemplateActivity implements SurfaceHolder.Callback {
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		if (viewPlayer != null) {
 			viewPlayer.setRelease();

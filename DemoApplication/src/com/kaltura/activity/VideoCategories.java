@@ -54,7 +54,9 @@ import com.kaltura.utils.Utils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+//import com.nostra13.universalimageloader.core.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class VideoCategories extends TemplateActivity implements Observer, ListView.OnItemClickListener {
 
@@ -68,7 +70,6 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
     private LinearLayout ll_categories;
     private int categoryId;
     private List<KalturaMediaEntry> listEntries;
-    private HashMap<KalturaMediaEntry, Bitmap> listBitmap;
     private int textColor;
     private int arrow;
     private List<GridForPortLargeScreen> contentPort;
@@ -77,18 +78,12 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
     private String categoryName = "";
     private int orientation;
     private boolean largeScreen;
-    private static int save = -1;
-    private boolean isSet = false;
-    private List<KalturaMediaEntry> listMostPopular;
-    private boolean listCategoriesIsLoaded = false;
     private boolean isMostPopular = false;
     private Activity activity;
     private List<ImageView> view;
     private List<ProgressBar> progressBar;
     private int count = 0;
     int k = 0;
-    private int width;
-    private int height;
     private static int position = 0;
     private int transparentColor = 255;
     private boolean visibleHightLight;
@@ -96,14 +91,13 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
     private Dialog dialogUpload;
     private String url;
     private static int countShowDialog = 0;
-
+    public static int CATEGORIES_MAX_COUNT = 20;
+    
     public VideoCategories() {
-        listMostPopular = new ArrayList<KalturaMediaEntry>();
         searchText = new SearchTextCategory();
         searchText.addObserver(this);
         listCategory = new ArrayList<KalturaCategory>();
         listEntries = new ArrayList<KalturaMediaEntry>();
-        listBitmap = new HashMap<KalturaMediaEntry, Bitmap>();
         contentPort = new ArrayList<GridForPortLargeScreen>();
     }
 
@@ -166,8 +160,6 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                 visibleHightLight = true;
                 //Large Screen
                 setViewLargeScreen();
-                width = display.getHeight() / 2;
-                height = display.getHeight() / 2;
                 sharing = new Sharing(this);
                 switch (orientation) {
                     case Configuration.ORIENTATION_PORTRAIT:
@@ -209,8 +201,6 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                 visibleHightLight = true;
                 //Large Screen
                 setViewLargeScreen();
-                width = display.getHeight() / 2;
-                height = display.getHeight() / 2;
                 sharing = new Sharing(this);
                 switch (orientation) {
                     case Configuration.ORIENTATION_PORTRAIT:
@@ -346,8 +336,6 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                 arrow = R.drawable.arrow_white;
                 //Large Screen
                 addListCategoriesOnScreen();
-
-                save = -1;
                 switch (orientation) {
                     case Configuration.ORIENTATION_PORTRAIT:
                     case Configuration.ORIENTATION_UNDEFINED:
@@ -383,7 +371,6 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                 //Large Screen
                 addListCategoriesOnScreen();
 
-                save = -1;
                 switch (orientation) {
                     case Configuration.ORIENTATION_PORTRAIT:
                     case Configuration.ORIENTATION_UNDEFINED:
@@ -839,7 +826,7 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
 
         DisplayImageOptions options = new DisplayImageOptions.Builder() //.showStubImage(R.drawable.arrow)
                 //.showImageForEmptyUrl(R.drawable.arrow)
-                .cacheInMemory() //.cacheOnDisc()
+                .cacheInMemory(true) .cacheOnDisc(true)
                 .build();
 
         // This configuration tuning is custom. You can tune every option, you may tune some of them, 
@@ -847,11 +834,9 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
         //  ImageLoaderConfiguration.createDefault(this);
         // method.
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(activity).threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(1500000000) // 150 Mb
-                .httpReadTimeout(10000) // 10 s
                 .denyCacheImageMultipleSizesInMemory().build();
         // Initialize ImageLoaderForPort with configuration.
         ImageLoader.getInstance().init(config);
-        ImageLoader.getInstance().enableLogging(); // Not necessary in common
         imageLoader.init(config);
 
         final List<String> url = new ArrayList<String>();
@@ -913,22 +898,26 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
         for (String string : url) {
             imageLoader.displayImage(string, view.get(count), options, new ImageLoadingListener() {
 
-                @Override
-                public void onLoadingStarted() {
-                    // do nothing
+				@Override
+				public void onLoadingStarted(String imageUri, View view) {
+			        // do nothing
                     Log.w(TAG, "onLoadingStarted");
-                }
+					
+				}
 
-                @Override
-                public void onLoadingFailed() {
-                    Log.w(TAG, "onLoadingFailed");
-                    imageLoader.clearMemoryCache();
-                    imageLoader.clearDiscCache();
-                }
+				@Override
+				public void onLoadingFailed(String imageUri, View view,
+						FailReason failReason) {
+						Log.w(TAG, "onLoadingFailed");
+	                    imageLoader.clearMemoryCache();
+	                    imageLoader.clearDiscCache();
+					
+				}
 
-                @Override
-                public void onLoadingComplete() {
-                    // do nothing
+				@Override
+				public void onLoadingComplete(String imageUri, View view,
+						Bitmap loadedImage) {
+					 // do nothing
                     if (k < progressBar.size()) {
                         progressBar.get(k++).setVisibility(View.GONE);
                     }
@@ -936,7 +925,14 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                     if (k >= url.size() && determineScreenSize() != Configuration.SCREENLAYOUT_SIZE_LARGE) {
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                     }
-                }
+					
+				}
+
+				@Override
+				public void onLoadingCancelled(String imageUri, View view) {
+					// TODO Auto-generated method stub
+					
+				}
             });
             count++;
         }
@@ -947,7 +943,7 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
         Log.w(TAG, "Start image loader");
 
         DisplayImageOptions options = new DisplayImageOptions.Builder() 
-                .cacheInMemory() //.cacheOnDisc()
+                .cacheInMemory(true).cacheOnDisc(true)
                 .build();
 
         // This configuration tuning is custom. You can tune every option, you may tune some of them, 
@@ -955,11 +951,9 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
         //  ImageLoaderConfiguration.createDefault(this);
         // method.
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(activity).threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(1500000000) // 150 Mb
-                .httpReadTimeout(10000) // 10 s
                 .denyCacheImageMultipleSizesInMemory().build();
         // Initialize ImageLoaderForPort with configuration.
         ImageLoader.getInstance().init(config);
-        ImageLoader.getInstance().enableLogging(); // Not necessary in common
         imageLoader.init(config);
 
         final List<String> url = new ArrayList<String>();
@@ -1035,22 +1029,26 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
         for (String string : url) {
             imageLoader.displayImage(string, view.get(count), options, new ImageLoadingListener() {
 
-                @Override
-                public void onLoadingStarted() {
-                    // do nothing
+				@Override
+				public void onLoadingStarted(String imageUri, View view) {
+			          // do nothing
                     Log.w(TAG, "onLoadingStarted");
-                }
+					
+				}
 
-                @Override
-                public void onLoadingFailed() {
-                    Log.w(TAG, "onLoadingFailed");
-                    imageLoader.clearMemoryCache();
-                    imageLoader.clearDiscCache();
-                }
+				@Override
+				public void onLoadingFailed(String imageUri, View view,
+						FailReason failReason) {
+						Log.w(TAG, "onLoadingFailed");
+	                    imageLoader.clearMemoryCache();
+	                    imageLoader.clearDiscCache();
+					
+				}
 
-                @Override
-                public void onLoadingComplete() {
-                    // do nothing
+				@Override
+				public void onLoadingComplete(String imageUri, View view,
+						Bitmap loadedImage) {
+					 // do nothing
                     if (k < progressBar.size()) {
                         progressBar.get(k++).setVisibility(View.GONE);
                     }
@@ -1058,8 +1056,14 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                     if (k >= url.size() && determineScreenSize() != Configuration.SCREENLAYOUT_SIZE_LARGE) {
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                     }
+					
+				}
 
-                }
+				@Override
+				public void onLoadingCancelled(String imageUri, View view) {
+					// TODO Auto-generated method stub
+					
+				}
             });
             count++;
         }
@@ -1250,7 +1254,7 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                      * Getting list of all categories
                      */
                     publishProgress(States.LOADING_DATA);
-                    listCategory = Category.listAllCategories(TAG, 1, 500);
+                    listCategory = Category.listAllCategories(TAG, 1, CATEGORIES_MAX_COUNT);
                     Log.w(TAG, "Thread is end.");
                 }
             } catch (Exception e) {

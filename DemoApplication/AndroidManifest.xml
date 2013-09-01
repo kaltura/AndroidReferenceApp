@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.kaltura.activity"
           android:versionCode="1"
-          android:versionName="1.0" >
+          android:versionName="1.0"
+        android:icon="@drawable/ic_launcher">
 
     <uses-sdk android:minSdkVersion="8" />
 	    

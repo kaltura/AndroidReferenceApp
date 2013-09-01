@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
     <string name="hello">Hello World, KalturaActivity!</string>
-    <string name="app_name">Kaltura</string>
+    <string name="app_name">GlobeCast</string>
     <!-- Main-->
     <string name="main_most_popular">Most Popular</string>
     <string name="main_video_categories">Video Categories</string>

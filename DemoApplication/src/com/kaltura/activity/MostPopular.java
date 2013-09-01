@@ -320,7 +320,7 @@ public class MostPopular extends TemplateActivity implements Observer {
                 .threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(150000000) // 150 Mb
                 .discCacheSize(50000000) // 50 Mb
                 .denyCacheImageMultipleSizesInMemory().defaultDisplayImageOptions(options)
-                .enableLogging().build();
+                .build();
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
         imageLoader.init(config);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DemoApplication/DemoApplication.iml" filepath="$PROJECT_DIR$/DemoApplication/DemoApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KalturaClient/KalturaClient.iml" filepath="$PROJECT_DIR$/KalturaClient/KalturaClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KalturaClientTester/KalturaClientTester.iml" filepath="$PROJECT_DIR$/KalturaClientTester/KalturaClientTester.iml" />
+    </modules>
+  </component>
+</project>
+

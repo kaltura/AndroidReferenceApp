@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/DemoApplication/bin/dexedLibs/commons-httpclient-3.1-91751a7b8de2e2009c40d0b4c852811a.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DemoApplication/bin/dexedLibs/commons-codec-1.4-4af717d8fc1d7983cc209e88a2df21e0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DemoApplication/bin/dexedLibs/universal-image-loader-1.2.1-bfee20f349a11fabe550676056ce7e54.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DemoApplication/bin/dexedLibs/android-support-v4-391500e4d4cb380ef28211cc4397f617.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DemoApplication/bin/dexedLibs/kalturaclient-109e7285d7bd8eea6fb1ba4af79b32a8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/DemoApplication/bin/dexedLibs/simple-social-sharing-1.0.0-65b691478402d7b747d38c8573b87ae3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

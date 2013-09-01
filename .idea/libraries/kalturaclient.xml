@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kalturaclient">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/KalturaClient/bin/kalturaclient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

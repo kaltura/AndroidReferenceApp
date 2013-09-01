@@ -31,10 +31,10 @@
 	        android:layout_toRightOf="@+id/iv_icon_search"
 	        android:background="#00000000"
 	        android:singleLine="true"
-	        android:textColor="#0f3b4c"
+	        android:textColor="#e06636"
 	        android:textSize="20sp"
 	        android:layout_marginLeft="15dp"
 	        android:hint="@string/catigories_search_hint"
-	        android:textColorHint="#0e3b4c" />
+	        android:textColorHint="#e06636" />
     </RelativeLayout>
 </LinearLayout>

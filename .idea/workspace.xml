@@ -74,53 +74,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Sharing.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/sharing/Sharing.java">
+      <file leaf-file-name="ic_launcher.png" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-xxhdpi/ic_launcher.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="button_background_pressed.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_background_pressed.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="40" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2700">
+            <state line="11" column="32" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KalturaClientBase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KalturaClient/src/com/kaltura/client/KalturaClientBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="38" selection-start="2078" selection-end="2078" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="12975">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="35" selection-start="1300" selection-end="1300" vertical-scroll-proportion="-10.36" vertical-offset="116" max-vertical-offset="1200">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="34" selection-start="165" selection-end="165" vertical-scroll-proportion="0.091093116" vertical-offset="0" max-vertical-offset="810">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DemoApplication.iml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/DemoApplication.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/project.properties">
+      <file leaf-file-name="button_background_selector.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_background_selector.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
               <folding />
@@ -128,17 +99,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ic_launcher.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-ldpi/ic_launcher.png">
-          <provider selected="true" editor-type-id="images">
+      <file leaf-file-name="button_background_normal.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_background_normal.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="39" selection-start="267" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="button_search_selector.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_search_selector.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/search.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="38" selection-start="1251" selection-end="1251" vertical-scroll-proportion="-14.444445" vertical-offset="105" max-vertical-offset="675">
+              <folding>
+                <element signature="e#1350#1382#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bar.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/bar.xml">
+      <file leaf-file-name="splash.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/splash.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1469" selection-end="1469" vertical-scroll-proportion="-5.037037" vertical-offset="434" max-vertical-offset="1170">
+            <state line="13" column="15" selection-start="499" selection-end="499" vertical-scroll-proportion="-7.2222223" vertical-offset="0" max-vertical-offset="285">
               <folding />
             </state>
           </provider>
@@ -147,19 +143,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rate_background_normal.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/rate_background_normal.xml">
+      <file leaf-file-name="video_info.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/video_info.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="9" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+            <state line="20" column="48" selection-start="661" selection-end="661" vertical-scroll-proportion="-11.111111" vertical-offset="0" max-vertical-offset="1965">
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="MostPopular.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/activity/MostPopular.java">
+      <file leaf-file-name="panel_player.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/panel_player.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="322" column="16" selection-start="12011" selection-end="12011" vertical-scroll-proportion="0.0" vertical-offset="4815" max-vertical-offset="11430">
+            <state line="26" column="45" selection-start="982" selection-end="982" vertical-scroll-proportion="-12.222222" vertical-offset="60" max-vertical-offset="1815">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="color.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DemoApplication/res/values/color.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="38" selection-start="267" selection-end="267" vertical-scroll-proportion="0.18218623" vertical-offset="0" max-vertical-offset="494">
               <folding />
             </state>
           </provider>
@@ -175,6 +186,7 @@
   <component name="GenerateSignedApkSettings">
     <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../../pwd" />
     <option name="KEY_ALIAS" value="Moshe" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -183,12 +195,18 @@
         <option value="$PROJECT_DIR$/DemoApplication/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/DemoApplication/res/drawable/rate_background_normal.xml" />
         <option value="$PROJECT_DIR$/DemoApplication/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/DemoApplication/res/drawable/button_background_normal.xml" />
+        <option value="$PROJECT_DIR$/DemoApplication/res/drawable/button_background_pressed.xml" />
+        <option value="$PROJECT_DIR$/DemoApplication/res/layout/search.xml" />
+        <option value="$PROJECT_DIR$/DemoApplication/res/layout/splash.xml" />
+        <option value="$PROJECT_DIR$/DemoApplication/res/values/color.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="102" />
     <option name="y" value="22" />
-    <option name="width" value="1440" />
+    <option name="width" value="1638" />
     <option name="height" value="829" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -232,7 +250,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="KalturaClient" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidReferenceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="DemoApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AndroidReferenceApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DemoApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -251,7 +293,7 @@
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="vcs.Git" />
     <property name="ExportedModule" value="DemoApplication" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/KalturaClient/libs/commons-codec-1.4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../pwd" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -431,7 +473,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="829" extended-state="6" />
+    <frame x="102" y="22" width="1638" height="829" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -450,7 +492,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.73624825" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21859297" sideWeight="0.73624825" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -521,71 +563,84 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/services/FlavorAsset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="59" selection-start="3544" selection-end="3544" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KalturaClient/src/com/kaltura/client/types/KalturaEntryContextDataParams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="20" selection-start="1984" selection-end="1984" vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="1500" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KalturaClient/src/com/kaltura/client/types/KalturaEntryContextDataParams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="20" selection-start="1984" selection-end="1984" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/services/FlavorAsset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="59" selection-start="3544" selection-end="3544" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/mediatorActivity/TemplateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="51" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="2220" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/sharing/Sharing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="40" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/activity/MostPopular.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="322" column="16" selection-start="12011" selection-end="12011" vertical-scroll-proportion="0.0" vertical-offset="4025" max-vertical-offset="10500">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/src/com/kaltura/player/ViewPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="38" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9000">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KalturaClient/src/com/kaltura/client/KalturaClientBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="38" selection-start="2078" selection-end="2078" vertical-scroll-proportion="0.0" vertical-offset="260" max-vertical-offset="12585">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-ldpi/ic_launcher.png">
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-hdpi/arrow_white.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/bar.xml">
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-hdpi/arrow.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-mdpi/back_large_screen_normal.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-mdpi/back_large_screen_pressed.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-mdpi/back_movie_pressed.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-xhdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable-xxhdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_background_pressed.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1469" selection-end="1469" vertical-scroll-proportion="-5.037037" vertical-offset="434" max-vertical-offset="1170">
+        <state line="11" column="32" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_background_selector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_background_normal.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="39" selection-start="267" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/button_search_selector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="448">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/search.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="38" selection-start="1251" selection-end="1251" vertical-scroll-proportion="-14.444445" vertical-offset="105" max-vertical-offset="675">
+          <folding>
+            <element signature="e#1350#1382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/splash.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="15" selection-start="499" selection-end="499" vertical-scroll-proportion="-7.2222223" vertical-offset="0" max-vertical-offset="285">
           <folding />
         </state>
       </provider>
@@ -593,37 +648,29 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/res/drawable/rate_background_normal.xml">
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/video_info.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="9" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+        <state line="20" column="48" selection-start="661" selection-end="661" vertical-scroll-proportion="-11.111111" vertical-offset="0" max-vertical-offset="1965">
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/DemoApplication.iml">
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/layout/panel_player.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="494">
+        <state line="26" column="45" selection-start="982" selection-end="982" vertical-scroll-proportion="-12.222222" vertical-offset="60" max-vertical-offset="1815">
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/project.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="494">
-          <folding />
-        </state>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/DemoApplication/res/values/color.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="35" selection-start="1300" selection-end="1300" vertical-scroll-proportion="-10.36" vertical-offset="116" max-vertical-offset="1200">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DemoApplication/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="34" selection-start="165" selection-end="165" vertical-scroll-proportion="0.091093116" vertical-offset="0" max-vertical-offset="810">
+        <state line="6" column="38" selection-start="267" selection-end="267" vertical-scroll-proportion="0.18218623" vertical-offset="0" max-vertical-offset="494">
           <folding />
         </state>
       </provider>

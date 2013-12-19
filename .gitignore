@@ -1,8 +1,6 @@
 
 *.class
 
-*.jar
-
 *.apk
 
 DemoApplication/bin/*

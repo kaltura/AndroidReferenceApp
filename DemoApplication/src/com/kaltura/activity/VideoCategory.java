@@ -298,7 +298,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     KalturaMediaEntryFilter filter = new KalturaMediaEntryFilter();
                     filter.mediaTypeEqual = KalturaMediaType.VIDEO;
                     filter.categoriesIdsMatchAnd = new Integer(categoryId).toString();
-                    listEntries = Media.listAllEntriesByIdCategories(TAG, filter, 1, 500);
+                    listEntries = Media.listAllEntriesByIdCategories(TAG, filter, 1, Media.ENTRIES_MAX_COUNT);
                 }
                 listCategoriesIsLoaded = true;
             } catch (Exception e) {

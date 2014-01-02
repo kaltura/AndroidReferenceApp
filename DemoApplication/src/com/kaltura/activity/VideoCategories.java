@@ -1260,9 +1260,7 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
             } catch (Exception e) {
                 e.printStackTrace();
                 message = e.getMessage();
-                if (message != null) {
-                    Log.w(TAG, message);
-                }
+                Log.w(TAG, "err: "+ message); 
                 publishProgress(States.NO_CONNECTION);
             }
             return listCategory;
@@ -1307,7 +1305,7 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
             } catch (Exception e) {
                 e.printStackTrace();
                 message = e.getMessage();
-                Log.w(TAG, message);
+                Log.w(TAG, "err: " + message);
                 publishProgress(States.NO_CONNECTION);
             }
         }
@@ -1348,7 +1346,7 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
             } catch (Exception e) {
                 e.printStackTrace();
                 message = e.getMessage();
-                Log.w(TAG, message);
+                Log.w(TAG, "err: " + message);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;
@@ -1398,13 +1396,13 @@ public class VideoCategories extends TemplateActivity implements Observer, ListV
                     if (!isMostPopular) {
                         filter.categoriesIdsMatchAnd = new Integer(categoryId).toString();
                     }
-                    listEntries = Media.listAllEntriesByIdCategories(TAG, filter, 1, 500);
+                    listEntries = Media.listAllEntriesByIdCategories(TAG, filter, 1, Media.ENTRIES_MAX_COUNT);
                 }
                 Log.w(TAG, "Thread is end!");
             } catch (Exception e) {
                 e.printStackTrace();
                 message = e.getMessage();
-                Log.w(TAG, message);
+                Log.w(TAG, "err: "+ message);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;

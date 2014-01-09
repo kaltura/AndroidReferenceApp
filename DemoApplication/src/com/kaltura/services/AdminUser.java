@@ -7,7 +7,10 @@ import android.util.Log;
 import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.KalturaClient;
 import com.kaltura.client.KalturaConfiguration;
+import com.kaltura.client.KalturaMultiResponse;
 import com.kaltura.client.services.KalturaAdminUserService;
+import com.kaltura.client.services.KalturaUiConfService;
+import com.kaltura.client.types.KalturaUiConf;
 //</editor-fold>
 
 /**
@@ -29,6 +32,10 @@ public class AdminUser {
     public static String host;
     
     public static String cdnHost;
+    
+    public static int uiconfId;
+    
+    public static String html5Url;
 
     /**
      *
@@ -66,11 +73,18 @@ public class AdminUser {
                     config.setEndpoint(host);
 
                     client = new KalturaClient(config);
-
+                    client.setMultiRequest(true);
+                    
                     KalturaAdminUserService userService = new KalturaAdminUserService(client);
-                    ks = userService.login(email, password);
-                    Log.w(TAG, ks);
+                    client.getAdminUserService().login(email, password);
+ 
+                    KalturaUiConfService uiconf = new KalturaUiConfService( client );
+                    client.getUiConfService().get( uiconfId );
+                    KalturaMultiResponse multi = client.doMultiRequest();
+
                     // set the kaltura client to use the recieved ks as default for all future operations
+                    ks = (String) multi.get(0);
+                    Log.w(TAG, ks);
                     client.setSessionId(ks);
                     userIsLogin = true;
                     handler.post(new Runnable() {
@@ -80,6 +94,10 @@ public class AdminUser {
                             loginTaskListener.onLoginSuccess();
                         }
                     });
+                    
+                    KalturaUiConf uiconfObj = (KalturaUiConf) multi.get(1);
+                    html5Url = uiconfObj.html5Url.replace("mwEmbedLoader", "mwEmbedFrame");
+                    
                 } catch (final KalturaApiException e) {
                     e.printStackTrace();
                     Log.w(TAG, "Login error: " + e.getMessage() + " error code: " + e.code);

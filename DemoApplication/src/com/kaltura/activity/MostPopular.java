@@ -28,10 +28,12 @@ import android.widget.Toast;
 
 import com.kaltura.bar.ActionBar;
 import com.kaltura.client.enums.KalturaMediaType;
+import com.kaltura.client.types.KalturaBaseEntry;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.client.types.KalturaMediaEntryFilter;
 import com.kaltura.components.GridForLand;
 import com.kaltura.components.GridForPort;
+import com.kaltura.components.ItemGrid;
 import com.kaltura.enums.States;
 import com.kaltura.mediatorActivity.TemplateActivity;
 import com.kaltura.services.Media;
@@ -43,8 +45,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
-//import com.nostra13.universalimageloader.core.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+//import com.nostra13.universalimageloader.core.ImageLoadingListener;
 
 public class MostPopular extends TemplateActivity implements Observer {
 
@@ -237,7 +239,7 @@ public class MostPopular extends TemplateActivity implements Observer {
                 finish();
                 break;
             case R.id.iv_thumbnail:
-                getActivityMediator().showInfo(mostPlaysEntry.id, getString(R.string.most_popular));
+                getActivityMediator().showInfo(mostPlaysEntry.id, getString(R.string.most_popular), mostPlaysEntry.partnerId);
                 break;
             case R.id.iv_bar_search:
                 if (search.getVisibility() == View.GONE) {
@@ -358,7 +360,7 @@ public class MostPopular extends TemplateActivity implements Observer {
 
                 public void onClick(View view) {
                     Log.w(TAG, "click on thumb");
-                    getActivityMediator().showInfo(rightTopEntry.id, "Most Popular");
+                    getActivityMediator().showInfo(rightTopEntry.id, "Most Popular", rightTopEntry.partnerId);
                 }
             });
         }
@@ -374,22 +376,20 @@ public class MostPopular extends TemplateActivity implements Observer {
         int state = 0;
         count = 0;
         for (int j = 0; j < copyEntries.size(); j++) {
-
+        	ItemGrid ig = null;
             switch (orientation) {
                 case Configuration.ORIENTATION_PORTRAIT:
                     switch (state) {
                         case 0:
                             //left
                             Log.w(TAG, "xl: " + count);
-                            view.add(contentPort.get(count).getLeftItemGrid().getThumb());
-                            progressBar.add(contentPort.get(count).getLeftItemGrid().getProgressBar());//.setVisibility(View.GONE);
+                            ig = contentPort.get(count).getLeftItemGrid();
                             state = 2;
                             break;
                         case 2:
                             //right
                             Log.w(TAG, "xr: " + count);
-                            view.add(contentPort.get(count).getRightItemGrid().getThumb());
-                            progressBar.add(contentPort.get(count).getRightItemGrid().getProgressBar());
+                            ig = contentPort.get(count).getRightItemGrid();
                             count++;
                             state = 0;
                             break;
@@ -400,22 +400,19 @@ public class MostPopular extends TemplateActivity implements Observer {
                         case 0:
                             //left
                             Log.w(TAG, "xl: " + count);
-                            view.add(contentLand.get(count).getLeftItemGrid().getThumb());
-                            progressBar.add(contentLand.get(count).getLeftItemGrid().getProgressBar());
+                            ig = contentLand.get(count).getLeftItemGrid();
                             state = 1;
                             break;
                         case 1:
                             //center
                             Log.w(TAG, "xc: " + count);
-                            view.add(contentLand.get(count).getCenterItemGrid().getThumb());
-                            progressBar.add(contentLand.get(count).getCenterItemGrid().getProgressBar());
+                            ig = contentLand.get(count).getCenterItemGrid();
                             state = 2;
                             break;
                         case 2:
                             //right
                             Log.w(TAG, "xr: " + count);
-                            view.add(contentLand.get(count).getRightItemGrid().getThumb());
-                            progressBar.add(contentLand.get(count).getRightItemGrid().getProgressBar());
+                            ig = contentLand.get(count).getRightItemGrid();
                             count++;
                             state = 0;
                             break;
@@ -423,6 +420,10 @@ public class MostPopular extends TemplateActivity implements Observer {
                     break;
                 default:
                     break;
+            }
+            if ( ig != null ) {
+            	view.add(ig.getThumb());
+                progressBar.add(ig.getProgressBar());
             }
         }
 
@@ -523,6 +524,34 @@ public class MostPopular extends TemplateActivity implements Observer {
                 break;
         }
     }
+    
+    private void processItem( ItemGrid ig, int index, int width, int height ) {   	 
+    	ig.getName().setText(copyEntries.get(index).name);
+    	ig.getEpisode().setText(Utils.durationInSecondsToString(copyEntries.get(index).duration));
+    	ig.getThumb().getLayoutParams().width = width;
+    	ig.getThumb().getLayoutParams().height = height;
+    	ig.getThumb().setScaleType(ImageView.ScaleType.CENTER_CROP);
+    	ig.setKey(copyEntries.get(index));
+    }
+    
+    private void processNoElement( ItemGrid ig ) {
+        ig.getThumb().setVisibility(View.INVISIBLE);
+        ig.getProgressBar().setVisibility(View.INVISIBLE);
+        ig.getName().setVisibility(View.INVISIBLE);
+        ig.getEpisode().setVisibility(View.INVISIBLE);
+    }
+    
+    private void addThumbListener( ItemGrid ig, final int index ) {
+    	ig.getThumb().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (index < copyEntries.size()) {
+                	KalturaBaseEntry ent = copyEntries.get(index);
+                    getActivityMediator().showInfo(ent.id, "Most Popular", ent.partnerId);
+                    Log.w(TAG, "click first" + index);
+                }
+            }
+        });
+    }
 
     private void createGridForPort() {
         Log.w(TAG, "grid for port");
@@ -565,50 +594,19 @@ public class MostPopular extends TemplateActivity implements Observer {
                 ll_base.addView(templateContent.getRowGrid());
 
                 if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                    templateContent.getLeftItemGrid().getName().setText(copyEntries.get(templateContent.getOffset() + 0).name);
-                    templateContent.getLeftItemGrid().getEpisode().setText(Utils.durationInSecondsToString(copyEntries.get(templateContent.getOffset() + 0).duration));
-                    templateContent.getLeftItemGrid().getThumb().getLayoutParams().width = display.getWidth() / 2;
-                    templateContent.getLeftItemGrid().getThumb().getLayoutParams().height = (int) (display.getWidth() / 2 * scale);
-                    templateContent.getLeftItemGrid().getThumb().setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    templateContent.getLeftItemGrid().setKey(copyEntries.get(templateContent.getOffset() + 0));
+                	processItem( templateContent.getLeftItemGrid(), templateContent.getOffset() + 0, display.getWidth() / 2, (int)(display.getWidth() / 2 * scale));
                 } else {
                     Log.w(TAG, "no right element");
                 }
                 if (templateContent.getOffset() + 1 < copyEntries.size()) {
-                    templateContent.getRightItemGrid().getName().setText(copyEntries.get(templateContent.getOffset() + 1).name);
-                    templateContent.getRightItemGrid().getEpisode().setText(Utils.durationInSecondsToString(copyEntries.get(templateContent.getOffset() + 1).duration));
-                    templateContent.getRightItemGrid().getThumb().getLayoutParams().width = this.width;
-                    templateContent.getRightItemGrid().getThumb().getLayoutParams().height = (int) (display.getWidth() / 2 * scale);
-                    templateContent.getRightItemGrid().getThumb().setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    templateContent.getRightItemGrid().setKey(copyEntries.get(templateContent.getOffset() + 1));
+                	processItem( templateContent.getRightItemGrid(), templateContent.getOffset() + 1, this.width, (int)(display.getWidth() / 2 * scale));
                 } else {
                     Log.w(TAG, "no right element");
-                    templateContent.getRightItemGrid().getThumb().setVisibility(View.INVISIBLE);
-                    templateContent.getRightItemGrid().getProgressBar().setVisibility(View.INVISIBLE);
-                    templateContent.getRightItemGrid().getName().setVisibility(View.INVISIBLE);
-                    templateContent.getRightItemGrid().getEpisode().setVisibility(View.INVISIBLE);
+                    processNoElement( templateContent.getRightItemGrid() );
                 }
 
-                templateContent.getLeftItemGrid().getThumb().setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View view) {
-
-                        if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 0).id, "Most Popular");
-                            Log.w(TAG, "click first" + templateContent.getOffset());
-                        }
-                    }
-                });
-                templateContent.getRightItemGrid().getThumb().setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View view) {
-                        Log.w(TAG, "click second");
-                        if (templateContent.getOffset() + 1 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 1).id, "Most Popular");
-                            Log.w(TAG, "click first" + templateContent.getOffset() + 1);
-                        }
-                    }
-                });
+                addThumbListener( templateContent.getLeftItemGrid(), templateContent.getOffset() );
+                addThumbListener( templateContent.getRightItemGrid(), templateContent.getOffset() + 1);
             }
         } else {
             Log.w(TAG, "list size is 0");
@@ -656,77 +654,31 @@ public class MostPopular extends TemplateActivity implements Observer {
                 ll_base.addView(templateContent.getRowGrid());
 
                 if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                    templateContent.getLeftItemGrid().getName().setText(copyEntries.get(templateContent.getOffset() + 0).name);
-                    templateContent.getLeftItemGrid().getEpisode().setText(Utils.durationInSecondsToString(copyEntries.get(templateContent.getOffset() + 0).duration));
-                    templateContent.getLeftItemGrid().getThumb().getLayoutParams().width = display.getWidth() / 3;
-                    templateContent.getLeftItemGrid().getThumb().getLayoutParams().height = (int) (display.getWidth() / 3 * scale);
-                    templateContent.getLeftItemGrid().getThumb().setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    templateContent.getLeftItemGrid().setKey(copyEntries.get(templateContent.getOffset() + 0));
+                	processItem(templateContent.getLeftItemGrid(),templateContent.getOffset() + 0, display.getWidth() / 3, (int)(display.getWidth() / 3 * scale));
+                    
                 } else {
                     Log.w(TAG, "no left element");
                 }
 
                 if (templateContent.getOffset() + 1 < copyEntries.size()) {
-                    templateContent.getCenterItemGrid().getName().setText(copyEntries.get(templateContent.getOffset() + 1).name);
-                    templateContent.getCenterItemGrid().getEpisode().setText(Utils.durationInSecondsToString(copyEntries.get(templateContent.getOffset() + 1).duration));
-                    templateContent.getCenterItemGrid().getThumb().getLayoutParams().width = display.getWidth() / 3;
-                    templateContent.getCenterItemGrid().getThumb().getLayoutParams().height = (int) (display.getWidth() / 3 * scale);
-                    templateContent.getCenterItemGrid().getThumb().setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    templateContent.getCenterItemGrid().setKey(copyEntries.get(templateContent.getOffset() + 1));
+                	processItem(templateContent.getCenterItemGrid(), templateContent.getOffset() + 1, display.getWidth() / 3,  (int) (display.getWidth() / 3 * scale));
                 } else {
                     Log.w(TAG, "no center element");
-                    templateContent.getCenterItemGrid().getThumb().setVisibility(View.INVISIBLE);
-                    templateContent.getCenterItemGrid().getProgressBar().setVisibility(View.INVISIBLE);
-                    templateContent.getCenterItemGrid().getName().setVisibility(View.INVISIBLE);
-                    templateContent.getCenterItemGrid().getEpisode().setVisibility(View.INVISIBLE);
+                    processNoElement( templateContent.getCenterItemGrid() );
                 }
 
                 if (templateContent.getOffset() + 2 < copyEntries.size()) {
-                    templateContent.getRightItemGrid().getName().setText(copyEntries.get(templateContent.getOffset() + 2).name);
-                    templateContent.getRightItemGrid().getEpisode().setText(Utils.durationInSecondsToString(copyEntries.get(templateContent.getOffset() + 2).duration));
-                    templateContent.getRightItemGrid().getThumb().getLayoutParams().width = display.getWidth() / 3;
-                    templateContent.getRightItemGrid().getThumb().getLayoutParams().height = (int) (display.getWidth() / 3 * scale);
-                    templateContent.getRightItemGrid().getThumb().setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    templateContent.getRightItemGrid().setKey(copyEntries.get(templateContent.getOffset() + 2));
+                	processItem(templateContent.getRightItemGrid(), templateContent.getOffset() + 2, display.getWidth() / 3 , (int) (display.getWidth() / 3 * scale));
+
                 } else {
                     Log.w(TAG, "no right element");
-                    templateContent.getRightItemGrid().getThumb().setVisibility(View.INVISIBLE);
-                    templateContent.getRightItemGrid().getProgressBar().setVisibility(View.INVISIBLE);
-                    templateContent.getRightItemGrid().getName().setVisibility(View.INVISIBLE);
-                    templateContent.getRightItemGrid().getEpisode().setVisibility(View.INVISIBLE);
+                    processNoElement( templateContent.getRightItemGrid() );
                 }
-
-
-                templateContent.getLeftItemGrid().getThumb().setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View view) {
-
-                        if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 0).id, "Most Popular");
-                            Log.w(TAG, "click first" + templateContent.getOffset());
-                        }
-                    }
-                });
-                templateContent.getCenterItemGrid().getThumb().setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View view) {
-
-                        if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 0).id, "Most Popular");
-                            Log.w(TAG, "click first" + templateContent.getOffset());
-                        }
-                    }
-                });
-                templateContent.getRightItemGrid().getThumb().setOnClickListener(new View.OnClickListener() {
-
-                    public void onClick(View view) {
-                        Log.w(TAG, "click second");
-                        if (templateContent.getOffset() + 1 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 1).id, "Most Popular");
-                            Log.w(TAG, "click first" + templateContent.getOffset() + 1);
-                        }
-                    }
-                });
+                
+                addThumbListener( templateContent.getLeftItemGrid(), templateContent.getOffset() );
+                addThumbListener( templateContent.getCenterItemGrid(), templateContent.getOffset() );
+                addThumbListener( templateContent.getRightItemGrid(), templateContent.getOffset() + 1 );
+             
             }
         } else {
             Log.w(TAG, "list size is 0");

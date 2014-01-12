@@ -111,9 +111,10 @@ public class TemplateActivityMediator extends ActivityMediator {
         startActivity(Info.class);
     }
 
-    public void showInfo(String entryId, String nameCategory) {
+    public void showInfo(String entryId, String nameCategory, int partnerId) {
         Bundle bundle = new Bundle();
         bundle.putString("entryId", entryId);
+        bundle.putString("partnerId",Integer.toString(partnerId));
         bundle.putString("nameCategory", nameCategory);
         startActivity(Info.class, bundle);
     }

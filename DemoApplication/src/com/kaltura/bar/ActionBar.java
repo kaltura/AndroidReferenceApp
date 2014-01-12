@@ -49,11 +49,11 @@ public class ActionBar {
     }
 
     public int getBarWidth() {
-        return viewHolder.rl_bar.getWidth();
+        return viewHolder.bar.getWidth();
     }
 
     public int getBarHeight() {
-        return viewHolder.rl_bar.getHeight();
+    	return viewHolder.bar.getHeight();
     }
 
     public void setTitle(CharSequence title) {

@@ -5,15 +5,14 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
+import android.content.res.Configuration;
 import android.graphics.Point;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 
-import com.kaltura.playersdk.CustomPlayerView;
+import com.kaltura.playersdk.PlayerViewController;
 import com.kaltura.playersdk.events.OnToggleFullScreenListener;
-import com.kaltura.services.AdminUser;
 
 /**
  * This Helper class will perform kaltura-player related actions
@@ -22,64 +21,78 @@ import com.kaltura.services.AdminUser;
  */
 public class PlayerHelper implements OnToggleFullScreenListener {
 	
-	private CustomPlayerView mPlayerView;
+	private PlayerViewController mPlayerView;
 	private Boolean mInFS = false;
 	private Activity mActivity;
 	private int mWidth;
 	private int mHeight;
 	private List<View> mComponents;
+	private Boolean mIsLargeScreen = false;
+	private LinearLayout mLayout;
 	
 	/**
 	 * Creates a new PlayerHelper
 	 * @param player instance to control
 	 * @param activity that holds the player
+	 * @param isLargeScreen boolean if false player will open in fullscreen upon screen rotation
 	 */
-	public PlayerHelper( CustomPlayerView player, Activity activity ) {
+	public PlayerHelper( PlayerViewController player, Activity activity, Boolean isLargeScreen ) {
 		mPlayerView = player;
 		mActivity = activity;
+		mIsLargeScreen = isLargeScreen;
 		mPlayerView.setOnFullScreenListener(this);
 	}
 	
 	/**
 	 * Build Iframe URL and display the player
-	 * @param activity
 	 * @param entryId
 	 * @param partnerId
-	 * @param uiconfId
 	 * @param width
 	 * @param height
 	 * @param components to hide when opening fullscreen
 	 */
-	public void showPlayer( String entryId, String partnerId, int width, int height, List<View> components) {
+	public void showPlayer(String entryId, String partnerId, int width, int height, List<View> components) {
 		mComponents = components;
-        String iframeUrl = AdminUser.cdnHost + AdminUser.html5Url + "?wid=_" + partnerId + "&uiconf_id=" + AdminUser.uiconfId + "&entry_id=" + entryId;
-        LayoutParams params = (LayoutParams) mPlayerView.getLayoutParams();
-        mWidth = params.width;
-        mHeight = params.height;
-        //override params with given arguments
-        if ( width != 0 ) {
-        	mWidth = width;
-        }
-        if ( height != 0 ) {
-        	mHeight = height;
-        }  
-         mPlayerView.addComponents(iframeUrl, mWidth, mHeight, mActivity);
-         mPlayerView.setBackgroundColor(Color.BLACK);
+		mWidth = width;
+        mHeight = height;
+        mPlayerView.addComponents(partnerId, entryId, width, height, mActivity);
+	}
+	
+	public void setLayout(LinearLayout layout) {
+		mLayout = layout;
+	}
+	
+	public void notifyConfigurationChanged(Configuration newConfig) {
+		if ( mIsLargeScreen ) {
+    		if ( mInFS ) {
+    			Point size = new Point();
+    	    	mActivity.getWindowManager().getDefaultDisplay().getSize(size);
+    	    	mPlayerView.setPlayerViewDimensions( size.x, size.y );
+    		}
+    	} else {
+        	if ( newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE ) {
+        		openFullscreen();
+        	} else {
+        		closeFullscreen();
+        	}
+    	}
 	}
 
 	@Override
 	public void onToggleFullScreen() {
         if ( !mInFS) {
-	        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        	if ( !mIsLargeScreen )
+        		mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             openFullscreen();
         } else {
-	        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        	if ( !mIsLargeScreen )
+        		mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
            closeFullscreen();
         }
 		
 	}
 	
-	 public void openFullscreen() {
+	 private void openFullscreen() {
 	        mInFS = true;
 	        if ( mComponents!=null ){
 	        	for(Iterator<View> i = mComponents.iterator(); i.hasNext(); ) {
@@ -88,30 +101,25 @@ public class PlayerHelper implements OnToggleFullScreenListener {
 	        }
 	        
 	        Point size = new Point();
-	    	mActivity.getWindowManager().getDefaultDisplay().getSize(size);	
-	    	updateVideoDimensions( size.x, size.y );
+	    	mActivity.getWindowManager().getDefaultDisplay().getSize(size);
+	    	if ( mLayout != null ) {
+	    		LayoutParams params = (LayoutParams) mLayout.getLayoutParams();
+	    		params.width = LayoutParams.MATCH_PARENT;
+	    		params.height = LayoutParams.MATCH_PARENT;
+	    		mLayout.invalidate();
+	    	}
+	    	mPlayerView.setPlayerViewDimensions( size.x, size.y );
 	     
-	 }
-	 
-	    private void updateVideoDimensions( int width, int height ) {
-	    	ViewGroup.LayoutParams lp = mPlayerView.getLayoutParams();
-	        lp.width = width;
-	        lp.height = height;
-	      
-	        mPlayerView.setLayoutParams( lp );
-	        
-	        mPlayerView.setPlayerViewDimensions(width, height);
-	        mPlayerView.invalidate();
-	    }
+	 }	 
 	
-	    public void closeFullscreen() {
-	        mInFS = false;
-	        if ( mComponents!=null ){
-	        	for(Iterator<View> i = mComponents.iterator(); i.hasNext(); ) {
-		            i.next().setVisibility(View.VISIBLE);
-		        }
+    private void closeFullscreen() {
+        mInFS = false;
+        if ( mComponents!=null ){
+        	for(Iterator<View> i = mComponents.iterator(); i.hasNext(); ) {
+	            i.next().setVisibility(View.VISIBLE);
 	        }
-	        updateVideoDimensions( mWidth, mHeight);
-	    }
+        }
+        mPlayerView.setPlayerViewDimensions( mWidth, mHeight);
+    }
 
 }

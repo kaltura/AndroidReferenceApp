@@ -276,9 +276,7 @@ public class MostPopular extends TemplateActivity implements Observer {
                 listCategoriesIsLoaded = true;
                 Log.w(TAG, "thread is end");
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+            	message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return listEntries;
@@ -695,8 +693,7 @@ public class MostPopular extends TemplateActivity implements Observer {
                 ((TextView) findViewById(R.id.tv_episode)).setText("");
                 ((TextView) findViewById(R.id.tv_duration)).setText(Utils.durationInSecondsToString(mostPlaysEntry.duration));
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.w(TAG, "err: " + e.getMessage());
+            	Utils.handleException(TAG, e);
             }
         }
     }

@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.kaltura.bar.ActionBar;
 import com.kaltura.boxAdapter.BoxAdapterAllEntries;
 import com.kaltura.client.enums.KalturaMediaType;
+import com.kaltura.client.types.KalturaBaseEntry;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.client.types.KalturaMediaEntryFilter;
 import com.kaltura.components.GridForLand;
@@ -264,7 +265,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
                 break;
             case R.id.iv_thumbnail:
             case R.id.right_top_item:
-                getActivityMediator().showInfo(lastCreatedEntry.id, categoryName);
+                getActivityMediator().showInfo(lastCreatedEntry.id, categoryName, lastCreatedEntry.partnerId);
                 break;
             case R.id.rl_button_back:
                 try {
@@ -302,9 +303,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
                 }
                 listCategoriesIsLoaded = true;
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+            	message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return listEntries;
@@ -393,7 +392,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
 
                 public void onClick(View view) {
                     Log.w(TAG, "click on thumb");
-                    getActivityMediator().showInfo(rightTopEntry.id, categoryName);
+                    getActivityMediator().showInfo(rightTopEntry.id, categoryName, rightTopEntry.partnerId);
                 }
             });
         }
@@ -495,8 +494,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
                         try {
                             progressBar.get(k++).setVisibility(View.GONE);
                         } catch (Exception e) {
-                            e.printStackTrace();
-                            Log.w(TAG, "err: ", e);
+                        	Utils.handleException(TAG, e);
                         }
                     }
                     if (k >= url.size()) {
@@ -638,7 +636,8 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     public void onClick(View view) {
 
                         if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 0).id, categoryName);
+                        	KalturaBaseEntry ent = copyEntries.get(templateContent.getOffset() + 0);
+                            getActivityMediator().showInfo(ent.id, categoryName, ent.partnerId);
                             Log.w(TAG, "click first" + templateContent.getOffset() + " category name: " + categoryName);
                         }
                     }
@@ -648,7 +647,8 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     public void onClick(View view) {
                         Log.w(TAG, "click second");
                         if (templateContent.getOffset() + 1 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 1).id, categoryName);
+                        	KalturaBaseEntry ent = copyEntries.get(templateContent.getOffset() + 1);
+                            getActivityMediator().showInfo(ent.id, categoryName, ent.partnerId);
                             Log.w(TAG, "click first" + templateContent.getOffset() + 1);
                         }
                     }
@@ -746,7 +746,8 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     public void onClick(View view) {
 
                         if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 0).id, categoryName);
+                        	KalturaBaseEntry ent = copyEntries.get(templateContent.getOffset() + 0);
+                            getActivityMediator().showInfo(ent.id, categoryName, ent.partnerId);
                             Log.w(TAG, "click first" + templateContent.getOffset());
                         }
                     }
@@ -756,7 +757,8 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     public void onClick(View view) {
 
                         if (templateContent.getOffset() + 0 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 0).id, categoryName);
+                        	KalturaBaseEntry ent = copyEntries.get(templateContent.getOffset() + 0);
+                            getActivityMediator().showInfo(ent.id, categoryName, ent.partnerId);
                             Log.w(TAG, "click first" + templateContent.getOffset());
                         }
                     }
@@ -766,7 +768,8 @@ public class VideoCategory extends TemplateActivity implements Observer {
                     public void onClick(View view) {
                         Log.w(TAG, "click second");
                         if (templateContent.getOffset() + 1 < copyEntries.size()) {
-                            getActivityMediator().showInfo(copyEntries.get(templateContent.getOffset() + 1).id, categoryName);
+                        	KalturaBaseEntry ent = copyEntries.get(templateContent.getOffset() + 1);
+                            getActivityMediator().showInfo(ent.id, categoryName, ent.partnerId);
                             Log.w(TAG, "click first" + templateContent.getOffset() + 1);
                         }
                     }
@@ -788,8 +791,7 @@ public class VideoCategory extends TemplateActivity implements Observer {
                 SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
                 ((TextView) findViewById(R.id.tv_duration)).setText(sdf.format(new Date(lastCreatedEntry.duration * 1000)));
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.w(TAG, "err: " + e.getMessage());
+            	Utils.handleException(TAG, e);
             }
         }
     }

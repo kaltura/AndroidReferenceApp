@@ -480,9 +480,7 @@ public class Main extends TemplateActivity {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+                message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;
@@ -549,14 +547,10 @@ public class Main extends TemplateActivity {
                     listCategory = Category.listAllCategories(TAG, 1, Category.CATEGORIES_MAX_COUNT);
                 }
             } catch (KalturaApiException e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+                message = Utils.handleException(TAG, e);
                 publishProgress(States.ERR);
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+            	message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;

@@ -3,6 +3,7 @@ package com.kaltura.activity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.pm.ActivityInfo;
@@ -26,10 +27,13 @@ import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.enums.States;
 import com.kaltura.mediatorActivity.TemplateActivity;
-import com.kaltura.playersdk.CustomPlayerView;
+import com.kaltura.playersdk.PlayerViewController;
+import com.kaltura.playersdk.events.KPlayerEvalListener;
+import com.kaltura.playersdk.events.KPlayerEventListener;
 import com.kaltura.services.Media;
 import com.kaltura.sharing.Sharing;
 import com.kaltura.utils.Utils;
+
 //import com.nostra13.universalimageloader.core.ImageLoadingListener;
 
 public class Info extends TemplateActivity {
@@ -42,6 +46,7 @@ public class Info extends TemplateActivity {
     private Sharing sharing;
     private String partnerId;
     private PlayerHelper mPlayerHelper;
+    private boolean mIsLargeScreen = false;
 
     public Info() {
         downloadTask = new DownloadEntryTask();
@@ -51,8 +56,14 @@ public class Info extends TemplateActivity {
     public void onCreate(Bundle savedInstanceState) {   	
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        
+        mIsLargeScreen = ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) >=
+                Configuration.SCREENLAYOUT_SIZE_LARGE);
+             
+        if ( ! mIsLargeScreen ){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+     
         OrientationEventListener orientationListener = new OrientationEventListener( this, SensorManager.SENSOR_DELAY_NORMAL) {
             int lastPos = 0;
             @Override
@@ -86,7 +97,7 @@ public class Info extends TemplateActivity {
             }
         };
 
-        if ( orientationListener.canDetectOrientation() )
+        if ( !mIsLargeScreen && orientationListener.canDetectOrientation() )
             orientationListener.enable(); 
         
         init();
@@ -108,12 +119,8 @@ public class Info extends TemplateActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if ( mPlayerHelper != null ) {
-        	if ( newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE ) {
-        		mPlayerHelper.openFullscreen();
-        	} else {
-        		mPlayerHelper.closeFullscreen();
-        	}
+        if ( mPlayerHelper != null) {
+        	mPlayerHelper.notifyConfigurationChanged( newConfig );
         }
     }
 
@@ -209,13 +216,13 @@ public class Info extends TemplateActivity {
         ((TextView) findViewById(R.id.tv_duration)).setText(sdf.format(new Date(entry.duration * 1000)));
         ((TextView) findViewById(R.id.tv_description)).setText(entry.description);
         ll_info.setVisibility(View.VISIBLE); 
-        CustomPlayerView playerView = (CustomPlayerView) findViewById( R.id.custom_player );
-        mPlayerHelper = new PlayerHelper( playerView, this );
+        PlayerViewController playerView = (PlayerViewController) findViewById( R.id.custom_player );
+        mPlayerHelper = new PlayerHelper( playerView, this, mIsLargeScreen );
         Point size = new Point();
+        //calculate player size
     	getWindowManager().getDefaultDisplay().getSize(size);
     	size.y = size.y / 2;
-        playerView.getLayoutParams().height = size.y;
-        playerView.getLayoutParams().width = size.x;
+        //list of items to hide when opening fullscreen
         List<View> comps = new ArrayList<View>();
         comps.add(findViewById(R.id.ll_data));
         comps.add(findViewById(R.id.bar));
@@ -240,16 +247,13 @@ public class Info extends TemplateActivity {
                     try {
                         entry = Media.getEntrybyId(TAG, entryId);
                     } catch (KalturaApiException e) {
-                        e.printStackTrace();
-                        Log.w(TAG, "error get entry by id: " + e.getMessage());
+                    	Utils.handleException(TAG, e);
                         entry = new KalturaMediaEntry();
                     }
                 }
                 Log.w(TAG, "Thread is end");
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+            	message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;
@@ -274,5 +278,7 @@ public class Info extends TemplateActivity {
                 }
             }
         }
+        
+
     }
 }

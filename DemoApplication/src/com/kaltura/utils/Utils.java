@@ -1,7 +1,10 @@
 package com.kaltura.utils;
 
+import com.kaltura.enums.States;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.util.Log;
 
 public class Utils {
 
@@ -73,5 +76,20 @@ public class Utils {
             formatted.append("mb");
         }
         return formatted;
+    }
+    
+    /**
+     * handle exception
+     * @param classTag
+     * @param e
+     * @return exception message, if exists
+     */
+    public static String handleException(  String classTag, Exception e) {
+        e.printStackTrace();
+        String message = e.getMessage();
+        if ( message != null )
+        	Log.w(classTag, message);
+        
+        return message;
     }
 }

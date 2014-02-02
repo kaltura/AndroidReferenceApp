@@ -45,6 +45,7 @@ public class Settings extends TemplateActivity {
         etPassword.setText("");
         AdminUser.host = "http://www.kaltura.com";
         AdminUser.cdnHost = "http://cdnbakmi.kaltura.com";
+        AdminUser.uiconfId = 21384602;
     }
 
     /**

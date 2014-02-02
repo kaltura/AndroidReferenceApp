@@ -1,0 +1,3 @@
+[submodule "player-sdk-native-android"]
+	path = player-sdk-native-android
+	url = https://github.com/kaltura/player-sdk-native-android.git

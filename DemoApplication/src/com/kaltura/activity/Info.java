@@ -3,7 +3,6 @@ package com.kaltura.activity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import android.content.pm.ActivityInfo;
@@ -28,8 +27,6 @@ import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.enums.States;
 import com.kaltura.mediatorActivity.TemplateActivity;
 import com.kaltura.playersdk.PlayerViewController;
-import com.kaltura.playersdk.events.KPlayerEvalListener;
-import com.kaltura.playersdk.events.KPlayerEventListener;
 import com.kaltura.services.Media;
 import com.kaltura.sharing.Sharing;
 import com.kaltura.utils.Utils;

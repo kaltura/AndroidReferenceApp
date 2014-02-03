@@ -55,7 +55,8 @@ public class PlayerHelper implements OnToggleFullScreenListener {
 		mComponents = components;
 		mWidth = width;
         mHeight = height;
-        mPlayerView.addComponents(partnerId, entryId, width, height, mActivity);
+        mPlayerView.setPlayerViewDimensions(width, height);
+        mPlayerView.addComponents(partnerId, entryId, mActivity);
 	}
 	
 	public void setLayout(LinearLayout layout) {

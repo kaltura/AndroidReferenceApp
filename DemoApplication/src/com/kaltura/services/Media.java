@@ -15,6 +15,7 @@ import com.kaltura.client.types.KalturaFilterPager;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.client.types.KalturaMediaEntryFilter;
 import com.kaltura.client.types.KalturaMediaListResponse;
+import com.kaltura.utils.Utils;
 
 /**
  * Media service lets you upload and manage media files (images / videos &
@@ -111,8 +112,7 @@ public class Media {
             Log.w(TAG, "\nThe id of our new Video Entry is: " + newEntry.id);
             return newEntry;
         } catch (KalturaApiException e) {
-            e.printStackTrace();
-            Log.w(TAG, "err: " + e.getMessage());
+        	Utils.handleException(TAG, e);
             return null;
         }
     }

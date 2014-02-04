@@ -63,8 +63,7 @@ public class Uploading extends TemplateActivity {
             Log.w(TAG, "description: " + description);
             Log.w(TAG, "tags: " + tags);
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.w(TAG, "err: " + e.getMessage());
+        	Utils.handleException(TAG, e);
             pathfromURI = "";
             category = "";
             title = "";
@@ -123,9 +122,7 @@ public class Uploading extends TemplateActivity {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+            	message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;

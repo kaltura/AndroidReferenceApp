@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.kaltura.activity.Info;
 import com.kaltura.activity.Main;
 import com.kaltura.activity.MostPopular;
-import com.kaltura.activity.Player;
 import com.kaltura.activity.Settings;
 import com.kaltura.activity.Splash;
 import com.kaltura.activity.SuccessUpload;
@@ -65,20 +64,6 @@ public class TemplateActivityMediator extends ActivityMediator {
         startActivity(Settings.class);
     }
 
-    public void showPlayer() {
-        startActivity(Player.class);
-    }
-
-    public void showPlayer(String entryId, String dataUrl, int duration, String url, int partnerId) {
-        Bundle bundle = new Bundle();
-        bundle.putString("entryId", entryId);
-        bundle.putString("dataUrl", dataUrl);
-        bundle.putInt("duration", duration);
-        bundle.putString("url", url);
-        bundle.putInt("partnerId", partnerId);
-        startActivity(Player.class, bundle);
-    }
-
     public void showSuccessUpload() {
         startActivity(SuccessUpload.class);
     }
@@ -111,9 +96,10 @@ public class TemplateActivityMediator extends ActivityMediator {
         startActivity(Info.class);
     }
 
-    public void showInfo(String entryId, String nameCategory) {
+    public void showInfo(String entryId, String nameCategory, int partnerId) {
         Bundle bundle = new Bundle();
         bundle.putString("entryId", entryId);
+        bundle.putString("partnerId",Integer.toString(partnerId));
         bundle.putString("nameCategory", nameCategory);
         startActivity(Info.class, bundle);
     }

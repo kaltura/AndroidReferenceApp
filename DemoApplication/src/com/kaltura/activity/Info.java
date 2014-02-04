@@ -1,17 +1,22 @@
 package com.kaltura.activity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.hardware.SensorManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.OrientationEventListener;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,15 +26,12 @@ import com.kaltura.client.KalturaApiException;
 import com.kaltura.client.types.KalturaMediaEntry;
 import com.kaltura.enums.States;
 import com.kaltura.mediatorActivity.TemplateActivity;
+import com.kaltura.playersdk.PlayerViewController;
 import com.kaltura.services.Media;
 import com.kaltura.sharing.Sharing;
 import com.kaltura.utils.Utils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
+
 //import com.nostra13.universalimageloader.core.ImageLoadingListener;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 public class Info extends TemplateActivity {
 
@@ -37,28 +39,67 @@ public class Info extends TemplateActivity {
     private KalturaMediaEntry entry;
     private LinearLayout ll_info;
     private DownloadEntryTask downloadTask;
-    private ImageView iv_thumbnail;
-    private boolean isDownload;
     private String nameCategory;
-    private int orientation;
-    private Activity activity;
     private Sharing sharing;
+    private String partnerId;
+    private PlayerHelper mPlayerHelper;
+    private boolean mIsLargeScreen = false;
 
     public Info() {
         downloadTask = new DownloadEntryTask();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {   	
         super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mIsLargeScreen = ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) >=
+                Configuration.SCREENLAYOUT_SIZE_LARGE);
+             
+        if ( ! mIsLargeScreen ){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+     
+        OrientationEventListener orientationListener = new OrientationEventListener( this, SensorManager.SENSOR_DELAY_NORMAL) {
+            int lastPos = 0;
+            @Override
+            public void onOrientationChanged(int i) {
+            	int diff = Math.abs(lastPos - i);
+                if ( diff >= 45 && diff <= 270 ) {
+                    int requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                    if ( isInRange(i, 90) ) {
+                    	if (Build.VERSION.SDK_INT >= 9)
+                    		requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
+                    	else
+                    		requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                    } else if ( isInRange(i, 180) ) {
+                    	if (Build.VERSION.SDK_INT >= 9)
+                    		requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;	
+                    } else if ( isInRange(i, 270) ) {
+                        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                    }
+                    lastPos = i;
+                    setRequestedOrientation( requestedOrientation );
+                }
+            }
+            /**
+             *
+             * @param current
+             * @param pos
+             * @return true if current is in the range (max difference of 45) of pos value
+             */
+            private boolean isInRange( int current, int pos ) {
+                return ( Math.abs( pos - current ) <= 45 );
+            }
+        };
+
+        if ( !mIsLargeScreen && orientationListener.canDetectOrientation() )
+            orientationListener.enable(); 
+        
         init();
         setContentView(R.layout.info);
-
-        activity = this;
-        Configuration c = getResources().getConfiguration();
-        orientation = c.orientation;
         setView();
-
         extractBundle();
 
         if (bar != null) {
@@ -69,63 +110,20 @@ public class Info extends TemplateActivity {
         }
         ll_info.setVisibility(View.INVISIBLE);
         sharing = new Sharing(this);
-
-        switch (orientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-            case Configuration.ORIENTATION_UNDEFINED:
-                //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                iv_thumbnail.getLayoutParams().height = display.getHeight() / 2;
-                iv_thumbnail.getLayoutParams().width = display.getWidth();
-                downloadTask.execute();
-                break;
-            case Configuration.ORIENTATION_LANDSCAPE:
-                //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                iv_thumbnail.getLayoutParams().height = display.getHeight() - display.getHeight() / 3;
-                iv_thumbnail.getLayoutParams().width = display.getWidth();
-                downloadTask.execute();
-                break;
-            default:
-                break;
-        }
+        downloadTask.execute();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        setContentView(R.layout.info);
-        this.orientation = newConfig.orientation;
-        setView();
-        if (bar != null) {
-            bar.setTitle(getText(R.string.info));
-            bar.setVisibleNameCategory(View.VISIBLE);
-            bar.setTextNameCategory(nameCategory);
+        if ( mPlayerHelper != null) {
+        	mPlayerHelper.notifyConfigurationChanged( newConfig );
         }
-        if (isDownload) {
-            updateData();
-        }
-
-
-        Log.w(TAG, "oreientation: " + newConfig.orientation);
-        switch (orientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-            case Configuration.ORIENTATION_UNDEFINED:
-                iv_thumbnail.getLayoutParams().height = display.getHeight() / 2;
-                iv_thumbnail.getLayoutParams().width = display.getWidth();
-                break;
-            case Configuration.ORIENTATION_LANDSCAPE:
-                iv_thumbnail.getLayoutParams().height = display.getHeight() - display.getHeight() / 3;
-                iv_thumbnail.getLayoutParams().width = display.getWidth();
-                break;
-            default:
-                break;
-        }
-
     }
 
     private void setView() {
         bar = new ActionBar(this, TAG);
         ll_info = (LinearLayout) findViewById(R.id.ll_info);
-        iv_thumbnail = ((ImageView) findViewById(R.id.iv_thumbnail));
         setFont();
 
     }
@@ -153,11 +151,13 @@ public class Info extends TemplateActivity {
         try {
             Bundle extras = getIntent().getExtras();
             entryId = extras.getString("entryId");
+            partnerId = extras.getString("partnerId");
             nameCategory = extras.getString("nameCategory");
 
         } catch (Exception e) {
             e.printStackTrace();
             entryId = "";
+            partnerId = "";
             nameCategory = "";
         }
     }
@@ -183,11 +183,6 @@ public class Info extends TemplateActivity {
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_button_play:
-                Log.w(TAG, "test play button");
-                String url = entry.thumbnailUrl + "/width/" + new Integer(display.getWidth()).toString() + "/height/" + new Integer(display.getHeight() / 2).toString();
-                getActivityMediator().showPlayer(entry.id, entry.downloadUrl, entry.duration, url, entry.partnerId);
-                break;
             case R.id.iv_button_facebook:
                 Log.w(TAG, "test facebook button");
                 sharing.sendToFacebook(entry);
@@ -212,10 +207,25 @@ public class Info extends TemplateActivity {
     }
 
     private void updateData() {
-        String url = entry.thumbnailUrl + "/width/" + new Integer(display.getWidth()).toString() + "/height/" + new Integer(display.getHeight() / 2).toString();
-        ImageLoader(url);
+    	((TextView) findViewById(R.id.tv_name)).setText(entry.name);
+        ((TextView) findViewById(R.id.tv_episode)).setText("");
+        SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
+        ((TextView) findViewById(R.id.tv_duration)).setText(sdf.format(new Date(entry.duration * 1000)));
+        ((TextView) findViewById(R.id.tv_description)).setText(entry.description);
+        ll_info.setVisibility(View.VISIBLE); 
+        PlayerViewController playerView = (PlayerViewController) findViewById( R.id.custom_player );
+        mPlayerHelper = new PlayerHelper( playerView, this, mIsLargeScreen );
+        Point size = new Point();
+        //calculate player size
+    	getWindowManager().getDefaultDisplay().getSize(size);
+    	size.y = size.y / 2;
+        //list of items to hide when opening fullscreen
+        List<View> comps = new ArrayList<View>();
+        comps.add(findViewById(R.id.ll_data));
+        comps.add(findViewById(R.id.bar));
+        mPlayerHelper.showPlayer(entryId, partnerId, size.x, size.y, comps);      
+         
     }
-
 
     private class DownloadEntryTask extends AsyncTask<Void, States, Void> {
 
@@ -234,16 +244,13 @@ public class Info extends TemplateActivity {
                     try {
                         entry = Media.getEntrybyId(TAG, entryId);
                     } catch (KalturaApiException e) {
-                        e.printStackTrace();
-                        Log.w(TAG, "error get entry by id: " + e.getMessage());
+                    	Utils.handleException(TAG, e);
                         entry = new KalturaMediaEntry();
                     }
                 }
                 Log.w(TAG, "Thread is end");
             } catch (Exception e) {
-                e.printStackTrace();
-                message = e.getMessage();
-                Log.w(TAG, message);
+            	message = Utils.handleException(TAG, e);
                 publishProgress(States.NO_CONNECTION);
             }
             return null;
@@ -252,7 +259,6 @@ public class Info extends TemplateActivity {
         @Override
         protected void onPostExecute(Void param) {
             progressDialog.hide();
-            isDownload = true;
             updateData();
         }
 
@@ -269,68 +275,7 @@ public class Info extends TemplateActivity {
                 }
             }
         }
-    }
-
-    private void ImageLoader(String url) {
-        Log.w(TAG, "Start image loader");
-
-        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).build();
-
-        // This configuration tuning is custom. You can tune every option, you may tune some of them, 
-        // or you can create default configuration by
-        //  ImageLoaderConfiguration.createDefault(this);
-        // method.
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(activity).threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2).memoryCacheSize(150000000) // 150 Mb
-                .discCacheSize(50000000) // 50 Mb
-                .denyCacheImageMultipleSizesInMemory().build();
-        // Initialize ImageLoader with configuration.
-        ImageLoader.getInstance().init(config);
-        imageLoader.init(config);
-
-
-        iv_thumbnail.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ((TextView) findViewById(R.id.tv_name)).setText(entry.name);
-        ((TextView) findViewById(R.id.tv_episode)).setText("");
-        SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
-        ((TextView) findViewById(R.id.tv_duration)).setText(sdf.format(new Date(entry.duration * 1000)));
-        ((TextView) findViewById(R.id.tv_description)).setText(entry.description);
-        ll_info.setVisibility(View.VISIBLE);
-
-
-        imageLoader.displayImage(url, iv_thumbnail, options, new ImageLoadingListener() {
-
-			@Override
-			public void onLoadingStarted(String imageUri, View view) {
-				 // do nothing
-                Log.w(TAG, "onLoadingStarted");
-				
-			}
-
-			@Override
-			public void onLoadingFailed(String imageUri, View view,
-					FailReason failReason) {
-				   	Log.w(TAG, "onLoadingFailed");
-	                imageLoader.clearMemoryCache();
-	                imageLoader.clearDiscCache();
-				
-			}
-
-			@Override
-			public void onLoadingComplete(String imageUri, View view,
-					Bitmap loadedImage) {
-		         // do nothing
-                Log.w(TAG, "onLoadingComplete: ");
-				
-			}
-
-			@Override
-			public void onLoadingCancelled(String imageUri, View view) {
-				// TODO Auto-generated method stub
-				
-			}
-        });
-
-
+        
 
     }
 }

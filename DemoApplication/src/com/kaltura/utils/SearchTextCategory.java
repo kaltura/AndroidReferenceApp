@@ -41,8 +41,7 @@ public class SearchTextCategory extends Observable implements TextWatcher {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.w(TAG, "err: " + e.getMessage());
+        	Utils.handleException(TAG, e);
         }
     }
 

@@ -6,6 +6,7 @@ Package contents
  - Project files
  - Library test code and data files (KalturaClientTester/*)
  - Reference application (DemoApplication/*)
+ - PlayerSDK submodule
 
 Running the test code
 ======================

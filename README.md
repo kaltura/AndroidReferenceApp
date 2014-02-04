@@ -1,4 +1,3 @@
-
 Package contents
 =================
  - The Kaltura client library base (KalturaClientBase, KalturaObjectBase...)
@@ -21,7 +20,8 @@ Running the test code
 
 Running the demo application
 =============================
-1. Import the projects into Eclipse (see above)
+1. Init PlayerSDK submodule to your local path
+2. Import the projects into Eclipse (KalturaClient, Kaltura and PlayerSDK)
 2. Edit com.kaltura.activity.Splash/src/com.kaltura.activity/Settings.java
 3. Search for etEmail.setText and etPassword.setText
 4. Set the default user / password to the credentials of you Kaltura KMC account

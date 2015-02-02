@@ -1,8 +1,5 @@
 package com.kaltura.activity;
 
-import java.util.Iterator;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -13,6 +10,9 @@ import android.widget.LinearLayout;
 
 import com.kaltura.playersdk.PlayerViewController;
 import com.kaltura.playersdk.events.OnToggleFullScreenListener;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * This Helper class will perform kaltura-player related actions
@@ -56,7 +56,7 @@ public class PlayerHelper implements OnToggleFullScreenListener {
 		mWidth = width;
         mHeight = height;
         mPlayerView.setPlayerViewDimensions(width, height);
-        mPlayerView.addComponents(partnerId, entryId, mActivity);
+//        mPlayerView.setComponents(partnerId, entryId, mActivity);
 	}
 	
 	public void setLayout(LinearLayout layout) {
@@ -104,7 +104,7 @@ public class PlayerHelper implements OnToggleFullScreenListener {
 	        Point size = new Point();
 	    	mActivity.getWindowManager().getDefaultDisplay().getSize(size);
 	    	if ( mLayout != null ) {
-	    		LayoutParams params = (LayoutParams) mLayout.getLayoutParams();
+	    		LayoutParams params = mLayout.getLayoutParams();
 	    		params.width = LayoutParams.MATCH_PARENT;
 	    		params.height = LayoutParams.MATCH_PARENT;
 	    		mLayout.invalidate();

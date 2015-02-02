@@ -4,8 +4,13 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
     defaultConfig {
-        applicationId "com.kaltura.kalturaplayertoolkit"
+        applicationId "com.kaltura.demoapplication"
         minSdkVersion 15
         targetSdkVersion 21
     }

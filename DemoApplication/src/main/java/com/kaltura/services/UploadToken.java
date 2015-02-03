@@ -130,7 +130,7 @@ public class UploadToken extends Observable {
                     Log.w(TAG, "Readed bytes: " + numRead);
                     outFile = new File(PATH, "upload.dat");
                     fos = new FileOutputStream(outFile);
-                    fos.write(buf, 0, numRead);//itay - exception
+                    fos.write(buf, 0, numRead);
                     fos.close();
                 } catch (IOException ex) {
                     Log.w(TAG, "err: ", ex);
@@ -145,7 +145,7 @@ public class UploadToken extends Observable {
             }
             if (fileData.length() > sizeBuf) {
                 if (remainingUploadFileSize > sizeBuf) {
-                    if (addChunk(client, upToken.id, outFile, readSum != 0, false, readSum)) {//itay - instead of -1 we'll put the file sent so far
+                    if (addChunk(client, upToken.id, outFile, readSum != 0, false, readSum)) {
                         Log.w(TAG, "1 chunk[" + ++i + "] - uploaddFileSize: " + kalturaUploadToken.uploadedFileSize);
                         wasFirst = true;
                         readSum += numRead;

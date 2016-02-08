@@ -35,7 +35,7 @@ public class UploadToken extends Observable {
     private KalturaMediaEntry newEntry;
     private float remainingUploadFileSize;
     private boolean startUpload;
-    private int readSum = 0;
+    private long readSum = 0;
     
     /**
      * Constructor Description of UploadToken
@@ -127,7 +127,7 @@ public class UploadToken extends Observable {
                     }
                     buf = new byte[sizeBuf];
                     numRead = fis.read(buf);
-                    Log.w(TAG, "Readed bytes: " + numRead);
+                    Log.w(TAG, "Bytes read: " + numRead);
                     outFile = new File(PATH, "upload.dat");
                     fos = new FileOutputStream(outFile);
                     fos.write(buf, 0, numRead);
@@ -222,7 +222,7 @@ public class UploadToken extends Observable {
      *
      * @return
      */
-    private boolean addChunk(KalturaClient client, String uploadTokenId, File outFile, boolean resume, boolean finalChunk, int resumeAt) {
+    private boolean addChunk(KalturaClient client, String uploadTokenId, File outFile, boolean resume, boolean finalChunk, long resumeAt) {
         boolean isUploaded = false;
         try {
             kalturaUploadToken = client.getUploadTokenService().upload(uploadTokenId, outFile, resume, finalChunk, resumeAt);
